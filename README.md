@@ -1,4 +1,10 @@
-## Hi there 👋
+# Hello World, I'm Balaji!
+📖 Software Engineering @ <a href="https://www.uwaterloo.ca">University of Waterloo</a>
+
+### Current
+- Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
+- Project Manger @ <a href="https://www.uwarg.com">WARG</a>
+
 
 <!--
 **BalajiLeninrajan/BalajiLeninrajan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
