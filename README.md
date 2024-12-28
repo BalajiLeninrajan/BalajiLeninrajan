@@ -1,22 +1,22 @@
 # Hello World, I'm Balaji!
-📖 Software Engineering @ <a href="https://www.uwaterloo.ca">University of Waterloo</a>
+
+**📖 Software Engineering @ <a href="https://www.uwaterloo.ca">University of Waterloo</a>**
+
+Live for coffee ☕, love to code 💻, and always up for a challenge 🚀
+
+<br/>
 
 ### Current
+
 - Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Project Manger @ <a href="https://www.uwarg.com">WARG</a>
 
+### Previous
 
-<!--
-**BalajiLeninrajan/BalajiLeninrajan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+- Web/ERP intern @ <a href="https://ytygroup.com.my/">YTY</a>
+- Technical Lead @ <a href="https://www.linkedin.com/company/aws-cloud-club-uw/">AWS Cloud Club UW</a>
 
-Here are some ideas to get you started:
+<br/>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- **Languages**: `Python``C/C++``Go``Dart``Rust``Assembly``Scala``Java``JavaScript``TypeScript``SQL``Bash`
+- **Web/Mobile**: `Flutter``React``React Native``HTML/CSS``Django``Flask`
