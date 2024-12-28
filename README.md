@@ -22,3 +22,9 @@ Live for coffee ☕, love to code 💻, and always up for a challenge 🚀
 - **Web/Mobile 📱**: `Flutter` `React` `React Native` `HTML/CSS` `Django` `Flask` `Firebase`
 - **AI/ML & Data 🤖**: `Pandas` `Numpy` `Scikit-learn` `TensorFlow` `Keras` `PyTorch` `OpenCV`
 - **Tools 🛠️**: `AWS` `Bash` `Linux` `Git` `Selenium` `Docker` `GitHub Actions`
+
+## Contact
+
+- 📧 Send me an email: bleninra@uwaterloo.ca
+- 🔗 Connect with me on <a href="https://www.linkedin.com/in/balaji-leninrajan/">LinkedIn</a>
+- 🌐 Check out my <a href="https://balajileninrajan.github.io/homepage/">Personal Website</a>
