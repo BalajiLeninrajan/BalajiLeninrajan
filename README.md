@@ -1,29 +1,5 @@
 # Hello World, I'm Balaji!
 
-```
-           _
-         ,' '.
-        /     \
-      ^ |  _  | ^
-     | || / \ || |
-     | |||.-.||| |
-     | |||   ||| |
-     | |||   ||| |
-     | |||   ||| |
-     | |||   ||| |
-     | ,'     '. |
-     ,'__     __`.
-    /____  |  ____\
-     /_\ |_|_| /_\
-     .:   : :   :.
-     : .  : .  : :
-      ::   ::   ::
-     : : .: :. : :
-    .: :.: : :. : .
-    : : .: :  ::  :
-   .:  .   : :   ..
-```
-
 **📖 Software Engineering @ <a href="https://www.uwaterloo.ca">University of Waterloo</a>**
 
 Live for coffee ☕, love to code 💻, linux enthusiast 🐧
