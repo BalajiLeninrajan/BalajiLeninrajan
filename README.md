@@ -4,7 +4,7 @@
 
 Live for coffee ☕, love to code 💻, and always up for a challenge 🚀
 
-<br/>
+## Work
 
 ### Current
 
@@ -16,7 +16,7 @@ Live for coffee ☕, love to code 💻, and always up for a challenge 🚀
 - Web/ERP intern @ <a href="https://ytygroup.com.my/">YTY</a>
 - Technical Lead @ <a href="https://www.linkedin.com/company/aws-cloud-club-uw/">AWS Cloud Club UW</a>
 
-<br/>
+## Skills
 
 - **Languages ⌨️**: `Python` `C/C++` `Go` `Dart` `Rust` `Assembly` `Scala` `Java` `JavaScript` `TypeScript` `SQL`
 - **Web/Mobile 📱**: `Flutter` `React` `React Native` `HTML/CSS` `Django` `Flask` `Firebase`
