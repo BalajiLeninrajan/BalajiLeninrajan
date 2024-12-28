@@ -18,5 +18,7 @@ Live for coffee ☕, love to code 💻, and always up for a challenge 🚀
 
 <br/>
 
-- **Languages**: `Python``C/C++``Go``Dart``Rust``Assembly``Scala``Java``JavaScript``TypeScript``SQL``Bash`
-- **Web/Mobile**: `Flutter``React``React Native``HTML/CSS``Django``Flask`
+- **Languages ⌨️**: `Python` `C/C++` `Go` `Dart` `Rust` `Assembly` `Scala` `Java` `JavaScript` `TypeScript` `SQL` `Bash`
+- **Web/Mobile 📱**: `Flutter` `React` `React Native` `HTML/CSS` `Django` `Flask` `Firebase`
+- **AI/ML & Data 🤖**: `Pandas` `Numpy` `Scikit-learn` `TensorFlow` `Keras` `PyTorch` `OpenCV`
+- **Tools 🛠️**: `AWS` `Linux` `Git` `Selenium` `Docker` `GitHub Actions`
