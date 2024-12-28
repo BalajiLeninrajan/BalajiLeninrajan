@@ -1,7 +1,6 @@
 # Hello World, I'm Balaji!
 
 ```
-
            _
          ,' '.
         /     \
