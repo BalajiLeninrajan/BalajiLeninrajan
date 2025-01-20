@@ -2,7 +2,7 @@
 
 **📖 Software Engineering @ <a href="https://www.uwaterloo.ca">University of Waterloo</a>**
 
-Live for coffee ☕, love to code 💻, linux enthusiast 🐧
+live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ## Work
 
@@ -18,10 +18,10 @@ Live for coffee ☕, love to code 💻, linux enthusiast 🐧
 
 ## Skills
 
-- **Languages ⌨️**: `Python` `C/C++` `Go` `Dart` `Rust` `Assembly` `Scala` `Java` `JavaScript` `TypeScript` `SQL`
-- **Web/Mobile 📱**: `Flutter` `React` `React Native` `HTML/CSS` `Django` `Flask` `Firebase`
+- **Languages ⌨️**: `Python` `C/C++` `Ruby` `Go` `Dart` `Rust` `Assembly` `Scala` `Java` `JavaScript` `TypeScript` `SQL`
+- **Web/Mobile 📱**: `Flutter` `React` `React Native` `HTML/CSS` `Django` `Flask` `Rails` `GraphQL` `Firebase`
 - **AI/ML & Data 🤖**: `Pandas` `Numpy` `Scikit-learn` `TensorFlow` `Keras` `PyTorch` `OpenCV`
-- **Tools 🛠️**: `AWS` `Bash` `Linux` `Git` `Selenium` `Docker` `GitHub Actions`
+- **Tools 🛠️**: `AWS` `Bash` `Linux` `Git` `Selenium` `Docker` `Kubernetes` `GitHub Actions`
 
 ## Contact
 
