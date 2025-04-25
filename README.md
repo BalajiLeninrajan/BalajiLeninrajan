@@ -8,11 +8,11 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ### Current
 
-- Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Project Manger @ <a href="https://www.uwarg.com">WARG</a>
 
 ### Previous
 
+- Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Web/ERP intern @ <a href="https://ytygroup.com.my/">YTY</a>
 - Technical Lead @ <a href="https://www.linkedin.com/company/aws-cloud-club-uw/">AWS Cloud Club UW</a>
 
