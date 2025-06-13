@@ -8,18 +8,18 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ### Current
 
-- Project Manger @ <a href="https://www.uwarg.com">WARG</a>
+- Autonomy Lead @ <a href="https://www.uwarg.com">WARG</a>
+- Incoming Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 
 ### Previous
 
-- Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Web/ERP intern @ <a href="https://ytygroup.com.my/">YTY</a>
 - Technical Lead @ <a href="https://www.linkedin.com/company/aws-cloud-club-uw/">AWS Cloud Club UW</a>
 
 ## Skills
 
-- **Languages ⌨️**: `Python` `C/C++` `Ruby` `Go` `Dart` `Rust` `Assembly` `Scala` `Java` `JavaScript` `TypeScript` `SQL`
-- **Web/Mobile 📱**: `Flutter` `React` `React Native` `HTML/CSS` `Django` `Flask` `Rails` `GraphQL` `Firebase`
+- **Languages ⌨️**: `C/C++` `TypeScript` `Ruby` `Go` `Python` `Dart` `Rust` `Assembly` `Scala` `Java` `SQL`
+- **Web/Mobile 📱**: `Rails` `React` `Next` `React Native` `HTML/CSS` `Django` `Flask` `RPC` `GraphQL` `Flutter`
 - **AI/ML & Data 🤖**: `Pandas` `Numpy` `Scikit-learn` `TensorFlow` `Keras` `PyTorch` `OpenCV`
 - **Tools 🛠️**: `AWS` `Bash` `Linux` `Git` `Selenium` `Docker` `Kubernetes` `GitHub Actions`
 
