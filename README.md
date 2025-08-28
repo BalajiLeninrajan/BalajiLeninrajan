@@ -8,8 +8,8 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ### Current
 
+- Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Autonomy Lead @ <a href="https://www.uwarg.com">WARG</a>
-- Incoming Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 
 ### Previous
 
