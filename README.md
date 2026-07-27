@@ -26,6 +26,6 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ## Contact
 
-- 📧 Send me an email: bleninra@uwaterloo.ca
+- 📧 Send me an email: work@balajileninrajan.dev
 - 🔗 Connect with me on <a href="https://www.linkedin.com/in/balaji-leninrajan/">LinkedIn</a>
 - 🌐 Check out my <a href="https://www.balajileninrajan.dev">Website</a>
