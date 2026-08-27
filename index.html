@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Balaji Leninrajan</title>
+    <meta
+      name="description"
+      content="Balaji Leninrajan — software engineering student at the University of Waterloo."
+    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.1.5/css/index.css"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="app-shell">
+    <header class="topbar">
+      <span class="wordmark">Balaji<em>Leninrajan</em></span>
+      <nav aria-label="Views">
+        <a class="btn btn-flat" href="#about">About</a>
+        <a class="btn btn-flat" href="#work">Experience</a>
+        <a class="btn btn-flat" href="#projects">Projects</a>
+      </nav>
+    </header>
+    <main class="deck">
+      <section class="hero" id="about">
+        <p class="eyebrow">Software engineer · Waterloo, ON</p>
+        <h1 class="display-title">Hi, I'm <em>Balaji</em>.</h1>
+        <p class="lede">
+          I like building systems that hold up under load: financial tooling,
+          edge infrastructure, drone autonomy. I study Software Engineering at
+          the <a href="https://uwaterloo.ca">University of Waterloo</a> and I'm
+          currently interning at
+          <a href="https://www.ycombinator.com/companies/finta">Finta</a>.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:work@balajileninrajan.dev"
+            >Email me</a
+          >
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/BalajiLeninrajan"
+            >GitHub</a
+          >
+          <a
+            class="btn btn-secondary"
+            href="https://linkedin.com/in/balaji-leninrajan"
+            >LinkedIn</a
+          >
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="accordion-stack">
+          <div class="accordion">
+            <label>
+              <input type="checkbox" checked />
+              <p>Software Engineering Intern · <em>Finta</em></p>
+              <span class="cn-meta">May 2026 – present</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Cut dashboard load from ~2 minutes to under 2 seconds with
+                    indexed PostgreSQL read models and a React rebuild
+                  </li>
+                  <li>
+                    Built a collaborative financial-modeling spreadsheet in
+                    three weeks: custom formulas, charts, templates, version
+                    history
+                  </li>
+                  <li>
+                    Google Sheets–style real-time collaboration on a revisioned
+                    operation log, with WebSocket sync and conflict-safe version
+                    restores
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>Production Engineering Intern · <em>Shopify</em></p>
+              <span class="cn-meta">Sep – Dec 2025</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Engineered a high-scale SSL stack for edge infrastructure
+                    with Ruby on Rails and Terraform; migrated 10+ services
+                  </li>
+                  <li>
+                    Resolved a critical production outage caused by 429-error
+                    spikes with kill switches and smarter retry backoffs
+                  </li>
+                  <li>
+                    Recovered $250,000+ annually by pruning 10M+ dead hostnames
+                  </li>
+                  <li>
+                    Authored operational playbooks and automated incident
+                    response tooling for domain and SSL job processing
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>Software Engineering Intern · <em>Shopify</em></p>
+              <span class="cn-meta">Jan – Apr 2025</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Shipped features for a communications platform orchestrating
+                    4M+ monthly emails and push notifications, in React, Rails,
+                    and GraphQL
+                  </li>
+                  <li>
+                    Designed an email approval workflow that cut faulty
+                    campaigns from human error by 80%
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>Autonomy Lead · <em>Waterloo Aerial Robotics Group</em></p>
+              <span class="cn-meta">Jan 2024 – present</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Lead 15+ developers; back-to-back victories at AEAC 2024 and
+                    2025
+                  </li>
+                  <li>
+                    Architected a VSLAM pipeline with stereo depth and
+                    visual-inertial odometry for GPS-denied navigation
+                  </li>
+                  <li>
+                    Built a fault-tolerant ROS 2 behavior-tree mission
+                    controller that preserves progress through operator
+                    kill-switch interruptions
+                  </li>
+                  <li>
+                    Published a Python CLI that configures, runs, tests, and
+                    diagnoses individual robotics subsystems
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>Technical Lead · <em>AWS Cloud Club</em></p>
+              <span class="cn-meta">May 2024 – Jan 2025</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Created and led Amazon SageMaker workshops covering XGBoost,
+                    hyperparameter tuning, and AI workflows
+                  </li>
+                  <li>
+                    Mentored 25+ students to the AWS Certified Cloud
+                    Practitioner certification
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>ERP/Web Development Intern · <em>YTY Group</em></p>
+              <span class="cn-meta">May – Aug 2024</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Built an employee attendance prediction system with
+                    TensorFlow and Pandas
+                  </li>
+                  <li>
+                    Created a Flutter expense-claims app with offline support
+                    and persistent login
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="accordion-stack">
+          <div class="accordion">
+            <label>
+              <input type="checkbox" checked />
+              <p>varchar</p>
+              <span class="cn-meta">Rust · WebAssembly · Preact</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    A SQL engine that keeps the whole database in one string:
+                    hand-rolled lexer, parser, type checker, and a planner that
+                    makes a regex do an index scan's job
+                  </li>
+                  <li>
+                    Fuzzed against a reference implementation, checking random
+                    CRUD sequences and predicates for identical results
+                  </li>
+                  <li>
+                    Ported to WebAssembly, drawing each query's match spans onto
+                    the live database string as it runs
+                  </li>
+                </ul>
+                <p class="cn-meta">
+                  <a href="https://varchar.balajileninrajan.dev"
+                    >varchar.balajileninrajan.dev</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>salt</p>
+              <span class="cn-meta"
+                >Rust · TypeScript · Cloudflare Workers</span
+              >
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    A CLI that scans 16 GB of coding-agent session history
+                    across 7,900 files in under 4 seconds, bound by disk, not
+                    CPU
+                  </li>
+                  <li>
+                    Turns each scan into a shareable link, served from one
+                    Cloudflare Worker with KV records that expire themselves
+                    after 30 days
+                  </li>
+                  <li>
+                    Ships binaries for six platforms from one 2 MB npm package,
+                    no bundled runtime
+                  </li>
+                </ul>
+                <p class="cn-meta">
+                  <a href="https://salt.balajileninrajan.dev"
+                    >salt.balajileninrajan.dev</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>harness racer</p>
+              <span class="cn-meta">TypeScript · React · Ink</span>
+            </label>
+            <div class="fold">
+              <div>
+                <ul>
+                  <li>
+                    Integrates five coding agents behind one event contract,
+                    reconciling JSON-RPC, ACP, and SDK streaming
+                  </li>
+                  <li>
+                    A benchmark that distrusts its own inputs: one tokenizer,
+                    medians over repeats, voided runs when output arrives in a
+                    buffered burst instead of a stream
+                  </li>
+                  <li>
+                    One benchmark core drives both a React dashboard and an Ink
+                    terminal UI, with no forked logic
+                  </li>
+                </ul>
+                <p class="cn-meta">
+                  <a href="https://harness-racer.balajileninrajan.dev"
+                    >harness-racer.balajileninrajan.dev</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer-neu">
+      <span>Balaji Leninrajan</span>
+      <p>work@balajileninrajan.dev</p>
+    </footer>
+  </body>
+</html>
