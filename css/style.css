@@ -10,16 +10,10 @@ main {
   padding: clamp(56px, 12vh, 120px) 0 72px;
 }
 
-/* Nerd Font glyphs: the Mono variant fits each icon inside its own advance
-   box, so centering the cell centers the ink. */
-:root {
-  --nerd: "JetBrainsMono Nerd Font Mono", "JetBrainsMono NFM", "Symbols Nerd Font Mono",
-          "JetBrainsMono Nerd Font", var(--mono);
-}
-
 /* Hero actions — a row of icon buttons. The markup composes the package's
    .btn-icon with .cn-tone-mauve, .cn-raised-soft, and .cn-pressable; what's
-   left here is the size, the glyph font, and keeping the hover hairline off. */
+   left here is the size, the icon size, and keeping the hover hairline off.
+   Icons are <use> references into the inline sprite at the top of <body>. */
 .hero-actions {
   margin-top: 30px;
   display: flex;
@@ -29,10 +23,9 @@ main {
 .hero-actions .btn-icon {
   --control-h-sm: 46px;
   color: var(--subtext-0);
-  font: 28px/1 var(--nerd);
 }
 .hero-actions .btn-icon:hover { border-color: transparent; }
-.hero-actions .btn-icon svg { width: 26px; height: 26px; }
+.hero-actions .btn-icon svg { width: 21px; height: 21px; }
 
 /* The engaged pill for the visible deck view — the per-id mapping is the
    one piece CSS can't generalize (see SPEC on .deck). */
@@ -69,7 +62,7 @@ body:has(#projects:target) .topbar a[href="#projects"] {
 }
 
 /* Project links — the fold's first line: site and repo as mono text links,
-   each led by a Nerd Font glyph (globe, GitHub mark, PyPI cube). */
+   each led by a sprite icon (globe, GitHub mark, PyPI cube). */
 .project-links {
   display: flex;
   flex-wrap: wrap;
@@ -78,18 +71,18 @@ body:has(#projects:target) .topbar a[href="#projects"] {
   font: 500 12px/1.6 var(--mono);
 }
 .project-links a { display: inline-flex; align-items: center; gap: 8px; }
-.project-links span { font: 16px/1 var(--nerd); }
+.project-links svg { width: 13px; height: 13px; flex: none; }
 
-/* Phone: the wordmark and nav can't share a row under 520px, so the topbar
-   stacks them; the hero drops its tall top padding; project links go one per
-   line and may break inside a long URL. */
+/* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
+   goes and the nav takes the row; the hero drops its tall top padding; project
+   links go one per line and may break inside a long URL. */
 @media (max-width: 520px) {
   main { padding-top: 32px; }
   .topbar {
     grid-template-columns: 1fr;
     justify-items: center;
-    row-gap: 6px;
   }
+  .wordmark { display: none; }
   .topbar nav { gap: 2px; }
   .topbar .btn-flat { padding: 0 10px; }
   .hero-actions { gap: 10px; }
