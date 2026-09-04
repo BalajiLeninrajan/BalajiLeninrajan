@@ -9,10 +9,10 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 ### Current
 
 - Autonomy Lead @ <a href="https://www.uwarg.com">WARG</a>
-- Engineering Intern @ <a href="https://www.ycombinator.com/companies/finta">Finta</a>
 
 ### Previous
 
+- Engineering Intern @ <a href="https://www.ycombinator.com/companies/finta">Finta</a>
 - Production Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Software Engineering Intern @ <a href="https://www.shopify.com">Shopify</a>
 - Web/ERP intern @ <a href="https://ytygroup.com.my/">YTY</a>

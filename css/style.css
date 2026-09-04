@@ -10,12 +10,29 @@ main {
   padding: clamp(56px, 12vh, 120px) 0 72px;
 }
 
+/* Nerd Font glyphs: the Mono variant fits each icon inside its own advance
+   box, so centering the cell centers the ink. */
+:root {
+  --nerd: "JetBrainsMono Nerd Font Mono", "JetBrainsMono NFM", "Symbols Nerd Font Mono",
+          "JetBrainsMono Nerd Font", var(--mono);
+}
+
+/* Hero actions — a row of icon buttons. The markup composes the package's
+   .btn-icon with .cn-tone-mauve, .cn-raised-soft, and .cn-pressable; what's
+   left here is the size, the glyph font, and keeping the hover hairline off. */
 .hero-actions {
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 14px;
 }
+.hero-actions .btn-icon {
+  --control-h-sm: 46px;
+  color: var(--subtext-0);
+  font: 28px/1 var(--nerd);
+}
+.hero-actions .btn-icon:hover { border-color: transparent; }
+.hero-actions .btn-icon svg { width: 26px; height: 26px; }
 
 /* The engaged pill for the visible deck view — the per-id mapping is the
    one piece CSS can't generalize (see SPEC on .deck). */
@@ -27,4 +44,55 @@ body:has(#projects:target) .topbar a[href="#projects"] {
   color: var(--text);
   background: color-mix(in srgb, var(--mauve) 7%, var(--base));
   box-shadow: var(--neu-inset);
+}
+
+/* Accordion copy inherits the body voice; only the measure is set here. */
+.accordion .fold p:not(.project-links) { max-width: 64ch; }
+
+/* Hover-driven accordions. On a mouse a row opens while the pointer is over
+   it and closes when it leaves. The label ignores pointer events so a click
+   can't latch the checkbox open; :focus-within keeps a row open while a
+   keyboard user is inside it. The query also admits any fine pointer, so a
+   desktop browser that misreports hover still gets this. Phones fall through
+   to the package's tap-to-toggle checkbox. */
+@media (hover: hover), (pointer: fine) {
+  .accordion > label { pointer-events: none; }
+  .accordion:is(:hover, :focus-within) {
+    border-radius: 10px;
+    border-bottom-color: transparent;
+    box-shadow: var(--neu-inset-soft);
+  }
+  .accordion:is(:hover, :focus-within) > label { color: var(--mauve); }
+  .accordion:is(:hover, :focus-within) > label::after { transform: rotate(180deg); }
+  .accordion:is(:hover, :focus-within) .fold { grid-template-rows: 1fr; }
+  .accordion:is(:hover, :focus-within) .fold > * { visibility: visible; }
+}
+
+/* Project links — the fold's first line: site and repo as mono text links,
+   each led by a Nerd Font glyph (globe, GitHub mark, PyPI cube). */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-bottom: 12px;
+  font: 500 12px/1.6 var(--mono);
+}
+.project-links a { display: inline-flex; align-items: center; gap: 8px; }
+.project-links span { font: 16px/1 var(--nerd); }
+
+/* Phone: the wordmark and nav can't share a row under 520px, so the topbar
+   stacks them; the hero drops its tall top padding; project links go one per
+   line and may break inside a long URL. */
+@media (max-width: 520px) {
+  main { padding-top: 32px; }
+  .topbar {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 6px;
+  }
+  .topbar nav { gap: 2px; }
+  .topbar .btn-flat { padding: 0 10px; }
+  .hero-actions { gap: 10px; }
+  .project-links { flex-direction: column; gap: 6px; }
+  .project-links a { min-width: 0; overflow-wrap: anywhere; }
 }

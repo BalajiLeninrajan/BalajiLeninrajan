@@ -19,7 +19,7 @@
       href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.1.5/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css?v=3" rel="stylesheet" />
   </head>
   <body class="app-shell">
     <header class="topbar">
@@ -35,26 +35,68 @@
         <p class="eyebrow">Software engineer · Waterloo, ON</p>
         <h1 class="display-title">Hi, I'm <em>Balaji</em>.</h1>
         <p class="lede">
-          I like building systems that hold up under load: financial tooling,
-          edge infrastructure, drone autonomy. I study Software Engineering at
-          the <a href="https://uwaterloo.ca">University of Waterloo</a> and I'm
-          currently interning at
-          <a href="https://www.ycombinator.com/companies/finta">Finta</a>.
+          SE at
+          <a href="https://uwaterloo.ca" target="_blank" rel="noopener"
+            >Waterloo</a
+          >. Ex-<a href="https://www.finta.com" target="_blank" rel="noopener"
+            >Finta</a
+          >, ex-<a href="https://www.shopify.com" target="_blank" rel="noopener"
+            >Shopify</a
+          >, autonomy lead at
+          <a href="https://www.uwarg.com" target="_blank" rel="noopener">WARG</a
+          >.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:work@balajileninrajan.dev"
-            >Email me</a
+          <a
+            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            href="mailto:work@balajileninrajan.dev"
+            aria-label="Email"
+            title="work@balajileninrajan.dev"
+            ><span aria-hidden="true">&#xf0e0;</span></a
           >
           <a
-            class="btn btn-secondary"
+            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
             href="https://github.com/BalajiLeninrajan"
-            >GitHub</a
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+            ><span aria-hidden="true">&#xf09b;</span></a
           >
           <a
-            class="btn btn-secondary"
+            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
             href="https://linkedin.com/in/balaji-leninrajan"
-            >LinkedIn</a
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+            ><span aria-hidden="true">&#xf0e1;</span></a
           >
+          <a
+            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/resume@main/resume.pdf"
+            target="_blank"
+            rel="noopener"
+            download="Balaji-Leninrajan-Resume.pdf"
+            aria-label="Resume (PDF)"
+            title="Resume"
+            ><span aria-hidden="true">&#xf1c1;</span></a
+          >
+          <a
+            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            href="https://se-webring.xyz/"
+            target="_blank"
+            rel="noopener"
+            aria-label="SE Webring"
+            title="SE Webring"
+            ><svg viewBox="0 0 960 960" aria-hidden="true">
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M390.499 272.146V687.477C491.737 672.742 569.501 585.38 569.501 479.811C569.501 374.243 491.737 286.881 390.499 272.146ZM367.396 749.527C364.991 749.591 362.577 749.623 360.157 749.623C211.506 749.623 91 628.824 91 479.811C91 330.799 211.506 210 360.157 210C362.577 210 364.991 210.032 367.396 210.096C368.31 210.032 369.233 210 370.163 210H869V749.623H370.163C369.233 749.623 368.31 749.591 367.396 749.527ZM330.687 687.602V272.021C229.023 286.379 150.813 373.94 150.813 479.811C150.813 585.683 229.023 673.244 330.687 687.602ZM529.346 269.958H809.187V689.665H529.346C590.325 640.201 629.313 564.57 629.313 479.811C629.313 395.053 590.325 319.422 529.346 269.958Z"
+              /></svg
+          ></a>
         </div>
       </section>
 
@@ -62,28 +104,38 @@
         <div class="accordion-stack">
           <div class="accordion">
             <label>
-              <input type="checkbox" checked />
+              <input type="checkbox" />
               <p>Software Engineering Intern · <em>Finta</em></p>
-              <span class="cn-meta">May 2026 – present</span>
+              <span class="cn-meta">May – Aug 2026</span>
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Cut dashboard load from ~2 minutes to under 2 seconds with
-                    indexed PostgreSQL read models and a React rebuild
-                  </li>
-                  <li>
-                    Built a collaborative financial-modeling spreadsheet in
-                    three weeks: custom formulas, charts, templates, version
-                    history
-                  </li>
-                  <li>
-                    Google Sheets–style real-time collaboration on a revisioned
-                    operation log, with WebSocket sync and conflict-safe version
-                    restores
-                  </li>
-                </ul>
+                <p>
+                  I spent the summer of 2026 at Finta, which does accounting and
+                  taxes for startups. I worked on the planning side of the
+                  product, where founders build budgets and forecast scenarios
+                  on top of their live accounting numbers. Under that sits a
+                  spreadsheet engine I built from scratch: custom formulas that
+                  can pull live accounting numbers into a cell, charts,
+                  templates, and version history. The first version took three
+                  weeks.
+                </p>
+                <p>
+                  Multiplayer works the way Google Sheets does. Every edit is an
+                  entry on a revisioned operation log synced over WebSockets,
+                  and restoring an old version replays against that log instead
+                  of clobbering whoever is still typing.
+                </p>
+                <p>
+                  I also did a couple of performance jobs. The dashboard took
+                  about two minutes to load, so I moved the heavy queries behind
+                  indexed PostgreSQL read models and rebuilt the page in React,
+                  and by the time I left it came up in under two seconds. The
+                  other was a subtle leak in one of our workers, rooted in how
+                  Rails caches the reverse side of an association. Memory
+                  climbed linearly with every job until the worker hit its limit
+                  and got OOM-killed.
+                </p>
               </div>
             </div>
           </div>
@@ -95,23 +147,20 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Engineered a high-scale SSL stack for edge infrastructure
-                    with Ruby on Rails and Terraform; migrated 10+ services
-                  </li>
-                  <li>
-                    Resolved a critical production outage caused by 429-error
-                    spikes with kill switches and smarter retry backoffs
-                  </li>
-                  <li>
-                    Recovered $250,000+ annually by pruning 10M+ dead hostnames
-                  </li>
-                  <li>
-                    Authored operational playbooks and automated incident
-                    response tooling for domain and SSL job processing
-                  </li>
-                </ul>
+                <p>
+                  I was on the edge infrastructure team at Shopify, where I
+                  shipped a new SSL stack in Ruby on Rails and Terraform and
+                  moved more than ten services onto it. Partway through the term
+                  a spike of 429 errors took production down. I worked the
+                  incident, then added kill switches and smarter retry backoffs
+                  so the same thing couldn't happen again.
+                </p>
+                <p>
+                  The rest of the term went to cleanup and operations. I pruned
+                  over ten million dead hostnames, which saved more than
+                  $250,000 a year, and wrote the playbooks and automated
+                  incident-response tooling for domain and SSL job processing.
+                </p>
               </div>
             </div>
           </div>
@@ -123,17 +172,15 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Shipped features for a communications platform orchestrating
-                    4M+ monthly emails and push notifications, in React, Rails,
-                    and GraphQL
-                  </li>
-                  <li>
-                    Designed an email approval workflow that cut faulty
-                    campaigns from human error by 80%
-                  </li>
-                </ul>
+                <p>
+                  I was on the team behind Shopify's communications platform,
+                  which sends over four million emails and push notifications a
+                  month. I shipped features across the React front end, the
+                  Rails back end, and the GraphQL layer between them. The piece
+                  I'm proudest of is an email approval workflow: campaigns get a
+                  second pair of eyes before they go out, and faulty sends from
+                  human error dropped 80% after it launched.
+                </p>
               </div>
             </div>
           </div>
@@ -145,25 +192,31 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Lead 15+ developers; back-to-back victories at AEAC 2024 and
-                    2025
-                  </li>
-                  <li>
-                    Architected a VSLAM pipeline with stereo depth and
-                    visual-inertial odometry for GPS-denied navigation
-                  </li>
-                  <li>
-                    Built a fault-tolerant ROS 2 behavior-tree mission
-                    controller that preserves progress through operator
-                    kill-switch interruptions
-                  </li>
-                  <li>
-                    Published a Python CLI that configures, runs, tests, and
-                    diagnoses individual robotics subsystems
-                  </li>
-                </ul>
+                <p>
+                  I joined the Waterloo Aerial Robotics Group in January 2024 as
+                  a developer on the autonomy subteam, spent a couple of terms
+                  as a project manager, and have led autonomy, a team of 15+
+                  developers, for just over a year. We won AEAC in 2024 and
+                  again in 2025. My first year went into the waypoint and
+                  diversion pathing modules for the 2024 competition drone.
+                </p>
+                <p>
+                  As lead, most of my own code has gone into how the team works.
+                  I moved autonomy into one monorepo and wrote
+                  <code class="cn-code cn-text-subtext-1">warg-cli</code>, a Python tool on PyPI that
+                  sparse-clones it, materializes a project with its
+                  dependencies, and runs the commands each project defines. The
+                  onboarding bootcamp now runs on top of it and ends with a full
+                  mission flown in a simulator.
+                </p>
+                <p>
+                  On the flight side I set the architecture for the airside
+                  stack, a ROS 2 workspace whose mission controller is a
+                  behavior tree that keeps its place when an operator hits the
+                  kill switch, and for the VSLAM pipeline that fuses OAK-D
+                  stereo depth with visual-inertial odometry so the drone can
+                  navigate without GPS.
+                </p>
               </div>
             </div>
           </div>
@@ -175,16 +228,12 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Created and led Amazon SageMaker workshops covering XGBoost,
-                    hyperparameter tuning, and AI workflows
-                  </li>
-                  <li>
-                    Mentored 25+ students to the AWS Certified Cloud
-                    Practitioner certification
-                  </li>
-                </ul>
+                <p>
+                  I was the technical lead of the AWS Cloud Club. I wrote and
+                  ran our Amazon SageMaker workshops, which covered XGBoost,
+                  hyperparameter tuning, and AI workflows, and mentored 25+
+                  students through the AWS Certified Cloud Practitioner exam.
+                </p>
               </div>
             </div>
           </div>
@@ -196,16 +245,12 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Built an employee attendance prediction system with
-                    TensorFlow and Pandas
-                  </li>
-                  <li>
-                    Created a Flutter expense-claims app with offline support
-                    and persistent login
-                  </li>
-                </ul>
+                <p>
+                  I interned on the ERP and web team at YTY Group. I built an
+                  employee attendance prediction system with TensorFlow and
+                  Pandas, and a Flutter expense-claims app that works offline
+                  and keeps users logged in between sessions.
+                </p>
               </div>
             </div>
           </div>
@@ -216,31 +261,40 @@
         <div class="accordion-stack">
           <div class="accordion">
             <label>
-              <input type="checkbox" checked />
+              <input type="checkbox" />
               <p>varchar</p>
               <span class="cn-meta">Rust · WebAssembly · Preact</span>
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    A SQL engine that keeps the whole database in one string:
-                    hand-rolled lexer, parser, type checker, and a planner that
-                    makes a regex do an index scan's job
-                  </li>
-                  <li>
-                    Fuzzed against a reference implementation, checking random
-                    CRUD sequences and predicates for identical results
-                  </li>
-                  <li>
-                    Ported to WebAssembly, drawing each query's match spans onto
-                    the live database string as it runs
-                  </li>
-                </ul>
-                <p class="cn-meta">
-                  <a href="https://varchar.balajileninrajan.dev"
+                <p class="project-links">
+                  <a
+                    href="https://varchar.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf0ac;</span
                     >varchar.balajileninrajan.dev</a
                   >
+                  <a
+                    href="https://github.com/BalajiLeninrajan/varchar"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/varchar</a
+                  >
+                </p>
+                <p>
+                  varchar is a really dumb SQL database: its entire state,
+                  schemas, constraints, sequences, and rows, is one UTF-8
+                  string, and every SELECT scans that string with regexes. It is
+                  still a real parser, type checker, storage codec, and query
+                  engine. It is also a toy. I fuzzed it against a reference
+                  implementation, running random CRUD sequences and predicates
+                  through both and diffing the results.
+                </p>
+                <p>
+                  The site is the real engine compiled to WebAssembly, with the
+                  string and the regex both on screen as each query runs.
                 </p>
               </div>
             </div>
@@ -255,26 +309,37 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    A CLI that scans 16 GB of coding-agent session history
-                    across 7,900 files in under 4 seconds, bound by disk, not
-                    CPU
-                  </li>
-                  <li>
-                    Turns each scan into a shareable link, served from one
-                    Cloudflare Worker with KV records that expire themselves
-                    after 30 days
-                  </li>
-                  <li>
-                    Ships binaries for six platforms from one 2 MB npm package,
-                    no bundled runtime
-                  </li>
-                </ul>
-                <p class="cn-meta">
-                  <a href="https://salt.balajileninrajan.dev"
+                <p class="project-links">
+                  <a
+                    href="https://salt.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf0ac;</span
                     >salt.balajileninrajan.dev</a
                   >
+                  <a
+                    href="https://github.com/BalajiLeninrajan/salt"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/salt</a
+                  >
+                </p>
+                <p>
+                  salt reads the session logs that Claude Code, Codex, and
+                  Cursor already keep on your machine, counts the profanity in
+                  the prompts you typed, and publishes the counts to a link you
+                  can share. The scan is local and fast, 16 GB across 7,900
+                  files in under 4 seconds, bound by disk rather than CPU.
+                </p>
+                <p>
+                  Most of the work is filtering. Harnesses push tool results and
+                  system reminders through the same channel as real prompts and
+                  rewrite whole histories on every fork, so one prompt showed up
+                  405 times in the corpus I built against. Reports live on one
+                  Cloudflare Worker in KV records that expire after 30 days, and
+                  the CLI ships binaries for six platforms from a single 2 MB
+                  npm package.
                 </p>
               </div>
             </div>
@@ -287,25 +352,291 @@
             </label>
             <div class="fold">
               <div>
-                <ul>
-                  <li>
-                    Integrates five coding agents behind one event contract,
-                    reconciling JSON-RPC, ACP, and SDK streaming
-                  </li>
-                  <li>
-                    A benchmark that distrusts its own inputs: one tokenizer,
-                    medians over repeats, voided runs when output arrives in a
-                    buffered burst instead of a stream
-                  </li>
-                  <li>
-                    One benchmark core drives both a React dashboard and an Ink
-                    terminal UI, with no forked logic
-                  </li>
-                </ul>
-                <p class="cn-meta">
-                  <a href="https://harness-racer.balajileninrajan.dev"
+                <p class="project-links">
+                  <a
+                    href="https://harness-racer.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf0ac;</span
                     >harness-racer.balajileninrajan.dev</a
                   >
+                  <a
+                    href="https://github.com/BalajiLeninrajan/harness-racer"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/harness-racer</a
+                  >
+                </p>
+                <p>
+                  harness racer races the coding-agent stacks already installed
+                  and authenticated on your machine, streaming every response
+                  live and comparing cold start, time to first output, visible
+                  tokens per second, and time to finish. It drives five
+                  harnesses, Codex, Claude Code, Cursor, Grok, and OpenCode,
+                  behind one event contract that reconciles JSON-RPC, ACP, and
+                  SDK streaming.
+                </p>
+                <p>
+                  It distrusts its own inputs: one shared tokenizer, medians
+                  over repeats, and a run is voided if output lands in a
+                  buffered burst instead of a stream. One benchmark core drives
+                  both the browser dashboard and the Ink terminal UI.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>catppuccin-neu</p>
+              <span class="cn-meta">CSS · TypeScript</span>
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://catppuccin-neu.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf0ac;</span
+                    >catppuccin-neu.balajileninrajan.dev</a
+                  >
+                  <a
+                    href="https://github.com/BalajiLeninrajan/catppuccin-neu"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/catppuccin-neu</a
+                  >
+                </p>
+                <p>
+                  catppuccin-neu is a CSS-only design system in Catppuccin
+                  Mocha. Dark, soft, carved from shadow. It ships as three
+                  cascade layers, tokens, utilities, and recipes, so consumer
+                  CSS stays unlayered and always wins without a single
+                  <code class="cn-code cn-text-subtext-1">!important</code>. The recipes cover controls, status,
+                  containers, overlays, and page chrome, and a spec file is the
+                  source of truth for every rule and number in the package.
+                </p>
+                <p>
+                  This site is built on it. The accordions you are hovering over
+                  are one of its recipes.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>warg-cli</p>
+              <span class="cn-meta">Python · uv · Git</span>
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://pypi.org/project/warg-cli/"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf1b2;</span
+                    >pypi.org/project/warg-cli</a
+                  >
+                  <a
+                    href="https://github.com/UWARG/autonomy-monorepo/tree/main/warg_cli"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/UWARG/autonomy-monorepo</a
+                  >
+                </p>
+                <p>
+                  warg-cli provides the <code class="cn-code cn-text-subtext-1">warg</code> command for working
+                  with the WARG autonomy monorepo. It reads the root project
+                  registry and each project's manifest, resolves dependencies
+                  between projects, manages Git sparse-checkout paths, and runs
+                  project-defined commands. A fresh clone checks out only the
+                  root files. <code class="cn-code cn-text-subtext-1">warg up</code> materializes a project and
+                  everything it depends on, and <code class="cn-code cn-text-subtext-1">warg down</code> unloads
+                  it again.
+                </p>
+                <p>
+                  The CLI hardcodes no command names. Each project declares its
+                  own in its manifest, the way scripts work in a
+                  <code class="cn-code cn-text-subtext-1">package.json</code>, so a Python project and a ROS 2
+                  workspace get the same <code class="cn-code cn-text-subtext-1">warg run</code> interface. It is
+                  the first thing the autonomy bootcamp has new members install.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>maram</p>
+              <span class="cn-meta">Rust · Git · Zellij</span>
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://github.com/BalajiLeninrajan/maram"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/maram</a
+                  >
+                </p>
+                <p>
+                  maram, Tamil for tree, is a CLI for git worktree workflows
+                  with variant branches and Zellij integration. A worktree set
+                  is a base branch plus any number of variant branches, each in
+                  its own worktree, so two approaches to the same feature can
+                  sit side by side and the winner gets cherry-picked back into
+                  the base.
+                </p>
+                <p>
+                  Every set gets a Zellij session with a tab per worktree, and
+                  the layout each tab starts from is a template in the config
+                  file.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>ConsenStat</p>
+              <span class="cn-meta"
+                >TypeScript · React · Cloudflare Workers</span
+              >
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://consenstat.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf0ac;</span
+                    >consenstat.balajileninrajan.dev</a
+                  >
+                  <a
+                    href="https://github.com/BalajiLeninrajan/consenStat"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/consenStat</a
+                  >
+                </p>
+                <p>
+                  ConsenStat is anonymous, real-time exam sentiment voting for
+                  University of Waterloo students. Search for an exam or create
+                  one, with duplicate detection, then vote on whether it was
+                  touching or touchy. Tallies live in D1 and get pushed to every
+                  open tab over Durable Object WebSockets, one vote per browser
+                  per exam, with changes of heart allowed.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>Skill Issue</p>
+              <span class="cn-meta">TypeScript · Cloudflare Workers · D1</span>
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://skill-issue.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf0ac;</span
+                    >skill-issue.balajileninrajan.dev</a
+                  >
+                  <a
+                    href="https://github.com/BalajiLeninrajan/skill-issue"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/skill-issue</a
+                  >
+                </p>
+                <p>
+                  Skill Issue is a therapeutic service for job seekers who
+                  prefer to skip the wait for rejection. Enter a company, a job
+                  title, and your email, click "I Have Hope," and receive a
+                  corporate-parody rejection email 2 to 48 hours later. A
+                  Cloudflare Worker takes the submissions, a scheduled job
+                  drains the queue out of D1, and Resend delivers the bad news.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>herdr-modes</p>
+              <span class="cn-meta">Rust · herdr</span>
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://github.com/BalajiLeninrajan/herdr-modes"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/herdr-modes</a
+                  >
+                </p>
+                <p>
+                  herdr-modes adds Zellij-style modes to herdr, a tmux-shaped
+                  terminal multiplexer. Press the prefix, then a pane key, and
+                  with sticky mode on you can drum <code class="cn-code cn-text-subtext-1">hjkl</code> to keep
+                  moving between panes without pressing the prefix again, while
+                  readline's own <code class="cn-code cn-text-subtext-1">ctrl+l</code> and
+                  <code class="cn-code cn-text-subtext-1">ctrl+k</code> stay yours.
+                </p>
+                <p>
+                  A keybind opens a session-modal popup pane that runs the key
+                  loop and keeps receiving keystrokes as focus moves underneath
+                  it, which is what makes stickiness possible. Each keystroke
+                  goes over herdr's socket API instead of shelling out to the
+                  binary, so drumming is instant.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <label>
+              <input type="checkbox" />
+              <p>Linguini</p>
+              <span class="cn-meta"
+                >TypeScript · Next.js · tRPC · PostgreSQL</span
+              >
+            </label>
+            <div class="fold">
+              <div>
+                <p class="project-links">
+                  <a
+                    href="https://github.com/BalajiLeninrajan/linguini"
+                    target="_blank"
+                    rel="noopener"
+                    ><span aria-hidden="true">&#xf09b;</span
+                    >github.com/BalajiLeninrajan/linguini</a
+                  >
+                </p>
+                <p>
+                  Linguini is a word game with friends, built with three
+                  classmates. You get a category and a timer and name words that
+                  fit, and groups keep a leaderboard. I wrote the main game loop
+                  on the front end and the tRPC routers for auth, users, and
+                  groups. Word validation walks a WordNet hypernym graph in
+                  PostgreSQL with recursive CTEs, so a word counts for a
+                  category several levels above it.
                 </p>
               </div>
             </div>
