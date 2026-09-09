@@ -1,41 +1,26 @@
-/* Consumer layer over catppuccin-neu — page layout only. Unlayered, so it
-   wins over the package's cascade layers. */
+/* Consumer layer over catppuccin-neu. Unlayered, so it wins over the
+   package's cascade layers. Page layout is classes in index.html; what is
+   left here is the hash-routed nav state, the hover-driven accordions, and
+   the phone layout of the topbar. */
 
-main {
-  width: min(860px, calc(100% - 40px));
-  min-width: 0;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  padding: clamp(56px, 12vh, 120px) 0 72px;
-}
-
-/* Hero actions — a row of icon buttons. The markup composes the package's
-   .btn-icon with .cn-tone-mauve, .cn-raised-soft, and .cn-pressable; what's
-   left here is the size, the icon size, and keeping the hover hairline off.
-   Icons are <use> references into the inline sprite at the top of <body>. */
-.hero-actions {
-  margin-top: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-.hero-actions .btn-icon {
-  --control-h-sm: 46px;
-  color: var(--subtext-0);
-}
+/* Hero actions compose the package's .btn-icon.is-lg with .cn-tone-mauve,
+   .cn-raised-soft and .cn-pressable. The buttons read a step brighter than
+   the recipe's overlay-1, and the hover hairline stays off: the raised
+   shadow already gives them an edge. */
+.hero-actions .btn-icon { color: var(--subtext-0); }
 .hero-actions .btn-icon:hover { border-color: transparent; }
-.hero-actions .btn-icon svg { width: 21px; height: 21px; }
 
-/* The engaged pill for the visible deck view — the per-id mapping is the
-   one piece CSS can't generalize (see SPEC on .deck). */
+/* The engaged pill for the visible deck view. The per-id mapping is the one
+   piece CSS cannot generalize (see SPEC on .deck), and a :target state
+   cannot set aria-current, so the recipe's engaged treatment is restated
+   with its tokens. */
 body:not(:has(main :target)) .topbar a[href="#about"],
 body:has(#about:target) .topbar a[href="#about"],
 body:has(#work:target) .topbar a[href="#work"],
 body:has(#projects:target) .topbar a[href="#projects"] {
   transform: translateY(1px);
   color: var(--text);
-  background: color-mix(in srgb, var(--mauve) 7%, var(--base));
+  background: var(--wash);
   box-shadow: var(--neu-inset);
 }
 
@@ -47,13 +32,17 @@ body:has(#projects:target) .topbar a[href="#projects"] {
    can't latch the checkbox open; :focus-within keeps a row open while a
    keyboard user is inside it. The query also admits any fine pointer, so a
    desktop browser that misreports hover still gets this. Phones fall through
-   to the package's tap-to-toggle checkbox. */
+   to the package's tap-to-toggle checkbox.
+   The recipe opens on :checked, .is-open or [data-open], none of which a
+   hover can set without JS, so the open treatment is restated here and must
+   track the recipe: full inset, mauve 4% wash, mauve title. */
 @media (hover: hover), (pointer: fine) {
   .accordion > label { pointer-events: none; }
   .accordion:is(:hover, :focus-within) {
     border-radius: 10px;
     border-bottom-color: transparent;
-    box-shadow: var(--neu-inset-soft);
+    background: color-mix(in srgb, var(--mauve) 4%, var(--base));
+    box-shadow: var(--neu-inset);
   }
   .accordion:is(:hover, :focus-within) > label { color: var(--mauve); }
   .accordion:is(:hover, :focus-within) > label::after { transform: rotate(180deg); }
@@ -61,17 +50,9 @@ body:has(#projects:target) .topbar a[href="#projects"] {
   .accordion:is(:hover, :focus-within) .fold > * { visibility: visible; }
 }
 
-/* Project links — the fold's first line: site and repo as mono text links,
-   each led by a sprite icon (globe, GitHub mark, PyPI cube). */
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 22px;
-  margin-bottom: 12px;
-  font: 500 12px/1.6 var(--mono);
-}
-.project-links a { display: inline-flex; align-items: center; gap: 8px; }
-.project-links svg { width: 13px; height: 13px; flex: none; }
+/* Project links are a .cn-cluster in the .cn-code-meta voice; wrapped lines
+   sit closer than the 22px column gap. */
+.project-links { row-gap: 6px; }
 
 /* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
    goes and the nav takes the row; the hero drops its tall top padding; project
@@ -86,6 +67,6 @@ body:has(#projects:target) .topbar a[href="#projects"] {
   .topbar nav { gap: 2px; }
   .topbar .btn-flat { padding: 0 10px; }
   .hero-actions { gap: 10px; }
-  .project-links { flex-direction: column; gap: 6px; }
+  .project-links { flex-direction: column; align-items: flex-start; }
   .project-links a { min-width: 0; overflow-wrap: anywhere; }
 }

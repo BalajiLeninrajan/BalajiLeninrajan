@@ -16,10 +16,10 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.1.5/css/index.css"
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.3.0/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css?v=4" rel="stylesheet" />
+    <link href="css/style.css?v=6" rel="stylesheet" />
   </head>
   <body class="app-shell">
     <!-- Icon sprite. Brand marks (GitHub, LinkedIn, PyPI, npm, Rust) are from Simple Icons
@@ -104,7 +104,10 @@
         <a class="btn btn-flat" href="#projects">Projects</a>
       </nav>
     </header>
-    <main class="deck">
+    <main
+      class="deck page-main is-narrow"
+      style="--page-pad: clamp(56px, 12vh, 120px) 0 72px"
+    >
       <section class="hero" id="about">
         <p class="eyebrow">Software engineer · Waterloo, ON</p>
         <h1 class="display-title">Hi, I'm <em>Balaji</em>.</h1>
@@ -120,16 +123,16 @@
           <a href="https://www.uwarg.com" target="_blank" rel="noopener">WARG</a
           >.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions cn-cluster cn-gap-16 cn-mt-28">
           <a
-            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            class="btn-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
             href="mailto:work@balajileninrajan.dev"
             aria-label="Email"
             title="work@balajileninrajan.dev"
             ><svg aria-hidden="true"><use href="#i-mail" /></svg></a
           >
           <a
-            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            class="btn-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
             href="https://github.com/BalajiLeninrajan"
             target="_blank"
             rel="noopener"
@@ -138,7 +141,7 @@
             ><svg aria-hidden="true"><use href="#i-github" /></svg></a
           >
           <a
-            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            class="btn-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
             href="https://linkedin.com/in/balaji-leninrajan"
             target="_blank"
             rel="noopener"
@@ -147,7 +150,7 @@
             ><svg aria-hidden="true"><use href="#i-linkedin" /></svg></a
           >
           <a
-            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            class="btn-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
             href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/resume@main/resume.pdf"
             target="_blank"
             rel="noopener"
@@ -157,7 +160,7 @@
             ><svg aria-hidden="true"><use href="#i-file" /></svg></a
           >
           <a
-            class="btn-icon cn-tone-mauve cn-raised-soft cn-pressable"
+            class="btn-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
             href="https://se-webring.xyz/"
             target="_blank"
             rel="noopener"
@@ -341,26 +344,29 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://varchar.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-globe" /></svg
                     >varchar.balajileninrajan.dev</a
                   >
                   <a
+                    class="cn-row"
                     href="https://crates.io/crates/varchar-cli"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-cargo" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-cargo" /></svg
                     >crates.io/crates/varchar-cli</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/varchar"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/varchar</a
                   >
                 </p>
@@ -390,26 +396,29 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://salt.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-globe" /></svg
                     >salt.balajileninrajan.dev</a
                   >
                   <a
+                    class="cn-row"
                     href="https://www.npmjs.com/package/salt-ai"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-npm" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-npm" /></svg
                     >npmjs.com/package/salt-ai</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/salt"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/salt</a
                   >
                 </p>
@@ -440,26 +449,29 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://harness-racer.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-globe" /></svg
                     >harness-racer.balajileninrajan.dev</a
                   >
                   <a
+                    class="cn-row"
                     href="https://www.npmjs.com/package/harness-racer"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-npm" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-npm" /></svg
                     >npmjs.com/package/harness-racer</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/harness-racer"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/harness-racer</a
                   >
                 </p>
@@ -489,19 +501,21 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://catppuccin-neu.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-globe" /></svg
                     >catppuccin-neu.balajileninrajan.dev</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/catppuccin-neu"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/catppuccin-neu</a
                   >
                 </p>
@@ -529,19 +543,21 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://pypi.org/project/warg-cli/"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-pypi" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-pypi" /></svg
                     >pypi.org/project/warg-cli</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/UWARG/autonomy-monorepo/tree/main/warg_cli"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/UWARG/autonomy-monorepo</a
                   >
                 </p>
@@ -573,12 +589,13 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/maram"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/maram</a
                   >
                 </p>
@@ -608,19 +625,21 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://consenstat.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-globe" /></svg
                     >consenstat.balajileninrajan.dev</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/consenStat"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/consenStat</a
                   >
                 </p>
@@ -643,19 +662,21 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://skill-issue.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-globe" /></svg
                     >skill-issue.balajileninrajan.dev</a
                   >
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/skill-issue"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/skill-issue</a
                   >
                 </p>
@@ -678,12 +699,13 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/herdr-modes"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/herdr-modes</a
                   >
                 </p>
@@ -715,12 +737,13 @@
             </label>
             <div class="fold">
               <div>
-                <p class="project-links">
+                <p class="project-links cn-cluster cn-gap-22 cn-code-meta cn-mb-12">
                   <a
+                    class="cn-row"
                     href="https://github.com/BalajiLeninrajan/linguini"
                     target="_blank"
                     rel="noopener"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg
+                    ><svg class="cn-icon-sm" aria-hidden="true"><use href="#i-github" /></svg
                     >github.com/BalajiLeninrajan/linguini</a
                   >
                 </p>
