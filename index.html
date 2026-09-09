@@ -188,30 +188,14 @@
             <div class="fold">
               <div>
                 <p>
-                  I spent the summer of 2026 at Finta, which does accounting and
-                  taxes for startups. I worked on the planning side of the
-                  product, where founders build budgets and forecast scenarios
-                  on top of their live accounting numbers. Under that sits a
-                  spreadsheet engine I built from scratch: custom formulas that
-                  can pull live accounting numbers into a cell, charts,
-                  templates, and version history. The first version took three
-                  weeks.
-                </p>
-                <p>
-                  Multiplayer works the way Google Sheets does. Every edit is an
-                  entry on a revisioned operation log synced over WebSockets,
-                  and restoring an old version replays against that log instead
-                  of clobbering whoever is still typing.
-                </p>
-                <p>
-                  I also did a couple of performance jobs. The dashboard took
-                  about two minutes to load, so I moved the heavy queries behind
-                  indexed PostgreSQL read models and rebuilt the page in React,
-                  and by the time I left it came up in under two seconds. The
-                  other was a subtle leak in one of our workers, rooted in how
-                  Rails caches the reverse side of an association. Memory
-                  climbed linearly with every job until the worker hit its limit
-                  and got OOM-killed.
+                  Finta does accounting and taxes for startups. I built the
+                  spreadsheet engine under its planning product: custom formulas
+                  that pull live accounting numbers into cells, charts,
+                  templates, version history, and Google Sheets-style
+                  multiplayer over a revisioned operation log. I also cut
+                  dashboard load from two minutes to under two seconds and
+                  tracked down a Rails association-caching leak that was
+                  OOM-killing a worker.
                 </p>
               </div>
             </div>
@@ -225,17 +209,12 @@
             <div class="fold">
               <div>
                 <p>
-                  I was on the edge infrastructure team at Shopify, where I
-                  shipped a new SSL stack in Ruby on Rails and Terraform and
-                  moved more than ten services onto it. Partway through the term
-                  a spike of 429 errors took production down. I worked the
-                  incident, then added kill switches and smarter retry backoffs
-                  so the same thing couldn't happen again.
-                </p>
-                <p>
-                  The rest of the term went to cleanup and operations. I pruned
-                  over ten million dead hostnames, which saved more than
-                  $250,000 a year, and wrote the playbooks and automated
+                  On Shopify's edge infrastructure team I shipped a new SSL
+                  stack in Rails and Terraform and moved more than ten services
+                  onto it. When a spike of 429s took production down, I worked
+                  the incident and added kill switches and smarter retry
+                  backoffs. I also pruned over ten million dead hostnames,
+                  saving more than $250,000 a year, and wrote the playbooks and
                   incident-response tooling for domain and SSL job processing.
                 </p>
               </div>
@@ -250,13 +229,12 @@
             <div class="fold">
               <div>
                 <p>
-                  I was on the team behind Shopify's communications platform,
-                  which sends over four million emails and push notifications a
-                  month. I shipped features across the React front end, the
-                  Rails back end, and the GraphQL layer between them. The piece
-                  I'm proudest of is an email approval workflow: campaigns get a
-                  second pair of eyes before they go out, and faulty sends from
-                  human error dropped 80% after it launched.
+                  I worked on Shopify's communications platform, which sends
+                  over four million emails and push notifications a month,
+                  across the React front end, Rails back end, and GraphQL layer.
+                  My main project was an email approval workflow that gives
+                  campaigns a second pair of eyes before they go out. Faulty
+                  sends from human error dropped 80% after it launched.
                 </p>
               </div>
             </div>
@@ -270,29 +248,15 @@
             <div class="fold">
               <div>
                 <p>
-                  I joined the Waterloo Aerial Robotics Group in January 2024 as
-                  a developer on the autonomy subteam, spent a couple of terms
-                  as a project manager, and have led autonomy, a team of 15+
-                  developers, for just over a year. We won AEAC in 2024 and
-                  again in 2025. My first year went into the waypoint and
-                  diversion pathing modules for the 2024 competition drone.
-                </p>
-                <p>
-                  As lead, most of my own code has gone into how the team works.
-                  I moved autonomy into one monorepo and wrote
-                  <code class="cn-code cn-text-subtext-1">warg-cli</code>, a Python tool on PyPI that
-                  sparse-clones it, materializes a project with its
-                  dependencies, and runs the commands each project defines. The
-                  onboarding bootcamp now runs on top of it and ends with a full
-                  mission flown in a simulator.
-                </p>
-                <p>
-                  On the flight side I set the architecture for the airside
-                  stack, a ROS 2 workspace whose mission controller is a
-                  behavior tree that keeps its place when an operator hits the
-                  kill switch, and for the VSLAM pipeline that fuses OAK-D
-                  stereo depth with visual-inertial odometry so the drone can
-                  navigate without GPS.
+                  I joined WARG's autonomy subteam in January 2024, wrote the
+                  waypoint and diversion pathing for the 2024 drone, and have
+                  led the team of 15+ developers for just over a year. We won
+                  AEAC in 2024 and 2025. As lead I moved autonomy into one
+                  monorepo and wrote <code class="cn-code
+                  cn-text-subtext-1">warg-cli</code>, the tool the onboarding
+                  bootcamp now runs on. I also set the architecture for the ROS
+                  2 airside stack, whose behavior-tree mission controller
+                  survives the kill switch, and for the GPS-free VSLAM pipeline.
                 </p>
               </div>
             </div>
@@ -371,17 +335,13 @@
                   >
                 </p>
                 <p>
-                  varchar is a really dumb SQL database: its entire state,
-                  schemas, constraints, sequences, and rows, is one UTF-8
-                  string, and every SELECT scans that string with regexes. It is
+                  varchar is a really dumb SQL database: its entire state is one
+                  UTF-8 string, and every SELECT scans it with regexes. It is
                   still a real parser, type checker, storage codec, and query
-                  engine. It is also a toy. I fuzzed it against a reference
-                  implementation, running random CRUD sequences and predicates
-                  through both and diffing the results.
-                </p>
-                <p>
-                  The site is the real engine compiled to WebAssembly, with the
-                  string and the regex both on screen as each query runs.
+                  engine, fuzzed against a reference implementation with random
+                  CRUD sequences. The site is the real engine compiled to
+                  WebAssembly, with the string and the regex on screen as each
+                  query runs.
                 </p>
               </div>
             </div>
@@ -423,20 +383,15 @@
                   >
                 </p>
                 <p>
-                  salt reads the session logs that Claude Code, Codex, and
-                  Cursor already keep on your machine, counts the profanity in
-                  the prompts you typed, and publishes the counts to a link you
-                  can share. The scan is local and fast, 16 GB across 7,900
-                  files in under 4 seconds, bound by disk rather than CPU.
-                </p>
-                <p>
-                  Most of the work is filtering. Harnesses push tool results and
-                  system reminders through the same channel as real prompts and
-                  rewrite whole histories on every fork, so one prompt showed up
-                  405 times in the corpus I built against. Reports live on one
-                  Cloudflare Worker in KV records that expire after 30 days, and
-                  the CLI ships binaries for six platforms from a single 2 MB
-                  npm package.
+                  salt reads the session logs Claude Code, Codex, and Cursor
+                  keep on your machine, counts the profanity in your prompts,
+                  and publishes the counts to a shareable link. The scan is
+                  local and disk-bound: 16 GB across 7,900 files in under 4
+                  seconds. Most of the work is filtering out tool results,
+                  system reminders, and forked histories, since one prompt
+                  showed up 405 times in my test corpus. Reports live in
+                  Cloudflare KV for 30 days, and the CLI ships six platform
+                  binaries from a 2 MB npm package.
                 </p>
               </div>
             </div>
@@ -476,18 +431,14 @@
                   >
                 </p>
                 <p>
-                  harness racer races the coding-agent stacks already installed
-                  and authenticated on your machine, streaming every response
-                  live and comparing cold start, time to first output, visible
-                  tokens per second, and time to finish. It drives five
-                  harnesses, Codex, Claude Code, Cursor, Grok, and OpenCode,
-                  behind one event contract that reconciles JSON-RPC, ACP, and
-                  SDK streaming.
-                </p>
-                <p>
-                  It distrusts its own inputs: one shared tokenizer, medians
-                  over repeats, and a run is voided if output lands in a
-                  buffered burst instead of a stream. One benchmark core drives
+                  harness racer races the coding agents already installed on
+                  your machine, streaming every response live and comparing cold
+                  start, time to first output, tokens per second, and time to
+                  finish. It drives Codex, Claude Code, Cursor, Grok, and
+                  OpenCode behind one event contract that reconciles JSON-RPC,
+                  ACP, and SDK streaming. It distrusts its own inputs: one
+                  shared tokenizer, medians over repeats, and a run is voided if
+                  output arrives in a buffered burst. One benchmark core drives
                   both the browser dashboard and the Ink terminal UI.
                 </p>
               </div>
@@ -521,15 +472,12 @@
                 </p>
                 <p>
                   catppuccin-neu is a CSS-only design system in Catppuccin
-                  Mocha. Dark, soft, carved from shadow. It ships as three
-                  cascade layers, tokens, utilities, and recipes, so consumer
-                  CSS stays unlayered and always wins without a single
-                  <code class="cn-code cn-text-subtext-1">!important</code>. The recipes cover controls, status,
-                  containers, overlays, and page chrome, and a spec file is the
-                  source of truth for every rule and number in the package.
-                </p>
-                <p>
-                  This site is built on it. The accordions you are hovering over
+                  Mocha. It ships as three cascade layers, tokens, utilities,
+                  and recipes, so consumer CSS stays unlayered and wins without
+                  a single <code class="cn-code
+                  cn-text-subtext-1">!important</code>. A spec file is the
+                  source of truth for every rule and number in the package. This
+                  site is built on it, and the accordions you are hovering over
                   are one of its recipes.
                 </p>
               </div>
@@ -562,21 +510,19 @@
                   >
                 </p>
                 <p>
-                  warg-cli provides the <code class="cn-code cn-text-subtext-1">warg</code> command for working
-                  with the WARG autonomy monorepo. It reads the root project
-                  registry and each project's manifest, resolves dependencies
-                  between projects, manages Git sparse-checkout paths, and runs
-                  project-defined commands. A fresh clone checks out only the
-                  root files. <code class="cn-code cn-text-subtext-1">warg up</code> materializes a project and
-                  everything it depends on, and <code class="cn-code cn-text-subtext-1">warg down</code> unloads
-                  it again.
-                </p>
-                <p>
-                  The CLI hardcodes no command names. Each project declares its
-                  own in its manifest, the way scripts work in a
-                  <code class="cn-code cn-text-subtext-1">package.json</code>, so a Python project and a ROS 2
-                  workspace get the same <code class="cn-code cn-text-subtext-1">warg run</code> interface. It is
-                  the first thing the autonomy bootcamp has new members install.
+                  warg-cli is the <code class="cn-code
+                  cn-text-subtext-1">warg</code> command for the WARG autonomy
+                  monorepo. A fresh clone checks out only the root files, then
+                  <code class="cn-code cn-text-subtext-1">warg up</code>
+                  materializes a project plus its dependencies through Git
+                  sparse-checkout and <code class="cn-code
+                  cn-text-subtext-1">warg down</code> unloads them. Each project
+                  declares its own commands in a manifest, like scripts in a
+                  <code class="cn-code cn-text-subtext-1">package.json</code>,
+                  so a Python project and a ROS 2 workspace get the same <code
+                  class="cn-code cn-text-subtext-1">warg run</code> interface.
+                  It is the first thing the autonomy bootcamp has new members
+                  install.
                 </p>
               </div>
             </div>
@@ -604,13 +550,9 @@
                   with variant branches and Zellij integration. A worktree set
                   is a base branch plus any number of variant branches, each in
                   its own worktree, so two approaches to the same feature can
-                  sit side by side and the winner gets cherry-picked back into
-                  the base.
-                </p>
-                <p>
-                  Every set gets a Zellij session with a tab per worktree, and
-                  the layout each tab starts from is a template in the config
-                  file.
+                  sit side by side and the winner gets cherry-picked back. Every
+                  set gets a Zellij session with a tab per worktree, laid out
+                  from a template in the config file.
                 </p>
               </div>
             </div>
@@ -711,18 +653,16 @@
                 </p>
                 <p>
                   herdr-modes adds Zellij-style modes to herdr, a tmux-shaped
-                  terminal multiplexer. Press the prefix, then a pane key, and
-                  with sticky mode on you can drum <code class="cn-code cn-text-subtext-1">hjkl</code> to keep
-                  moving between panes without pressing the prefix again, while
-                  readline's own <code class="cn-code cn-text-subtext-1">ctrl+l</code> and
-                  <code class="cn-code cn-text-subtext-1">ctrl+k</code> stay yours.
-                </p>
-                <p>
-                  A keybind opens a session-modal popup pane that runs the key
-                  loop and keeps receiving keystrokes as focus moves underneath
-                  it, which is what makes stickiness possible. Each keystroke
-                  goes over herdr's socket API instead of shelling out to the
-                  binary, so drumming is instant.
+                  terminal multiplexer. Press the prefix, then drum <code
+                  class="cn-code cn-text-subtext-1">hjkl</code> to keep moving
+                  between panes without pressing the prefix again, while
+                  readline's own <code class="cn-code
+                  cn-text-subtext-1">ctrl+l</code> and <code class="cn-code
+                  cn-text-subtext-1">ctrl+k</code> stay yours. A session-modal
+                  popup pane runs the key loop and keeps receiving keystrokes as
+                  focus moves underneath it, and each keystroke goes over
+                  herdr's socket API instead of shelling out, so drumming is
+                  instant.
                 </p>
               </div>
             </div>
