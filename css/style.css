@@ -17,12 +17,34 @@
 body:not(:has(main :target)) .topbar a[href="#about"],
 body:has(#about:target) .topbar a[href="#about"],
 body:has(#work:target) .topbar a[href="#work"],
-body:has(#projects:target) .topbar a[href="#projects"] {
+body:has(#projects:target) .topbar a[href="#projects"],
+body:has(#sites:target) .topbar a[href="#sites"] {
   transform: translateY(1px);
   color: var(--text);
   background: var(--wash);
   box-shadow: var(--neu-inset);
 }
+
+/* Sites grid. Each thumbnail is the package's .accent-card wrapped in a
+   link, so hover lifts it off its plate and click half-slides it, the canon
+   press. The screenshot sits on the card at the mark radius; the caption is
+   the name over the host in the mono meta voice. Aspect ratio is pinned so
+   the grid does not reflow as images arrive. */
+.site-grid { gap: 22px; }
+.site-card { display: block; }
+.site-card .accent-card { display: grid; gap: 12px; height: 100%; }
+.site-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--surface-0);
+}
+.site-card-meta { display: grid; gap: 4px; padding: 0 2px 2px; }
+.site-card-meta strong { color: var(--text); font: 650 14px/1.2 var(--sans); letter-spacing: -0.01em; }
+.site-card:hover .site-card-meta strong { color: var(--mauve); }
 
 /* Accordion copy inherits the body voice; only the measure is set here. */
 .accordion .fold p:not(.project-links) { max-width: 64ch; }
