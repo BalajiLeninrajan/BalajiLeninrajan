@@ -3,12 +3,12 @@
    left here is the hash-routed nav state, the hover-driven accordions, and
    the phone layout of the topbar. */
 
-/* Hero actions compose the package's .btn-icon.is-lg with .cn-tone-mauve,
-   .cn-raised-soft and .cn-pressable. The buttons read a step brighter than
-   the recipe's overlay-1, and the hover hairline stays off: the raised
-   shadow already gives them an edge. */
-.hero-actions .btn-icon { color: var(--subtext-0); }
-.hero-actions .btn-icon:hover { border-color: transparent; }
+/* Hero actions and project links compose the package's .btn-icon.is-lg with
+   .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The buttons read a step
+   brighter than the recipe's overlay-1, and the hover hairline stays off: the
+   raised shadow already gives them an edge. */
+:is(.hero-actions, .project-links) .btn-icon { color: var(--subtext-0); }
+:is(.hero-actions, .project-links) .btn-icon:hover { border-color: transparent; }
 
 /* The engaged pill for the visible deck view. The per-id mapping is the one
    piece CSS cannot generalize (see SPEC on .deck), and a :target state
@@ -47,7 +47,7 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 .site-card:hover .site-card-meta strong { color: var(--mauve); }
 
 /* Accordion copy inherits the body voice; only the measure is set here. */
-.accordion .fold p:not(.project-links) { max-width: 64ch; }
+.accordion .fold p { max-width: 64ch; }
 
 /* Hover-driven accordions. On a mouse a row opens while the pointer is over
    it and closes when it leaves. The label ignores pointer events so a click
@@ -74,13 +74,8 @@ body:has(#sites:target) .topbar a[href="#sites"] {
   .accordion:is(:hover, :focus-within) .fold > * { visibility: visible; }
 }
 
-/* Project links are a .cn-cluster in the .cn-code-meta voice; wrapped lines
-   sit closer than the 22px column gap. */
-.project-links { row-gap: 6px; }
-
 /* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
-   goes and the nav takes the row; the hero drops its tall top padding; project
-   links go one per line and may break inside a long URL. */
+   goes and the nav takes the row; the hero drops its tall top padding. */
 @media (max-width: 520px) {
   main { padding-top: 32px; }
   .topbar {
@@ -90,7 +85,5 @@ body:has(#sites:target) .topbar a[href="#sites"] {
   .wordmark { display: none; }
   .topbar nav { gap: 2px; }
   .topbar .btn-flat { padding: 0 10px; }
-  .hero-actions { gap: 10px; }
-  .project-links { flex-direction: column; align-items: flex-start; }
-  .project-links a { min-width: 0; overflow-wrap: anywhere; }
+  .hero-actions, .project-links { gap: 10px; }
 }
