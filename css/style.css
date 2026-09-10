@@ -51,10 +51,12 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 
 /* Hover-driven accordions. On a mouse a row opens while the pointer is over
    it and closes when it leaves. The label ignores pointer events so a click
-   can't latch the checkbox open; :focus-within keeps a row open while a
+   can't latch the input open; :focus-within keeps a row open while a
    keyboard user is inside it. The query also admits any fine pointer, so a
    desktop browser that misreports hover still gets this. Phones fall through
-   to the package's tap-to-toggle checkbox.
+   to the package's tap-to-open input. Each stack's inputs are radios sharing
+   a name, so a tap on one row closes whichever row was open; the closable
+   listener at the foot of index.html lets a tap close the open row too.
    The recipe opens on :checked, .is-open or [data-open], none of which a
    hover can set without JS, so the open treatment is restated here and must
    track the recipe: full inset, mauve 4% wash, mauve title. */

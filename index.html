@@ -16,10 +16,10 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.3.0/css/index.css"
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.3.2/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css?v=7" rel="stylesheet" />
+    <link href="css/style.css?v=8" rel="stylesheet" />
   </head>
   <body class="app-shell">
     <!-- Icon sprite. Brand marks (GitHub, LinkedIn, PyPI, npm, Rust) are from Simple Icons
@@ -182,7 +182,7 @@
         <div class="accordion-stack">
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="work" />
               <p>Software Engineering Intern · <em>Finta</em></p>
               <span class="cn-meta">May – Aug 2026</span>
             </label>
@@ -203,7 +203,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="work" />
               <p>Production Engineering Intern · <em>Shopify</em></p>
               <span class="cn-meta">Sep – Dec 2025</span>
             </label>
@@ -223,7 +223,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="work" />
               <p>Software Engineering Intern · <em>Shopify</em></p>
               <span class="cn-meta">Jan – Apr 2025</span>
             </label>
@@ -242,7 +242,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="work" />
               <p>Autonomy Lead · <em>Waterloo Aerial Robotics Group</em></p>
               <span class="cn-meta">Jan 2024 – present</span>
             </label>
@@ -264,7 +264,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="work" />
               <p>Technical Lead · <em>AWS Cloud Club</em></p>
               <span class="cn-meta">May 2024 – Jan 2025</span>
             </label>
@@ -281,7 +281,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="work" />
               <p>ERP/Web Development Intern · <em>YTY Group</em></p>
               <span class="cn-meta">May – Aug 2024</span>
             </label>
@@ -303,7 +303,7 @@
         <div class="accordion-stack">
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>varchar</p>
               <span class="cn-meta">Rust · WebAssembly · Preact</span>
             </label>
@@ -349,7 +349,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>salt</p>
               <span class="cn-meta"
                 >Rust · TypeScript · Cloudflare Workers</span
@@ -399,7 +399,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>harness racer</p>
               <span class="cn-meta">TypeScript · React · Ink</span>
             </label>
@@ -447,7 +447,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>catppuccin-neu</p>
               <span class="cn-meta">CSS · TypeScript</span>
             </label>
@@ -486,7 +486,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>warg-cli</p>
               <span class="cn-meta">Python · uv · Git</span>
             </label>
@@ -530,7 +530,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>maram</p>
               <span class="cn-meta">Rust · Git · Zellij</span>
             </label>
@@ -560,7 +560,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>ConsenStat</p>
               <span class="cn-meta"
                 >TypeScript · React · Cloudflare Workers</span
@@ -599,7 +599,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>Skill Issue</p>
               <span class="cn-meta">TypeScript · Cloudflare Workers · D1</span>
             </label>
@@ -636,7 +636,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>herdr-modes</p>
               <span class="cn-meta">Rust · herdr</span>
             </label>
@@ -670,7 +670,7 @@
           </div>
           <div class="accordion">
             <label>
-              <input type="checkbox" />
+              <input type="radio" name="projects" />
               <p>Linguini</p>
               <span class="cn-meta"
                 >TypeScript · Next.js · tRPC · PostgreSQL</span
@@ -828,5 +828,33 @@
         </div>
       </section>
     </main>
+    <!-- The accordion inputs are radios sharing a name per stack, so a tap
+         closes whichever row was open. A radio cannot uncheck itself, so the
+         closable listener from the catppuccin-neu SPEC arms the radio that
+         was already checked on the press and unchecks it on the click that
+         follows; Enter is mapped to a click. On a mouse the label ignores
+         pointer events (see style.css), so this only ever fires on a touch or
+         from the keyboard. -->
+    <script>
+      let held = null;
+      const arm = (e) => {
+        const r = e.target
+          .closest?.(".accordion > label")
+          ?.querySelector("input[type=radio]");
+        held = r?.checked ? r : null;
+      };
+      document.addEventListener("pointerdown", arm, true);
+      document.addEventListener("keydown", arm, true);
+      document.addEventListener("click", (e) => {
+        const t = e.target;
+        if (!t.matches(".accordion input[type=radio]")) return;
+        if (t === held) t.checked = false;
+        held = null;
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && e.target.matches(".accordion input"))
+          e.target.click();
+      });
+    </script>
   </body>
 </html>
