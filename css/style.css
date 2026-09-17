@@ -46,11 +46,12 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 .site-card-meta strong { color: var(--text); font: 650 14px/1.2 var(--sans); letter-spacing: -0.01em; }
 .site-card:hover .site-card-meta strong { color: var(--mauve); }
 
-/* Each accordion holds one sentence now, so the rows and the copy get more
-   type than the package's 13px label and 14px body voice, with the row
-   title a clear step above the copy. */
+/* One body size across the site: the nav buttons, the About lede, and the
+   accordion copy all sit at 15px (14px on phones), over the package's 13px
+   button and 16px lede. Row titles sit a clear step above the copy. */
+.topbar .btn-flat, .lede, .accordion .fold p { font-size: 15px; }
 .accordion > label { font-size: 18px; }
-.accordion .fold p { font-size: 15px; line-height: 1.6; }
+.accordion .fold p { line-height: 1.6; }
 
 /* Hover-driven accordions. On a mouse a row opens while the pointer is over
    it and closes when it leaves. The label ignores pointer events so a click
@@ -90,5 +91,5 @@ body:has(#sites:target) .topbar a[href="#sites"] {
   .topbar .btn-flat { padding: 0 10px; }
   .hero-actions, .project-links { gap: 10px; }
   .accordion > label { font-size: 16px; }
-  .accordion .fold p { font-size: 14px; }
+  .topbar .btn-flat, .lede, .accordion .fold p { font-size: 14px; }
 }
