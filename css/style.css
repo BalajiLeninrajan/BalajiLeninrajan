@@ -50,7 +50,7 @@ body:has(#sites:target) .topbar a[href="#sites"] {
    type than the package's 13px label and 14px body voice, with the row
    title a clear step above the copy. */
 .accordion > label { font-size: 18px; }
-.accordion .fold p { max-width: 64ch; font-size: 15px; line-height: 1.6; }
+.accordion .fold p { font-size: 15px; line-height: 1.6; }
 
 /* Hover-driven accordions. On a mouse a row opens while the pointer is over
    it and closes when it leaves. The label ignores pointer events so a click
