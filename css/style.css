@@ -46,6 +46,12 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 .site-card-meta strong { color: var(--text); font: 650 14px/1.2 var(--sans); letter-spacing: -0.01em; }
 .site-card:hover .site-card-meta strong { color: var(--mauve); }
 
+/* The stack sheds its side padding and pulls out by the label's own 12px,
+   so row titles and copy land on the page column's edge like the hero text
+   and the site cards. The open row's wash reaches 12px past the column,
+   the way the hero's raised buttons already do. */
+.accordion-stack { padding-inline: 0; margin-inline: -12px; }
+
 /* Each accordion holds one sentence now, so the rows and the copy get more
    type than the package's 13px label and 14px body voice, with the row
    title a clear step above the copy. */
