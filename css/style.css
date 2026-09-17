@@ -47,9 +47,10 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 .site-card:hover .site-card-meta strong { color: var(--mauve); }
 
 /* Each accordion holds one sentence now, so the rows and the copy get more
-   type than the package's 13px label and 14px body voice. */
-.accordion > label { font-size: 16px; }
-.accordion .fold p { max-width: 64ch; font-size: 17px; line-height: 1.6; }
+   type than the package's 13px label and 14px body voice, and the copy
+   sits a clear step above the row title. */
+.accordion > label { font-size: 15px; }
+.accordion .fold p { max-width: 64ch; font-size: 18px; line-height: 1.6; }
 
 /* Hover-driven accordions. On a mouse a row opens while the pointer is over
    it and closes when it leaves. The label ignores pointer events so a click
@@ -88,6 +89,6 @@ body:has(#sites:target) .topbar a[href="#sites"] {
   .topbar nav { gap: 2px; }
   .topbar .btn-flat { padding: 0 10px; }
   .hero-actions, .project-links { gap: 10px; }
-  .accordion > label { font-size: 15px; }
+  .accordion > label { font-size: 14px; }
   .accordion .fold p { font-size: 16px; }
 }
