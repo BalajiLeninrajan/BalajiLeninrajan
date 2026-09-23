@@ -746,9 +746,10 @@
          closes whichever row was open. A radio cannot uncheck itself, so the
          closable listener from the catppuccin-neu SPEC arms the radio that
          was already checked on the press and unchecks it on the click that
-         follows; Enter is mapped to a click. On a mouse the label ignores
-         pointer events (see style.css), so this only ever fires on a touch or
-         from the keyboard. -->
+         follows; Enter is mapped to a click. On a mouse the rows open on
+         hover instead: the second block sets the recipe's data-open on the
+         row under the pointer or holding focus, and .hover-open makes the
+         labels ignore clicks (see style.css). -->
     <script>
       let held = null;
       const arm = (e) => {
@@ -769,6 +770,22 @@
         if (e.key === "Enter" && e.target.matches(".accordion input"))
           e.target.click();
       });
+
+      if (matchMedia("(hover: hover), (pointer: fine)").matches) {
+        document.documentElement.classList.add("hover-open");
+        for (const row of document.querySelectorAll(".accordion")) {
+          const open = () => row.setAttribute("data-open", "");
+          row.addEventListener("pointerenter", open);
+          row.addEventListener("focusin", open);
+          row.addEventListener("pointerleave", () => {
+            if (!row.contains(document.activeElement)) row.removeAttribute("data-open");
+          });
+          row.addEventListener("focusout", (e) => {
+            if (!row.contains(e.relatedTarget) && !row.matches(":hover"))
+              row.removeAttribute("data-open");
+          });
+        }
+      }
     </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 /* Consumer layer over catppuccin-neu. Unlayered, so it wins over the
    package's cascade layers. Page layout is classes in index.html; what is
-   left here is the hash-routed nav state, the hover-driven accordions, and
-   the phone layout of the topbar. */
+   left here is the hash-routed nav state, the hover-driven accordions, the
+   sites grid, and the phone layout of the topbar. */
 
 /* Hero actions and project links compose the package's .btn.is-icon.is-lg with
    .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The buttons read a step
@@ -59,29 +59,12 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 .accordion .fold p { font-size: 15px; line-height: 1.6; }
 
 /* Hover-driven accordions. On a mouse a row opens while the pointer is over
-   it and closes when it leaves. The label ignores pointer events so a click
-   can't latch the input open; :focus-within keeps a row open while a
-   keyboard user is inside it. The query also admits any fine pointer, so a
-   desktop browser that misreports hover still gets this. Phones fall through
-   to the package's tap-to-open input. Each stack's inputs are radios sharing
-   a name, so a tap on one row closes whichever row was open; the closable
-   listener at the foot of index.html lets a tap close the open row too.
-   The recipe opens on :checked, .is-open or [data-open], none of which a
-   hover can set without JS, so the open treatment is restated here and must
-   track the recipe: full inset, mauve 4% wash, mauve title. */
-@media (hover: hover), (pointer: fine) {
-  .accordion > label { pointer-events: none; }
-  .accordion:is(:hover, :focus-within) {
-    border-radius: 10px;
-    border-bottom-color: transparent;
-    background: color-mix(in srgb, var(--mauve) 4%, var(--base));
-    box-shadow: var(--neu-inset);
-  }
-  .accordion:is(:hover, :focus-within) > label { color: var(--mauve); }
-  .accordion:is(:hover, :focus-within) > label::after { transform: rotate(180deg); }
-  .accordion:is(:hover, :focus-within) .fold { grid-template-rows: 1fr; }
-  .accordion:is(:hover, :focus-within) .fold > * { visibility: visible; }
-}
+   it or a keyboard user is inside it, and closes when both leave. The script
+   at the foot of index.html sets the recipe's [data-open] on that row, so the
+   open treatment comes from the package, and adds .hover-open to the root.
+   There the label ignores pointer events, so a click can't latch the radio
+   open. Without the script, rows open on click like the recipe's. */
+.hover-open .accordion > label { pointer-events: none; }
 
 /* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
    goes and the nav takes the row; the hero drops its tall top padding. */
