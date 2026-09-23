@@ -1,7 +1,7 @@
 /* Consumer layer over catppuccin-neu. Unlayered, so it wins over the
    package's cascade layers. Page layout is classes in index.html; what is
-   left here is the hash-routed nav state, the hover-driven accordions, the
-   sites grid, and the phone layout of the topbar. */
+   left here is the sites grid, the accordion stack's type and edge, and the
+   phone layout of the topbar. */
 
 /* Hero actions and project links compose the package's .btn.is-icon.is-lg with
    .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The buttons read a step
@@ -9,21 +9,6 @@
    raised shadow already gives them an edge. */
 :is(.hero-actions, .project-links) .btn.is-icon { color: var(--subtext-0); }
 :is(.hero-actions, .project-links) .btn.is-icon:hover { border-color: transparent; }
-
-/* The engaged pill for the visible deck view. The per-id mapping is the one
-   piece CSS cannot generalize (see SPEC on .deck), and a :target state
-   cannot set aria-current, so the recipe's engaged treatment is restated
-   with its tokens. */
-body:not(:has(main :target)) .topbar a[href="#about"],
-body:has(#about:target) .topbar a[href="#about"],
-body:has(#work:target) .topbar a[href="#work"],
-body:has(#projects:target) .topbar a[href="#projects"],
-body:has(#sites:target) .topbar a[href="#sites"] {
-  transform: translateY(1px);
-  color: var(--text);
-  background: var(--wash);
-  box-shadow: var(--neu-inset);
-}
 
 /* Sites grid. Each thumbnail is the package's .accent-card wrapped in a
    link, so hover lifts it off its plate and click half-slides it, the canon
@@ -44,23 +29,19 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 
 /* The stack sheds its side padding and pulls out by the label's own 12px,
    so row titles and copy land on the page column's edge like the hero text
-   and the site cards. The open row's wash reaches 12px past the column,
-   the way the hero's raised buttons already do. */
-.accordion-stack { padding-inline: 0; margin-inline: -12px; }
+   and the site cards. The open row's wash reaches past the column, the way
+   the hero's raised buttons already do, but always stops 4px short of the
+   screen edge, since the phone gutter is only 12px. */
+.accordion-stack {
+  padding-inline: 0;
+  margin-inline: calc(-1 * min(12px, var(--page-gutter) - 4px));
+}
 
 /* Each accordion holds one sentence now, so the rows and the copy get more
    type than the package's 13px label and 14px body voice, with the row
    title a clear step above the copy. */
 .accordion > label { font-size: 18px; }
 .accordion .fold p { font-size: 15px; line-height: 1.6; }
-
-/* Hover-driven accordions. On a mouse a row opens while the pointer is over
-   it or a keyboard user is inside it, and closes when both leave. The script
-   at the foot of index.html sets the recipe's [data-open] on that row, so the
-   open treatment comes from the package, and adds .hover-open to the root.
-   There the label ignores pointer events, so a click can't latch the radio
-   open. Without the script, rows open on click like the recipe's. */
-.hover-open .accordion > label { pointer-events: none; }
 
 /* Under 760px the recipe wraps the label so its meta drops under the title.
    A title longer than the row then pushed the chevron onto a line of its

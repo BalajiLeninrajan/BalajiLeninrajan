@@ -6,7 +6,7 @@
     <title>Balaji Leninrajan</title>
     <meta
       name="description"
-      content="Balaji Leninrajan — software engineering student at the University of Waterloo."
+      content="Balaji Leninrajan, software engineering student at the University of Waterloo."
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -19,7 +19,7 @@
       href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css?v=17" rel="stylesheet" />
+    <link href="css/style.css?v=18" rel="stylesheet" />
   </head>
   <body class="app-shell">
     <!-- Icon sprite. Brand marks (GitHub, LinkedIn, PyPI, npm, Rust) are from Simple Icons
@@ -634,7 +634,7 @@
                 loading="lazy"
               />
               <div class="cn-stack cn-gap-4">
-                <strong class="cn-ui cn-text-text">varchar</strong>
+                <strong class="cn-name">varchar</strong>
                 <span class="cn-code-meta">varchar.balajileninrajan.dev</span>
               </div>
             </div>
@@ -654,7 +654,7 @@
                 loading="lazy"
               />
               <div class="cn-stack cn-gap-4">
-                <strong class="cn-ui cn-text-text">salt</strong>
+                <strong class="cn-name">salt</strong>
                 <span class="cn-code-meta">salt.balajileninrajan.dev</span>
               </div>
             </div>
@@ -674,7 +674,7 @@
                 loading="lazy"
               />
               <div class="cn-stack cn-gap-4">
-                <strong class="cn-ui cn-text-text">harness racer</strong>
+                <strong class="cn-name">harness racer</strong>
                 <span class="cn-code-meta">harness-racer.balajileninrajan.dev</span>
               </div>
             </div>
@@ -694,7 +694,7 @@
                 loading="lazy"
               />
               <div class="cn-stack cn-gap-4">
-                <strong class="cn-ui cn-text-text">Skill Issue</strong>
+                <strong class="cn-name">Skill Issue</strong>
                 <span class="cn-code-meta">skill-issue.balajileninrajan.dev</span>
               </div>
             </div>
@@ -714,7 +714,7 @@
                 loading="lazy"
               />
               <div class="cn-stack cn-gap-4">
-                <strong class="cn-ui cn-text-text">catppuccin-neu</strong>
+                <strong class="cn-name">catppuccin-neu</strong>
                 <span class="cn-code-meta">catppuccin-neu.balajileninrajan.dev</span>
               </div>
             </div>
@@ -734,7 +734,7 @@
                 loading="lazy"
               />
               <div class="cn-stack cn-gap-4">
-                <strong class="cn-ui cn-text-text">ConsenStat</strong>
+                <strong class="cn-name">ConsenStat</strong>
                 <span class="cn-code-meta">consenstat.balajileninrajan.dev</span>
               </div>
             </div>
@@ -746,10 +746,12 @@
          closes whichever row was open. A radio cannot uncheck itself, so the
          closable listener from the catppuccin-neu SPEC arms the radio that
          was already checked on the press and unchecks it on the click that
-         follows; Enter is mapped to a click. On a mouse the rows open on
-         hover instead: the second block sets the recipe's data-open on the
-         row under the pointer or holding focus, and .hover-open makes the
-         labels ignore clicks (see style.css). -->
+         follows; Enter is mapped to a click. With a mouse the rows open on
+         hover instead. The second block sets the recipe's data-open on the
+         row under the mouse or holding keyboard focus, and cancels mouse
+         clicks on the labels so a click can't latch a radio open. Touch and
+         pen taps skip both and check the radio as usual. The last block
+         sets aria-current on the nav link for the visible view. -->
     <script>
       let held = null;
       const arm = (e) => {
@@ -771,21 +773,37 @@
           e.target.click();
       });
 
-      if (matchMedia("(hover: hover), (pointer: fine)").matches) {
-        document.documentElement.classList.add("hover-open");
-        for (const row of document.querySelectorAll(".accordion")) {
-          const open = () => row.setAttribute("data-open", "");
-          row.addEventListener("pointerenter", open);
-          row.addEventListener("focusin", open);
-          row.addEventListener("pointerleave", () => {
-            if (!row.contains(document.activeElement)) row.removeAttribute("data-open");
-          });
-          row.addEventListener("focusout", (e) => {
-            if (!row.contains(e.relatedTarget) && !row.matches(":hover"))
-              row.removeAttribute("data-open");
-          });
-        }
+      let lastPointer = "mouse";
+      document.addEventListener("pointerdown", (e) => (lastPointer = e.pointerType), true);
+      document.addEventListener(
+        "click",
+        (e) => {
+          if (lastPointer === "mouse" && e.detail > 0 && e.target.closest(".accordion > label"))
+            e.preventDefault();
+        },
+        true,
+      );
+      for (const row of document.querySelectorAll(".accordion")) {
+        const open = () => row.setAttribute("data-open", "");
+        const close = () => row.removeAttribute("data-open");
+        const keyFocus = () => row.matches(":has(:focus-visible)");
+        row.addEventListener("pointerenter", (e) => e.pointerType === "mouse" && open());
+        row.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && !keyFocus() && close());
+        row.addEventListener("focusin", () => keyFocus() && open());
+        row.addEventListener("focusout", (e) => {
+          if (!row.contains(e.relatedTarget) && !row.matches(":hover")) close();
+        });
       }
+
+      const markView = () => {
+        const id = document.querySelector("main :target")?.id ?? "about";
+        for (const a of document.querySelectorAll(".topbar nav a")) {
+          if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
+        }
+      };
+      markView();
+      addEventListener("hashchange", markView);
     </script>
   </body>
 </html>
