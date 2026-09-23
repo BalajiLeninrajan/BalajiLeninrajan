@@ -27,24 +27,20 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 
 /* Sites grid. Each thumbnail is the package's .accent-card wrapped in a
    link, so hover lifts it off its plate and click half-slides it, the canon
-   press. The screenshot sits on the card at the mark radius; the caption is
-   the name over the host in the mono meta voice. Aspect ratio is pinned so
-   the grid does not reflow as images arrive. */
-.site-grid { gap: 22px; }
-.site-card { display: block; }
-.site-card .accent-card { display: grid; gap: 12px; height: 100%; }
+   press. Layout and type are utilities in index.html. The screenshot sits on
+   the card at the control radius, with its aspect ratio pinned so the grid
+   does not reflow as images arrive. The name turns mauve with the lift. */
+.site-card .accent-card { height: 100%; }
 .site-card img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--cn-radius-control);
   border: 1px solid var(--surface-0);
 }
-.site-card-meta { display: grid; gap: 4px; padding: 0 2px 2px; }
-.site-card-meta strong { color: var(--text); font: 650 14px/1.2 var(--sans); letter-spacing: -0.01em; }
-.site-card:hover .site-card-meta strong { color: var(--mauve); }
+.site-card:hover strong { color: var(--mauve); }
 
 /* The stack sheds its side padding and pulls out by the label's own 12px,
    so row titles and copy land on the page column's edge like the hero text
@@ -65,6 +61,13 @@ body:has(#sites:target) .topbar a[href="#sites"] {
    There the label ignores pointer events, so a click can't latch the radio
    open. Without the script, rows open on click like the recipe's. */
 .hover-open .accordion > label { pointer-events: none; }
+
+/* Under 760px the recipe wraps the label so its meta drops under the title.
+   A title longer than the row then pushed the chevron onto a line of its
+   own, so the title shrinks to share its line with the chevron. */
+@media (max-width: 760px) {
+  .accordion > label > p { flex: 1 1 0; min-width: 0; }
+}
 
 /* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
    goes and the nav takes the row; the hero drops its tall top padding. */
