@@ -1,56 +1,41 @@
 /* Consumer layer over catppuccin-neu. Unlayered, so it wins over the
    package's cascade layers. Page layout is classes in index.html; what is
-   left here is the hash-routed nav state, the hover-driven accordions, and
-   the phone layout of the topbar. */
+   left here is the sites grid, the accordion stack's type and edge, and the
+   phone layout of the topbar. */
 
-/* Hero actions and project links compose the package's .btn-icon.is-lg with
+/* Hero actions and project links compose the package's .btn.is-icon.is-lg with
    .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The buttons read a step
    brighter than the recipe's overlay-1, and the hover hairline stays off: the
    raised shadow already gives them an edge. */
-:is(.hero-actions, .project-links) .btn-icon { color: var(--subtext-0); }
-:is(.hero-actions, .project-links) .btn-icon:hover { border-color: transparent; }
-
-/* The engaged pill for the visible deck view. The per-id mapping is the one
-   piece CSS cannot generalize (see SPEC on .deck), and a :target state
-   cannot set aria-current, so the recipe's engaged treatment is restated
-   with its tokens. */
-body:not(:has(main :target)) .topbar a[href="#about"],
-body:has(#about:target) .topbar a[href="#about"],
-body:has(#work:target) .topbar a[href="#work"],
-body:has(#projects:target) .topbar a[href="#projects"],
-body:has(#sites:target) .topbar a[href="#sites"] {
-  transform: translateY(1px);
-  color: var(--text);
-  background: var(--wash);
-  box-shadow: var(--neu-inset);
-}
+:is(.hero-actions, .project-links) .btn.is-icon { color: var(--subtext-0); }
+:is(.hero-actions, .project-links) .btn.is-icon:hover { border-color: transparent; }
 
 /* Sites grid. Each thumbnail is the package's .accent-card wrapped in a
    link, so hover lifts it off its plate and click half-slides it, the canon
-   press. The screenshot sits on the card at the mark radius; the caption is
-   the name over the host in the mono meta voice. Aspect ratio is pinned so
-   the grid does not reflow as images arrive. */
-.site-grid { gap: 22px; }
-.site-card { display: block; }
-.site-card .accent-card { display: grid; gap: 12px; height: 100%; }
+   press. Layout and type are utilities in index.html. The screenshot sits on
+   the card at the control radius, with its aspect ratio pinned so the grid
+   does not reflow as images arrive. The name turns mauve with the lift. */
+.site-card .accent-card { height: 100%; }
 .site-card img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--cn-radius-control);
   border: 1px solid var(--surface-0);
 }
-.site-card-meta { display: grid; gap: 4px; padding: 0 2px 2px; }
-.site-card-meta strong { color: var(--text); font: 650 14px/1.2 var(--sans); letter-spacing: -0.01em; }
-.site-card:hover .site-card-meta strong { color: var(--mauve); }
+.site-card:hover strong { color: var(--mauve); }
 
 /* The stack sheds its side padding and pulls out by the label's own 12px,
    so row titles and copy land on the page column's edge like the hero text
-   and the site cards. The open row's wash reaches 12px past the column,
-   the way the hero's raised buttons already do. */
-.accordion-stack { padding-inline: 0; margin-inline: -12px; }
+   and the site cards. The open row's wash reaches past the column, the way
+   the hero's raised buttons already do, but always stops 4px short of the
+   screen edge, since the phone gutter is only 12px. */
+.accordion-stack {
+  padding-inline: 0;
+  margin-inline: calc(-1 * min(12px, var(--page-gutter) - 4px));
+}
 
 /* Each accordion holds one sentence now, so the rows and the copy get more
    type than the package's 13px label and 14px body voice, with the row
@@ -58,29 +43,11 @@ body:has(#sites:target) .topbar a[href="#sites"] {
 .accordion > label { font-size: 18px; }
 .accordion .fold p { font-size: 15px; line-height: 1.6; }
 
-/* Hover-driven accordions. On a mouse a row opens while the pointer is over
-   it and closes when it leaves. The label ignores pointer events so a click
-   can't latch the input open; :focus-within keeps a row open while a
-   keyboard user is inside it. The query also admits any fine pointer, so a
-   desktop browser that misreports hover still gets this. Phones fall through
-   to the package's tap-to-open input. Each stack's inputs are radios sharing
-   a name, so a tap on one row closes whichever row was open; the closable
-   listener at the foot of index.html lets a tap close the open row too.
-   The recipe opens on :checked, .is-open or [data-open], none of which a
-   hover can set without JS, so the open treatment is restated here and must
-   track the recipe: full inset, mauve 4% wash, mauve title. */
-@media (hover: hover), (pointer: fine) {
-  .accordion > label { pointer-events: none; }
-  .accordion:is(:hover, :focus-within) {
-    border-radius: 10px;
-    border-bottom-color: transparent;
-    background: color-mix(in srgb, var(--mauve) 4%, var(--base));
-    box-shadow: var(--neu-inset);
-  }
-  .accordion:is(:hover, :focus-within) > label { color: var(--mauve); }
-  .accordion:is(:hover, :focus-within) > label::after { transform: rotate(180deg); }
-  .accordion:is(:hover, :focus-within) .fold { grid-template-rows: 1fr; }
-  .accordion:is(:hover, :focus-within) .fold > * { visibility: visible; }
+/* Under 760px the recipe wraps the label so its meta drops under the title.
+   A title longer than the row then pushed the chevron onto a line of its
+   own, so the title shrinks to share its line with the chevron. */
+@media (max-width: 760px) {
+  .accordion > label > p { flex: 1 1 0; min-width: 0; }
 }
 
 /* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
@@ -93,7 +60,7 @@ body:has(#sites:target) .topbar a[href="#sites"] {
   }
   .wordmark { display: none; }
   .topbar nav { gap: 2px; }
-  .topbar .btn-flat { padding: 0 10px; }
+  .topbar .btn { padding: 0 10px; }
   .hero-actions, .project-links { gap: 10px; }
   .accordion > label { font-size: 16px; }
   .accordion .fold p { font-size: 14px; }
