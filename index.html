@@ -19,7 +19,7 @@
       href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css?v=20" rel="stylesheet" />
+    <link href="css/style.css?v=21" rel="stylesheet" />
   </head>
   <body class="app-shell" style="--page-width: 1120px">
     <!-- Icon sprite. Brand marks (GitHub, LinkedIn, PyPI, npm, Rust) are from Simple Icons
@@ -69,6 +69,18 @@
         <path d="M10 9H8" />
         <path d="M16 13H8" />
         <path d="M16 17H8" />
+      </symbol>
+      <symbol
+        id="i-terminal"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 19h8" />
+        <path d="m4 17 6-6-6-6" />
       </symbol>
       <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor">
         <path
@@ -209,7 +221,7 @@
               <div class="accordion">
                 <label>
                   <input type="radio" name="work" />
-                  <p>Waterloo Aerial Robotics Group <span class="cn-text-overlay-1">· Autonomy Lead</span></p>
+                  <p>WARG <span class="cn-text-overlay-1">· Autonomy Lead</span></p>
                   <span class="cn-meta">Jan 2024 – present</span>
                 </label>
                 <div class="fold">
@@ -237,7 +249,7 @@
               <div class="accordion">
                 <label>
                   <input type="radio" name="work" />
-                  <p>YTY Group <span class="cn-text-overlay-1">· ERP/Web Development Intern</span></p>
+                  <p>YTY Group <span class="cn-text-overlay-1">· ERP/Web Intern</span></p>
                   <span class="cn-meta">May – Aug 2024</span>
                 </label>
                 <div class="fold">
@@ -253,7 +265,7 @@
 
           <section id="projects">
             <h2 class="cn-microlabel cn-mb-16">Projects</h2>
-            <div class="cn-grid-2 cn-gap-24">
+            <div class="project-grid cn-grid-2 cn-gap-24">
               <div class="project-card accent-card cn-stack cn-gap-12">
                 <img
                   src="img/sites/varchar.webp"
@@ -525,9 +537,291 @@
 
             <h3 class="more-projects cn-label">More projects</h3>
             <div class="accordion-stack">
-              <div class="accordion">
+              <div class="accordion project-row is-hosted">
                 <label>
-                  <input type="radio" name="more" />
+                  <input type="radio" name="projects" />
+                  <img
+                    class="project-thumb"
+                    src="img/sites/varchar.webp"
+                    alt=""
+                    width="64"
+                    height="40"
+                    loading="lazy"
+                  />
+                  <p>varchar</p>
+                  <span class="cn-meta">Rust · WebAssembly · Preact</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      A SQL database whose entire state is one UTF-8 string, with every SELECT run as a regex over it.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://varchar.balajileninrajan.dev"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Website"
+                        title="varchar.balajileninrajan.dev"
+                        ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://crates.io/crates/varchar-cli"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="crates.io"
+                        title="crates.io/crates/varchar-cli"
+                        ><svg aria-hidden="true"><use href="#i-cargo" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/varchar"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/varchar"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion project-row is-hosted">
+                <label>
+                  <input type="radio" name="projects" />
+                  <img
+                    class="project-thumb"
+                    src="img/sites/salt.webp"
+                    alt=""
+                    width="64"
+                    height="40"
+                    loading="lazy"
+                  />
+                  <p>salt</p>
+                  <span class="cn-meta">Rust · TypeScript · Cloudflare Workers</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      A CLI that reads your local coding-agent session logs, counts the profanity in your prompts, and publishes the tally to a shareable link.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://salt.balajileninrajan.dev"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Website"
+                        title="salt.balajileninrajan.dev"
+                        ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://www.npmjs.com/package/salt-ai"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="npm"
+                        title="npmjs.com/package/salt-ai"
+                        ><svg aria-hidden="true"><use href="#i-npm" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/salt"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/salt"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion project-row is-hosted">
+                <label>
+                  <input type="radio" name="projects" />
+                  <img
+                    class="project-thumb"
+                    src="img/sites/harness-racer.webp"
+                    alt=""
+                    width="64"
+                    height="40"
+                    loading="lazy"
+                  />
+                  <p>harness racer</p>
+                  <span class="cn-meta">TypeScript · React · Ink</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Races the coding agents installed on your machine and streams their speed side by side.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://harness-racer.balajileninrajan.dev"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Website"
+                        title="harness-racer.balajileninrajan.dev"
+                        ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://www.npmjs.com/package/harness-racer"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="npm"
+                        title="npmjs.com/package/harness-racer"
+                        ><svg aria-hidden="true"><use href="#i-npm" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/harness-racer"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/harness-racer"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion project-row is-hosted">
+                <label>
+                  <input type="radio" name="projects" />
+                  <img
+                    class="project-thumb"
+                    src="img/sites/skill-issue.webp"
+                    alt=""
+                    width="64"
+                    height="40"
+                    loading="lazy"
+                  />
+                  <p>Skill Issue</p>
+                  <span class="cn-meta">TypeScript · Cloudflare Workers · D1</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Enter a company and job title and get a parody rejection email 2 to 48 hours later, no application required.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://skill-issue.balajileninrajan.dev"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Website"
+                        title="skill-issue.balajileninrajan.dev"
+                        ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/skill-issue"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/skill-issue"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion project-row is-hosted">
+                <label>
+                  <input type="radio" name="projects" />
+                  <img
+                    class="project-thumb"
+                    src="img/sites/catppuccin-neu.webp"
+                    alt=""
+                    width="64"
+                    height="40"
+                    loading="lazy"
+                  />
+                  <p>catppuccin-neu</p>
+                  <span class="cn-meta">CSS · TypeScript</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      The CSS-only Catppuccin Mocha design system this site is built on.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://catppuccin-neu.balajileninrajan.dev"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Website"
+                        title="catppuccin-neu.balajileninrajan.dev"
+                        ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/catppuccin-neu"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/catppuccin-neu"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion project-row is-hosted">
+                <label>
+                  <input type="radio" name="projects" />
+                  <img
+                    class="project-thumb"
+                    src="img/sites/consenstat.webp"
+                    alt=""
+                    width="64"
+                    height="40"
+                    loading="lazy"
+                  />
+                  <p>ConsenStat</p>
+                  <span class="cn-meta">TypeScript · React · Cloudflare Workers</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Anonymous real-time voting on whether a Waterloo exam was touching or touchy.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://consenstat.balajileninrajan.dev"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Website"
+                        title="consenstat.balajileninrajan.dev"
+                        ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/consenStat"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/consenStat"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion project-row">
+                <label>
+                  <input type="radio" name="projects" />
+                  <span class="project-thumb is-blank"
+                    ><svg aria-hidden="true"><use href="#i-terminal" /></svg
+                  ></span>
                   <p>warg-cli</p>
                   <span class="cn-meta">Python · uv · Git</span>
                 </label>
@@ -559,9 +853,12 @@
                   </div>
                 </div>
               </div>
-              <div class="accordion">
+              <div class="accordion project-row">
                 <label>
-                  <input type="radio" name="more" />
+                  <input type="radio" name="projects" />
+                  <span class="project-thumb is-blank"
+                    ><svg aria-hidden="true"><use href="#i-terminal" /></svg
+                  ></span>
                   <p>maram</p>
                   <span class="cn-meta">Rust · Git · Zellij</span>
                 </label>
@@ -584,9 +881,12 @@
                   </div>
                 </div>
               </div>
-              <div class="accordion">
+              <div class="accordion project-row">
                 <label>
-                  <input type="radio" name="more" />
+                  <input type="radio" name="projects" />
+                  <span class="project-thumb is-blank"
+                    ><svg aria-hidden="true"><use href="#i-terminal" /></svg
+                  ></span>
                   <p>herdr-modes</p>
                   <span class="cn-meta">Rust · herdr</span>
                 </label>
@@ -609,9 +909,12 @@
                   </div>
                 </div>
               </div>
-              <div class="accordion">
+              <div class="accordion project-row">
                 <label>
-                  <input type="radio" name="more" />
+                  <input type="radio" name="projects" />
+                  <span class="project-thumb is-blank"
+                    ><svg aria-hidden="true"><use href="#i-terminal" /></svg
+                  ></span>
                   <p>Linguini</p>
                   <span class="cn-meta"
                     >TypeScript · Next.js · tRPC · PostgreSQL</span
