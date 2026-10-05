@@ -42,6 +42,30 @@ main { --page-pad: 72px 0 72px; }
 }
 .more-projects { margin: 48px 0 8px; }
 
+/* A click anywhere on a card opens its site. The card holds its own link
+   buttons, so it can't sit inside an <a>; the name's link stretches its
+   ::after over the card instead, and the buttons stack above it. The recipe
+   only lifts and presses a card inside a link (a > .accent-card), so the
+   lift, press and focus ring are restated here off the stretched link.
+   Package gap: the recipe could key them off a stretched link too. */
+.project-card { position: relative; }
+.project-card .card-link { color: inherit; text-decoration: none; }
+.project-card .card-link::after { content: ""; position: absolute; inset: 0; }
+.project-card .card-link:focus-visible { outline: none; }
+.project-card .project-links { position: relative; z-index: 1; }
+.project-card:has(.card-link:hover) strong { color: var(--mauve); }
+.project-card:has(.card-link:hover) {
+  transform: translate(-1px, -1px);
+  box-shadow: calc(var(--hard-offset) + 1px) calc(var(--hard-offset) + 1px) 0 var(--plate), var(--hard-extra);
+}
+.project-card:has(.card-link:active) {
+  transform: translate(calc(var(--hard-offset) / 2), calc(var(--hard-offset) / 2));
+  box-shadow: calc(var(--hard-offset) / 2) calc(var(--hard-offset) / 2) 0 var(--plate), var(--hard-extra);
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--t-press);
+}
+.project-card:has(.card-link:focus-visible) { outline: 2px solid var(--mauve); outline-offset: 3px; }
+
 /* The stack sheds its side padding and pulls out by the label's own 12px,
    so row titles and copy land on the column's edge like the section labels
    and the project cards. The open row's wash reaches past the column but
