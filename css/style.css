@@ -1,22 +1,37 @@
 /* Consumer layer over catppuccin-neu. Unlayered, so it wins over the
-   package's cascade layers. Page layout is classes in index.html; what is
-   left here is the sites grid, the accordion stack's type and edge, and the
-   phone layout of the topbar. */
+   package's cascade layers. Most of the page is classes in index.html; what
+   is left here is the two-column split, the project cards, the accordion
+   stacks' type and edge, and the phone scroll cue. */
 
-/* Hero actions and project links compose the package's .btn.is-icon.is-lg with
+/* Split: the intro on the left, Experience and Projects on the right. The
+   intro takes 300 to 360px and the content keeps at least 560px, so below
+   about 1000px the row wraps and the intro sits on top. Side by side, the
+   intro stays put while the content scrolls. */
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 72px;
+}
+main { --page-pad: 72px 0 72px; }
+.split > .intro { flex: 1 1 300px; max-width: 360px; min-width: 0; }
+.split > .split-content { flex: 999 1 560px; min-width: 0; }
+.split-content > section + section { margin-top: 72px; }
+@media (min-width: 1000px) {
+  .split > .intro { position: sticky; top: 72px; }
+}
+
+/* Hero actions and project links compose the package's .btn.is-icon with
    .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The buttons read a step
    brighter than the recipe's overlay-1, and the hover hairline stays off: the
    raised shadow already gives them an edge. */
 :is(.hero-actions, .project-links) .btn.is-icon { color: var(--subtext-0); }
 :is(.hero-actions, .project-links) .btn.is-icon:hover { border-color: transparent; }
 
-/* Sites grid. Each thumbnail is the package's .accent-card wrapped in a
-   link, so hover lifts it off its plate and click half-slides it, the canon
-   press. Layout and type are utilities in index.html. The screenshot sits on
-   the card at the control radius, with its aspect ratio pinned so the grid
-   does not reflow as images arrive. The name turns mauve with the lift. */
-.site-card .accent-card { height: 100%; }
-.site-card img {
+/* Project cards. Each hosted project is the package's .accent-card with its
+   screenshot on top, at the control radius, with the aspect ratio pinned so
+   the grid does not reflow as images arrive. */
+.project-card img {
   display: block;
   width: 100%;
   height: auto;
@@ -25,21 +40,21 @@
   border-radius: var(--cn-radius-control);
   border: 1px solid var(--surface-0);
 }
-.site-card:hover strong { color: var(--mauve); }
+.more-projects { margin: 48px 0 8px; }
 
 /* The stack sheds its side padding and pulls out by the label's own 12px,
-   so row titles and copy land on the page column's edge like the hero text
-   and the site cards. The open row's wash reaches past the column, the way
-   the hero's raised buttons already do, but always stops 4px short of the
-   screen edge, since the phone gutter is only 12px. */
+   so row titles and copy land on the column's edge like the section labels
+   and the project cards. The open row's wash reaches past the column but
+   always stops 4px short of the screen edge, since the phone gutter is only
+   12px. */
 .accordion-stack {
   padding-inline: 0;
   margin-inline: calc(-1 * min(12px, var(--page-gutter) - 4px));
 }
 
-/* Each accordion holds one sentence now, so the rows and the copy get more
-   type than the package's 13px label and 14px body voice, with the row
-   title a clear step above the copy. */
+/* Each accordion holds one sentence, so the rows and the copy get more type
+   than the package's 13px label and 14px body voice, with the row title a
+   clear step above the copy. */
 .accordion > label { font-size: 18px; }
 .accordion .fold p { font-size: 15px; line-height: 1.6; }
 
@@ -50,17 +65,42 @@
   .accordion > label > p { flex: 1 1 0; min-width: 0; }
 }
 
-/* Phone: the wordmark and nav can't share a row under 520px, so the wordmark
-   goes and the nav takes the row; the hero drops its tall top padding. */
-@media (max-width: 520px) {
-  main { padding-top: 32px; }
-  .topbar {
-    grid-template-columns: 1fr;
-    justify-items: center;
+/* Phone "more below" cue: a small overlay-0 chevron pinned to the bottom of
+   the screen that drifts 3px and fades out over the first 120px of scroll.
+   The fade needs scroll timelines, so browsers without them never show it. */
+.scroll-cue { display: none; }
+@keyframes scroll-cue-out { to { opacity: 0; visibility: hidden; } }
+@keyframes scroll-cue-bob { 50% { transform: translateY(3px); } }
+@media (max-width: 760px) {
+  @supports (animation-timeline: scroll()) {
+    .scroll-cue {
+      display: block;
+      position: fixed;
+      left: 50%;
+      bottom: max(14px, env(safe-area-inset-bottom));
+      z-index: 60;
+      translate: -50% 0;
+      color: var(--overlay-0);
+      pointer-events: none;
+      animation: scroll-cue-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 120px;
+    }
+    .scroll-cue svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+      animation: scroll-cue-bob 2.4s ease-in-out infinite;
+    }
   }
-  .wordmark { display: none; }
-  .topbar nav { gap: 2px; }
-  .topbar .btn { padding: 0 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue svg { animation: none; }
+}
+
+/* Phone: less top padding, and the type steps down a size. */
+@media (max-width: 520px) {
+  main { --page-pad: 32px 0 56px; }
   .hero-actions, .project-links { gap: 10px; }
   .accordion > label { font-size: 16px; }
   .accordion .fold p { font-size: 14px; }

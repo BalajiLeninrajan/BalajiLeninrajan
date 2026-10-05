@@ -19,9 +19,9 @@
       href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css?v=18" rel="stylesheet" />
+    <link href="css/style.css?v=19" rel="stylesheet" />
   </head>
-  <body class="app-shell">
+  <body class="app-shell" style="--page-width: 1120px">
     <!-- Icon sprite. Brand marks (GitHub, LinkedIn, PyPI, npm, Rust) are from Simple Icons
          (CC0); the rest are Lucide (ISC). Referenced below via <use>. -->
     <svg
@@ -96,192 +96,182 @@
         />
       </symbol>
     </svg>
-    <header class="topbar">
-      <span class="wordmark">Balaji<em>Leninrajan</em></span>
-      <nav aria-label="Views">
-        <a class="btn btn-ghost is-sm" href="#about">About</a>
-        <a class="btn btn-ghost is-sm" href="#work">Experience</a>
-        <a class="btn btn-ghost is-sm" href="#projects">Projects</a>
-        <a class="btn btn-ghost is-sm" href="#sites">Sites</a>
-      </nav>
-    </header>
-    <main
-      class="deck page-main is-narrow"
-      style="--page-pad: clamp(28px, 6vh, 56px) 0 72px"
-    >
-      <section class="hero" id="about">
-        <h1 class="display-title">Hi, I'm <em>Balaji</em>.</h1>
-        <p class="lede">
-          SE at
-          <a href="https://uwaterloo.ca" target="_blank" rel="noopener"
-            >Waterloo</a
-          >. Ex-<a href="https://www.finta.com" target="_blank" rel="noopener"
-            >Finta</a
-          >, ex-<a href="https://www.shopify.com" target="_blank" rel="noopener"
-            >Shopify</a
-          >, autonomy lead at
-          <a href="https://www.uwarg.com" target="_blank" rel="noopener">WARG</a
-          >.
-        </p>
-        <div class="hero-actions cn-cluster cn-gap-16 cn-mt-32">
+    <div class="scroll-cue" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+    </div>
+    <main class="page-main">
+      <div class="split">
+        <aside id="about" class="intro">
+          <h1 class="cn-display-sm">Hi, I'm <em>Balaji</em>.</h1>
+          <p class="lede">
+            SE at
+            <a href="https://uwaterloo.ca" target="_blank" rel="noopener"
+              >Waterloo</a
+            >. I make infra scale and backends fast.
+          </p>
           <a
-            class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-            href="mailto:work@balajileninrajan.dev"
-            aria-label="Email"
-            title="work@balajileninrajan.dev"
-            ><svg aria-hidden="true"><use href="#i-mail" /></svg></a
-          >
-          <a
-            class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-            href="https://github.com/BalajiLeninrajan"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-            title="GitHub"
-            ><svg aria-hidden="true"><use href="#i-github" /></svg></a
-          >
-          <a
-            class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-            href="https://linkedin.com/in/balaji-leninrajan"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-            ><svg aria-hidden="true"><use href="#i-linkedin" /></svg></a
-          >
-          <a
-            class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+            class="btn btn-primary is-lg cn-pressable"
             href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/resume@main/resume.pdf"
             target="_blank"
             rel="noopener"
             download="Balaji-Leninrajan-Resume.pdf"
-            aria-label="Resume (PDF)"
-            title="Resume"
-            ><svg aria-hidden="true"><use href="#i-file" /></svg></a
+            ><svg aria-hidden="true"><use href="#i-file" /></svg>Resume</a
           >
-          <a
-            class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-            href="https://se-webring.xyz/"
-            target="_blank"
-            rel="noopener"
-            aria-label="SE Webring"
-            title="SE Webring"
-            ><svg viewBox="0 0 960 960" aria-hidden="true">
-              <path
-                fill="currentColor"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M390.499 272.146V687.477C491.737 672.742 569.501 585.38 569.501 479.811C569.501 374.243 491.737 286.881 390.499 272.146ZM367.396 749.527C364.991 749.591 362.577 749.623 360.157 749.623C211.506 749.623 91 628.824 91 479.811C91 330.799 211.506 210 360.157 210C362.577 210 364.991 210.032 367.396 210.096C368.31 210.032 369.233 210 370.163 210H869V749.623H370.163C369.233 749.623 368.31 749.591 367.396 749.527ZM330.687 687.602V272.021C229.023 286.379 150.813 373.94 150.813 479.811C150.813 585.683 229.023 673.244 330.687 687.602ZM529.346 269.958H809.187V689.665H529.346C590.325 640.201 629.313 564.57 629.313 479.811C629.313 395.053 590.325 319.422 529.346 269.958Z"
-              /></svg
-          ></a>
-        </div>
-      </section>
+          <div class="hero-actions cn-cluster cn-gap-16 cn-mt-24">
+            <a
+              class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+              href="mailto:work@balajileninrajan.dev"
+              aria-label="Email"
+              title="work@balajileninrajan.dev"
+              ><svg aria-hidden="true"><use href="#i-mail" /></svg></a
+            >
+            <a
+              class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+              href="https://github.com/BalajiLeninrajan"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub"
+              title="GitHub"
+              ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+            >
+            <a
+              class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+              href="https://linkedin.com/in/balaji-leninrajan"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+              ><svg aria-hidden="true"><use href="#i-linkedin" /></svg></a
+            >
+            <a
+              class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+              href="https://se-webring.xyz/"
+              target="_blank"
+              rel="noopener"
+              aria-label="SE Webring"
+              title="SE Webring"
+              ><svg viewBox="0 0 960 960" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M390.499 272.146V687.477C491.737 672.742 569.501 585.38 569.501 479.811C569.501 374.243 491.737 286.881 390.499 272.146ZM367.396 749.527C364.991 749.591 362.577 749.623 360.157 749.623C211.506 749.623 91 628.824 91 479.811C91 330.799 211.506 210 360.157 210C362.577 210 364.991 210.032 367.396 210.096C368.31 210.032 369.233 210 370.163 210H869V749.623H370.163C369.233 749.623 368.31 749.591 367.396 749.527ZM330.687 687.602V272.021C229.023 286.379 150.813 373.94 150.813 479.811C150.813 585.683 229.023 673.244 330.687 687.602ZM529.346 269.958H809.187V689.665H529.346C590.325 640.201 629.313 564.57 629.313 479.811C629.313 395.053 590.325 319.422 529.346 269.958Z"
+                /></svg
+            ></a>
+          </div>
+        </aside>
+        <div class="split-content">
+          <section id="work">
+            <h2 class="cn-microlabel cn-mb-8">Experience</h2>
+            <div class="accordion-stack">
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="work" />
+                  <p>Finta <span class="cn-text-overlay-1">· Software Engineering Intern</span></p>
+                  <span class="cn-meta">May – Aug 2026</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Built Finta Forecasting, a Google Sheets-style financial planning tool with real-time multiplayer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="work" />
+                  <p>Shopify <span class="cn-text-overlay-1">· Production Engineering Intern</span></p>
+                  <span class="cn-meta">Sep – Dec 2025</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Built Shopify's new edge SSL stack in Rails and Terraform and migrated more than ten services onto it.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="work" />
+                  <p>Shopify <span class="cn-text-overlay-1">· Software Engineering Intern</span></p>
+                  <span class="cn-meta">Jan – Apr 2025</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Designed the email approval workflow for Shopify's communications platform, cutting faulty campaigns by 80%.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="work" />
+                  <p>Waterloo Aerial Robotics Group <span class="cn-text-overlay-1">· Autonomy Lead</span></p>
+                  <span class="cn-meta">Jan 2024 – present</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Lead the 15-person autonomy software team at WARG, Waterloo's student drone design team, which won AEAC in 2024 and 2025.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="work" />
+                  <p>AWS Cloud Club <span class="cn-text-overlay-1">· Technical Lead</span></p>
+                  <span class="cn-meta">May 2024 – Jan 2025</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Wrote and ran the club's Amazon SageMaker workshops and mentored 25+ students through the AWS Cloud Practitioner exam.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="work" />
+                  <p>YTY Group <span class="cn-text-overlay-1">· ERP/Web Development Intern</span></p>
+                  <span class="cn-meta">May – Aug 2024</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Built an employee attendance prediction system in TensorFlow and an offline-first Flutter expense-claims app.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-      <section id="work">
-        <div class="accordion-stack">
-          <div class="accordion">
-            <label>
-              <input type="radio" name="work" />
-              <p>Finta <span class="cn-text-overlay-1">· Software Engineering Intern</span></p>
-              <span class="cn-meta">May – Aug 2026</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Built Finta Forecasting, a Google Sheets-style financial planning tool with real-time multiplayer.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="work" />
-              <p>Shopify <span class="cn-text-overlay-1">· Production Engineering Intern</span></p>
-              <span class="cn-meta">Sep – Dec 2025</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Built Shopify's new edge SSL stack in Rails and Terraform and migrated more than ten services onto it.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="work" />
-              <p>Shopify <span class="cn-text-overlay-1">· Software Engineering Intern</span></p>
-              <span class="cn-meta">Jan – Apr 2025</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Designed the email approval workflow for Shopify's communications platform, cutting faulty campaigns by 80%.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="work" />
-              <p>Waterloo Aerial Robotics Group <span class="cn-text-overlay-1">· Autonomy Lead</span></p>
-              <span class="cn-meta">Jan 2024 – present</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Lead the 15-person autonomy software team at WARG, Waterloo's student drone design team, which won AEAC in 2024 and 2025.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="work" />
-              <p>AWS Cloud Club <span class="cn-text-overlay-1">· Technical Lead</span></p>
-              <span class="cn-meta">May 2024 – Jan 2025</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Wrote and ran the club's Amazon SageMaker workshops and mentored 25+ students through the AWS Cloud Practitioner exam.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="work" />
-              <p>YTY Group <span class="cn-text-overlay-1">· ERP/Web Development Intern</span></p>
-              <span class="cn-meta">May – Aug 2024</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Built an employee attendance prediction system in TensorFlow and an offline-first Flutter expense-claims app.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects">
-        <div class="accordion-stack">
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>varchar</p>
-              <span class="cn-meta">Rust · WebAssembly · Preact</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
+          <section id="projects">
+            <h2 class="cn-microlabel cn-mb-16">Projects</h2>
+            <div class="cn-grid-2 cn-gap-24">
+              <div class="project-card accent-card cn-stack cn-gap-12">
+                <img
+                  src="img/sites/varchar.webp"
+                  alt="Screenshot of varchar"
+                  width="960"
+                  height="600"
+                  loading="lazy"
+                />
+                <div class="cn-stack cn-gap-4">
+                  <strong class="cn-name">varchar</strong>
+                  <span class="cn-meta">Rust · WebAssembly · Preact</span>
+                </div>
+                <p class="cn-m-0">
                   A SQL database whose entire state is one UTF-8 string, with every SELECT run as a regex over it.
                 </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                <div class="project-links cn-cluster cn-gap-12">
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://varchar.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
@@ -290,7 +280,7 @@
                     ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://crates.io/crates/varchar-cli"
                     target="_blank"
                     rel="noopener"
@@ -299,7 +289,7 @@
                     ><svg aria-hidden="true"><use href="#i-cargo" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://github.com/BalajiLeninrajan/varchar"
                     target="_blank"
                     rel="noopener"
@@ -309,24 +299,24 @@
                   >
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>salt</p>
-              <span class="cn-meta"
-                >Rust · TypeScript · Cloudflare Workers</span
-              >
-            </label>
-            <div class="fold">
-              <div>
-                <p>
+              <div class="project-card accent-card cn-stack cn-gap-12">
+                <img
+                  src="img/sites/salt.webp"
+                  alt="Screenshot of salt"
+                  width="960"
+                  height="600"
+                  loading="lazy"
+                />
+                <div class="cn-stack cn-gap-4">
+                  <strong class="cn-name">salt</strong>
+                  <span class="cn-meta">Rust · TypeScript · Cloudflare Workers</span>
+                </div>
+                <p class="cn-m-0">
                   A CLI that reads your local coding-agent session logs, counts the profanity in your prompts, and publishes the tally to a shareable link.
                 </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                <div class="project-links cn-cluster cn-gap-12">
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://salt.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
@@ -335,7 +325,7 @@
                     ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://www.npmjs.com/package/salt-ai"
                     target="_blank"
                     rel="noopener"
@@ -344,7 +334,7 @@
                     ><svg aria-hidden="true"><use href="#i-npm" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://github.com/BalajiLeninrajan/salt"
                     target="_blank"
                     rel="noopener"
@@ -354,22 +344,24 @@
                   >
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>harness racer</p>
-              <span class="cn-meta">TypeScript · React · Ink</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
+              <div class="project-card accent-card cn-stack cn-gap-12">
+                <img
+                  src="img/sites/harness-racer.webp"
+                  alt="Screenshot of harness racer"
+                  width="960"
+                  height="600"
+                  loading="lazy"
+                />
+                <div class="cn-stack cn-gap-4">
+                  <strong class="cn-name">harness racer</strong>
+                  <span class="cn-meta">TypeScript · React · Ink</span>
+                </div>
+                <p class="cn-m-0">
                   Races the coding agents installed on your machine and streams their speed side by side.
                 </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                <div class="project-links cn-cluster cn-gap-12">
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://harness-racer.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
@@ -378,7 +370,7 @@
                     ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://www.npmjs.com/package/harness-racer"
                     target="_blank"
                     rel="noopener"
@@ -387,7 +379,7 @@
                     ><svg aria-hidden="true"><use href="#i-npm" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://github.com/BalajiLeninrajan/harness-racer"
                     target="_blank"
                     rel="noopener"
@@ -397,22 +389,60 @@
                   >
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>catppuccin-neu</p>
-              <span class="cn-meta">CSS · TypeScript</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
+              <div class="project-card accent-card cn-stack cn-gap-12">
+                <img
+                  src="img/sites/skill-issue.webp"
+                  alt="Screenshot of Skill Issue"
+                  width="960"
+                  height="600"
+                  loading="lazy"
+                />
+                <div class="cn-stack cn-gap-4">
+                  <strong class="cn-name">Skill Issue</strong>
+                  <span class="cn-meta">TypeScript · Cloudflare Workers · D1</span>
+                </div>
+                <p class="cn-m-0">
+                  Enter a company and job title and get a parody rejection email 2 to 48 hours later, no application required.
+                </p>
+                <div class="project-links cn-cluster cn-gap-12">
+                  <a
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
+                    href="https://skill-issue.balajileninrajan.dev"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Website"
+                    title="skill-issue.balajileninrajan.dev"
+                    ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
+                  >
+                  <a
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
+                    href="https://github.com/BalajiLeninrajan/skill-issue"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="GitHub"
+                    title="github.com/BalajiLeninrajan/skill-issue"
+                    ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                  >
+                </div>
+              </div>
+              <div class="project-card accent-card cn-stack cn-gap-12">
+                <img
+                  src="img/sites/catppuccin-neu.webp"
+                  alt="Screenshot of catppuccin-neu"
+                  width="960"
+                  height="600"
+                  loading="lazy"
+                />
+                <div class="cn-stack cn-gap-4">
+                  <strong class="cn-name">catppuccin-neu</strong>
+                  <span class="cn-meta">CSS · TypeScript</span>
+                </div>
+                <p class="cn-m-0">
                   The CSS-only Catppuccin Mocha design system this site is built on.
                 </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                <div class="project-links cn-cluster cn-gap-12">
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://catppuccin-neu.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
@@ -421,7 +451,7 @@
                     ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://github.com/BalajiLeninrajan/catppuccin-neu"
                     target="_blank"
                     rel="noopener"
@@ -431,83 +461,24 @@
                   >
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>warg-cli</p>
-              <span class="cn-meta">Python · uv · Git</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  The developer CLI for the WARG autonomy monorepo, which checks out a project and its dependencies with Git sparse-checkout and runs their commands.
-                </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://pypi.org/project/warg-cli/"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="PyPI"
-                    title="pypi.org/project/warg-cli"
-                    ><svg aria-hidden="true"><use href="#i-pypi" /></svg></a
-                  >
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://github.com/UWARG/autonomy-monorepo/tree/main/warg_cli"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="GitHub"
-                    title="github.com/UWARG/autonomy-monorepo"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg></a
-                  >
+              <div class="project-card accent-card cn-stack cn-gap-12">
+                <img
+                  src="img/sites/consenstat.webp"
+                  alt="Screenshot of ConsenStat"
+                  width="960"
+                  height="600"
+                  loading="lazy"
+                />
+                <div class="cn-stack cn-gap-4">
+                  <strong class="cn-name">ConsenStat</strong>
+                  <span class="cn-meta">TypeScript · React · Cloudflare Workers</span>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>maram</p>
-              <span class="cn-meta">Rust · Git · Zellij</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  A CLI for git worktree sets, a base branch plus variant branches side by side, each with its own Zellij tab.
-                </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://github.com/BalajiLeninrajan/maram"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="GitHub"
-                    title="github.com/BalajiLeninrajan/maram"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>ConsenStat</p>
-              <span class="cn-meta"
-                >TypeScript · React · Cloudflare Workers</span
-              >
-            </label>
-            <div class="fold">
-              <div>
-                <p>
+                <p class="cn-m-0">
                   Anonymous real-time voting on whether a Waterloo exam was touching or touchy.
                 </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                <div class="project-links cn-cluster cn-gap-12">
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://consenstat.balajileninrajan.dev"
                     target="_blank"
                     rel="noopener"
@@ -516,7 +487,7 @@
                     ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
                   >
                   <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                    class="btn is-icon cn-tone-mauve cn-raised-soft cn-pressable"
                     href="https://github.com/BalajiLeninrajan/consenStat"
                     target="_blank"
                     rel="noopener"
@@ -527,221 +498,129 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>Skill Issue</p>
-              <span class="cn-meta">TypeScript · Cloudflare Workers · D1</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Enter a company and job title and get a parody rejection email 2 to 48 hours later, no application required.
-                </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://skill-issue.balajileninrajan.dev"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Website"
-                    title="skill-issue.balajileninrajan.dev"
-                    ><svg aria-hidden="true"><use href="#i-globe" /></svg></a
-                  >
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://github.com/BalajiLeninrajan/skill-issue"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="GitHub"
-                    title="github.com/BalajiLeninrajan/skill-issue"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>herdr-modes</p>
-              <span class="cn-meta">Rust · herdr</span>
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  Zellij-style modes for the herdr terminal multiplexer, so one prefix press lets you drum <code class="cn-code-inline">hjkl</code> between panes.
-                </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://github.com/BalajiLeninrajan/herdr-modes"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="GitHub"
-                    title="github.com/BalajiLeninrajan/herdr-modes"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accordion">
-            <label>
-              <input type="radio" name="projects" />
-              <p>Linguini</p>
-              <span class="cn-meta"
-                >TypeScript · Next.js · tRPC · PostgreSQL</span
-              >
-            </label>
-            <div class="fold">
-              <div>
-                <p>
-                  A timed category word game with friends, with word validation that walks a WordNet hypernym graph in PostgreSQL.
-                </p>
-                <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
-                  <a
-                    class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
-                    href="https://github.com/BalajiLeninrajan/linguini"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="GitHub"
-                    title="github.com/BalajiLeninrajan/linguini"
-                    ><svg aria-hidden="true"><use href="#i-github" /></svg></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section id="sites">
-        <div class="cn-grid-2 cn-gap-24">
-          <a
-            class="site-card cn-block"
-            href="https://varchar.balajileninrajan.dev"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="accent-card cn-stack cn-gap-12">
-              <img
-                src="img/sites/varchar.webp"
-                alt="Screenshot of varchar"
-                width="960"
-                height="600"
-                loading="lazy"
-              />
-              <div class="cn-stack cn-gap-4">
-                <strong class="cn-name">varchar</strong>
-                <span class="cn-code-meta">varchar.balajileninrajan.dev</span>
+            <h3 class="more-projects cn-label">More projects</h3>
+            <div class="accordion-stack">
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="more" />
+                  <p>warg-cli</p>
+                  <span class="cn-meta">Python · uv · Git</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      The developer CLI for the WARG autonomy monorepo, which checks out a project and its dependencies with Git sparse-checkout and runs their commands.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://pypi.org/project/warg-cli/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="PyPI"
+                        title="pypi.org/project/warg-cli"
+                        ><svg aria-hidden="true"><use href="#i-pypi" /></svg></a
+                      >
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/UWARG/autonomy-monorepo/tree/main/warg_cli"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/UWARG/autonomy-monorepo"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="more" />
+                  <p>maram</p>
+                  <span class="cn-meta">Rust · Git · Zellij</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      A CLI for git worktree sets, a base branch plus variant branches side by side, each with its own Zellij tab.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/maram"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/maram"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="more" />
+                  <p>herdr-modes</p>
+                  <span class="cn-meta">Rust · herdr</span>
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      Zellij-style modes for the herdr terminal multiplexer, so one prefix press lets you drum <code class="cn-code-inline">hjkl</code> between panes.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/herdr-modes"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/herdr-modes"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion">
+                <label>
+                  <input type="radio" name="more" />
+                  <p>Linguini</p>
+                  <span class="cn-meta"
+                    >TypeScript · Next.js · tRPC · PostgreSQL</span
+                  >
+                </label>
+                <div class="fold">
+                  <div>
+                    <p>
+                      A timed category word game with friends, with word validation that walks a WordNet hypernym graph in PostgreSQL.
+                    </p>
+                    <div class="project-links cn-cluster cn-gap-16 cn-mt-16">
+                      <a
+                        class="btn is-icon is-lg cn-tone-mauve cn-raised-soft cn-pressable"
+                        href="https://github.com/BalajiLeninrajan/linguini"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub"
+                        title="github.com/BalajiLeninrajan/linguini"
+                        ><svg aria-hidden="true"><use href="#i-github" /></svg></a
+                      >
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </a>
-          <a
-            class="site-card cn-block"
-            href="https://salt.balajileninrajan.dev"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="accent-card cn-stack cn-gap-12">
-              <img
-                src="img/sites/salt.webp"
-                alt="Screenshot of salt"
-                width="960"
-                height="600"
-                loading="lazy"
-              />
-              <div class="cn-stack cn-gap-4">
-                <strong class="cn-name">salt</strong>
-                <span class="cn-code-meta">salt.balajileninrajan.dev</span>
-              </div>
-            </div>
-          </a>
-          <a
-            class="site-card cn-block"
-            href="https://harness-racer.balajileninrajan.dev"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="accent-card cn-stack cn-gap-12">
-              <img
-                src="img/sites/harness-racer.webp"
-                alt="Screenshot of harness racer"
-                width="960"
-                height="600"
-                loading="lazy"
-              />
-              <div class="cn-stack cn-gap-4">
-                <strong class="cn-name">harness racer</strong>
-                <span class="cn-code-meta">harness-racer.balajileninrajan.dev</span>
-              </div>
-            </div>
-          </a>
-          <a
-            class="site-card cn-block"
-            href="https://skill-issue.balajileninrajan.dev"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="accent-card cn-stack cn-gap-12">
-              <img
-                src="img/sites/skill-issue.webp"
-                alt="Screenshot of Skill Issue"
-                width="960"
-                height="600"
-                loading="lazy"
-              />
-              <div class="cn-stack cn-gap-4">
-                <strong class="cn-name">Skill Issue</strong>
-                <span class="cn-code-meta">skill-issue.balajileninrajan.dev</span>
-              </div>
-            </div>
-          </a>
-          <a
-            class="site-card cn-block"
-            href="https://catppuccin-neu.balajileninrajan.dev"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="accent-card cn-stack cn-gap-12">
-              <img
-                src="img/sites/catppuccin-neu.webp"
-                alt="Screenshot of catppuccin-neu"
-                width="960"
-                height="600"
-                loading="lazy"
-              />
-              <div class="cn-stack cn-gap-4">
-                <strong class="cn-name">catppuccin-neu</strong>
-                <span class="cn-code-meta">catppuccin-neu.balajileninrajan.dev</span>
-              </div>
-            </div>
-          </a>
-          <a
-            class="site-card cn-block"
-            href="https://consenstat.balajileninrajan.dev"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="accent-card cn-stack cn-gap-12">
-              <img
-                src="img/sites/consenstat.webp"
-                alt="Screenshot of ConsenStat"
-                width="960"
-                height="600"
-                loading="lazy"
-              />
-              <div class="cn-stack cn-gap-4">
-                <strong class="cn-name">ConsenStat</strong>
-                <span class="cn-code-meta">consenstat.balajileninrajan.dev</span>
-              </div>
-            </div>
-          </a>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
+    <footer class="page-footer">
+      <span class="wordmark is-sm">Balaji<b>Leninrajan</b></span>
+      <p>work@balajileninrajan.dev</p>
+    </footer>
     <!-- The accordion inputs are radios sharing a name per stack, so a tap
          closes whichever row was open. A radio cannot uncheck itself, so the
          closable listener from the catppuccin-neu SPEC arms the radio that
@@ -750,8 +629,7 @@
          hover instead. The second block sets the recipe's data-open on the
          row under the mouse or holding keyboard focus, and cancels mouse
          clicks on the labels so a click can't latch a radio open. Touch and
-         pen taps skip both and check the radio as usual. The last block
-         sets aria-current on the nav link for the visible view. -->
+         pen taps skip both and check the radio as usual. -->
     <script>
       let held = null;
       const arm = (e) => {
@@ -794,16 +672,6 @@
           if (!row.contains(e.relatedTarget) && !row.matches(":hover")) close();
         });
       }
-
-      const markView = () => {
-        const id = document.querySelector("main :target")?.id ?? "about";
-        for (const a of document.querySelectorAll(".topbar nav a")) {
-          if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page");
-          else a.removeAttribute("aria-current");
-        }
-      };
-      markView();
-      addEventListener("hashchange", markView);
     </script>
   </body>
 </html>
