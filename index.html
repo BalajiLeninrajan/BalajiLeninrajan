@@ -995,7 +995,10 @@
         if (!a) return;
         if (a.hasAttribute("download")) return posthog.capture("download_resume");
         if (a.closest(".hero-actions"))
-          return posthog.capture("open_social", { link: a.getAttribute("aria-label") });
+          return posthog.capture("outbound_link", {
+            destination: a.getAttribute("aria-label").toLowerCase(),
+            location: "hero",
+          });
         const project = a.closest(".project-card, .project-row");
         if (!project) return;
         posthog.capture("open_project", {
