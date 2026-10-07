@@ -986,10 +986,11 @@
     </script>
     <!-- PostHog autocaptures clicks already; these three events name the
          links worth charting. A project is named by its card link or its
-         row's title, and a project button by its aria-label. -->
+         row's title, and a project button by its aria-label. Middle-clicks
+         fire auxclick, not click, so both are tracked. -->
     <script>
       const projectLink = { Website: "site", GitHub: "repo" };
-      document.addEventListener("click", (e) => {
+      const trackLink = (e) => {
         const a = e.target.closest?.("a[href]");
         if (!a) return;
         if (a.hasAttribute("download")) return posthog.capture("download_resume");
@@ -1003,7 +1004,9 @@
             ? "site"
             : projectLink[a.getAttribute("aria-label")] ?? "package",
         });
-      });
+      };
+      document.addEventListener("click", trackLink);
+      document.addEventListener("auxclick", (e) => e.button === 1 && trackLink(e));
     </script>
   </body>
 </html>
