@@ -35,8 +35,9 @@
       /* The current match is one mauve block that slides from row to row,
          and a second one slides along the tape. Each match's translucent
          wash sits over the block, so the block shows through as solid
-         mauve. Records break only at their semicolons (<wbr>), so every
-         match stays on one line for the block to cover. */
+         mauve. A match never wraps (| is a break-after character, so the
+         string would otherwise split mid-record); lines break at the <wbr>
+         after each record instead, so the block always covers one line. */
       .dock, .vc-track { position: relative; isolation: isolate; }
       .dock pre { position: relative; z-index: 1; }
       .vc-track .slider { z-index: 1; }
@@ -46,6 +47,7 @@
         animation: slide 4.5s infinite;
       }
       .dock .slider { margin: -1px -2px; padding: 1px 2px; }
+      .dock mark { white-space: nowrap; }
       @keyframes slide {
         0%, 24% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
         33.333%, 57.333% { left: var(--x2); top: var(--y2); width: var(--w2); height: var(--h2); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
@@ -91,10 +93,16 @@
           box.style.setProperty(`--w${i + 1}`, `${el.offsetWidth}px`);
           box.style.setProperty(`--h${i + 1}`, `${el.offsetHeight}px`);
         });
-      document.fonts.ready.then(() => {
+      // Measure again whenever the text can move: a webfont landing late,
+      // or the frame resizing.
+      const measure = () => {
         place(document.querySelector(".dock"), [...document.querySelectorAll(".dock mark")]);
         place(document.querySelector(".vc-track"), [...document.querySelectorAll(".vc-rec.is-lit")]);
-      });
+      };
+      document.fonts.ready.then(measure);
+      document.fonts.addEventListener("loadingdone", measure);
+      new ResizeObserver(measure).observe(document.querySelector(".dock pre"));
+      new ResizeObserver(measure).observe(document.querySelector(".vc-track"));
     </script>
   </body>
 </html>
