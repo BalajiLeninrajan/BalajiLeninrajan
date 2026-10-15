@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="4800" />
+    <meta name="still" content="0.1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* Rejections keep arriving as toasts. The package piles a toast stack
+         with :has() on sibling order, which a fixed set of elements can't
+         walk through, so the pile's offsets are restated as keyframes:
+         front, then 12px up at .96, then 22px up at .92, then gone. A new
+         toast slides in opaque from the edge rather than fading, so the one
+         under it never shows through. */
+      .pile { display: grid; width: 244px; zoom: 1.15; padding-top: 22px; }
+      /* The toast's --shadow-pop (70px blur) is sized for a page; on this
+         small stage it darkens the whole frame, so it gets a tighter cast. */
+      .pile > .toast { grid-area: 1 / 1; animation: pile 4.8s infinite; box-shadow: 0 10px 24px rgb(17 17 27 / .55); }
+      .pile > :nth-child(2) { animation-delay: -3.6s; }
+      .pile > :nth-child(3) { animation-delay: -2.4s; }
+      .pile > :nth-child(4) { animation-delay: -1.2s; }
+      @keyframes pile {
+        0% { translate: 260px 0; scale: 1; opacity: 1; z-index: 4; animation-timing-function: var(--ease-out); }
+        7%, 25% { translate: 0 0; scale: 1; opacity: 1; z-index: 4; animation-timing-function: var(--ease-out); }
+        30%, 50% { translate: 0 -12px; scale: .96; opacity: 1; z-index: 3; animation-timing-function: var(--ease-out); }
+        55%, 75% { translate: 0 -22px; scale: .92; opacity: 1; z-index: 2; animation-timing-function: var(--ease-in); }
+        80%, 100% { translate: 0 -22px; scale: .92; opacity: 0; z-index: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pile" aria-hidden="true">
+      <div class="toast"><div class="cn-stack cn-gap-4"><b>Rejected</b><span>Application Update From Evil Company Inc.</span></div></div>
+      <div class="toast"><div class="cn-stack cn-gap-4"><b>Rejected</b><span>Application Update From Ghost Jobs LLC</span></div></div>
+      <div class="toast"><div class="cn-stack cn-gap-4"><b>Rejected</b><span>Application Update From Unpaid Labs</span></div></div>
+      <div class="toast"><div class="cn-stack cn-gap-4"><b>Rejected</b><span>Application Update From Synergy Corp.</span></div></div>
+    </div>
+  </body>
+</html>

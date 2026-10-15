@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="4500" />
+    <meta name="still" content="0.75" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* ConsenStat's answer sheet (src/client/cs.css). The real row puts the
+         bubbles in a 232px column beside the exam; here they sit under it. */
+      .cs { width: 296px; }
+      .cs-bubble { width: 16px; height: 16px; display: inline-grid; place-items: center; border: 1px solid var(--control-edge); border-radius: 50%; box-shadow: var(--neu-inset-soft); }
+      .cs-bubble.is-filled { background: var(--mauve); border-color: transparent; box-shadow: none; }
+      .cs-scale { display: flex; gap: 7px; }
+      .cs-q { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; column-gap: var(--space-3); row-gap: var(--space-2); align-items: center; color: inherit; text-decoration: none; position: relative; isolation: isolate; }
+      .cs-q > .cs-scale { grid-column: 2 / 4; }
+      .cs-exam { display: grid; gap: 2px; min-width: 0; }
+      .cs-flash { position: absolute; inset: 0; z-index: -1; border-radius: inherit; }
+
+      /* The bubbles pencil in one after another (cs-pencil), the figure
+         counts up with them, then a late vote flashes its row (cs-settle). */
+      @property --n { syntax: "<integer>"; inherits: true; initial-value: 0; }
+      .cn-value::after { counter-reset: n var(--n); content: counter(n) "%"; }
+      @keyframes pencil {
+        0% { transform: scale(.2); opacity: 0; animation-timing-function: var(--ease-out); }
+        7%, 100% { transform: none; opacity: 1; }
+      }
+      .cs-bubble.is-filled { animation: pencil 4.5s backwards; animation-delay: calc(.4s + var(--i) * .16s); }
+      /* The late vote's bubble waits empty, then pencils in. */
+      @keyframes late-pencil {
+        0%, 55% { transform: none; opacity: 1; background: transparent; border-color: var(--control-edge); box-shadow: var(--neu-inset-soft); }
+        55.01% { transform: scale(.2); opacity: 0; background: var(--mauve); border-color: transparent; box-shadow: none; animation-timing-function: var(--ease-out); }
+        62%, 100% { transform: none; opacity: 1; background: var(--mauve); border-color: transparent; box-shadow: none; }
+      }
+      .q2 .cs-bubble.is-late { animation: late-pencil 4.5s infinite; }
+      /* The pencil marks clear together before the loop restarts. */
+      @keyframes clear { 0%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+      .cs-scale { animation: clear 4.5s infinite; }
+      .q1 .cn-value { animation: n1 4.5s infinite; }
+      .q2 .cn-value { animation: n2 4.5s infinite; }
+      @keyframes n1 { 0%, 9% { --n: 0; } 34%, 92% { --n: 71; } 97%, 100% { --n: 0; } }
+      @keyframes n2 { 0%, 9% { --n: 0; } 23%, 55% { --n: 38; } 60%, 92% { --n: 41; } 97%, 100% { --n: 0; } }
+      @keyframes settle {
+        0%, 55% { background-color: transparent; }
+        56% { background-color: color-mix(in srgb, var(--mauve) 14%, var(--base)); animation-timing-function: cubic-bezier(.33, .6, .2, 1); }
+        92%, 100% { background-color: transparent; }
+      }
+      .q2 .cs-flash { animation: settle 4.5s infinite; }
+    </style>
+  </head>
+  <body>
+    <div class="cs">
+      <section class="panel">
+        <a class="ranked-row cs-q q1">
+          <span class="cs-flash"></span>
+          <span class="cn-meta">01</span>
+          <span class="cs-exam"><strong class="cn-truncate">CS 136 Midterm</strong><span class="cn-meta"><span class="cn-text-blue">Winter 2026</span> · 42 votes</span></span>
+          <b class="cn-value"></b>
+          <span class="cs-scale"></span>
+        </a>
+        <a class="ranked-row cs-q q2">
+          <span class="cs-flash"></span>
+          <span class="cn-meta">02</span>
+          <span class="cs-exam"><strong class="cn-truncate">MATH 239 Final</strong><span class="cn-meta"><span class="cn-text-peach">Fall 2025</span> · 118 votes</span></span>
+          <b class="cn-value"></b>
+          <span class="cs-scale"></span>
+        </a>
+      </section>
+    </div>
+    <script>
+      // Ten bubbles a row; q1 fills 7, q2 fills 4 and its 5th waits for the late vote.
+      const fill = (row, n, late) =>
+        (document.querySelector(`${row} .cs-scale`).innerHTML = Array.from({ length: 10 }, (_, i) =>
+          i < n
+            ? `<span class="cs-bubble is-filled" style="--i:${i}"></span>`
+            : i === n && late
+              ? `<span class="cs-bubble is-filled is-late" style="--i:0"></span>`
+              : `<span class="cs-bubble"></span>`,
+        ).join(""));
+      fill(".q1", 7, false);
+      fill(".q2", 4, true);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="4500" />
+    <meta name="still" content="0.1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* varchar's own rules (web/src/styles/app.css), at a larger size. */
+      :root { --vc-match: color-mix(in srgb, var(--mauve) 38%, transparent); }
+      .re-meta { color: var(--mauve); font-weight: 800; }
+      .re-esc { color: var(--overlay-1); }
+      .re-class { color: var(--peach); }
+      .re-quant { color: var(--pink); font-weight: 800; }
+      .re-lit { color: var(--text); }
+      .pattern { margin: 0; font-size: 19px; font-weight: 650; line-height: 1.4; color: var(--subtext-1); }
+      .dock mark { padding: 1px 0; color: var(--text); background: var(--vc-match); border-radius: 4px; }
+      .vc-track { display: flex; gap: 2px; height: 22px; }
+      .vc-rec { min-width: 2px; border-radius: 2px; background: var(--surface-0); }
+      .vc-rec.is-row { background: var(--surface-1); }
+
+      .vc { width: 292px; }
+      .dock pre { margin: 0; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+
+      /* The current match steps through the three rows, a third of the loop
+         each; its tape record lights with it. */
+      @keyframes vc-cur {
+        0% { color: var(--crust); background: var(--mauve); }
+        33.333% { color: var(--text); background: var(--vc-match); }
+      }
+      @keyframes vc-cur-rec {
+        0% { background: var(--mauve); }
+        33.333% { background: var(--vc-match); }
+      }
+      .dock mark { animation: vc-cur 4.5s step-end infinite; }
+      .vc-rec.is-lit { animation: vc-cur-rec 4.5s step-end infinite; }
+      .m2 { animation-delay: -3s !important; }
+      .m3 { animation-delay: -1.5s !important; }
+    </style>
+  </head>
+  <body>
+    <div class="vc cn-stack cn-gap-12">
+      <div class="vc-track" aria-hidden="true">
+        <span class="vc-rec is-row" style="flex: 3"></span>
+        <span class="vc-rec is-row" style="flex: 25"></span>
+        <span class="vc-rec is-lit" style="flex: 16"></span>
+        <span class="vc-rec is-lit m2" style="flex: 16"></span>
+        <span class="vc-rec is-lit m3" style="flex: 15"></span>
+      </div>
+      <pre class="pattern cn-code"><span class="re-lit">~R</span><span class="re-esc">\|</span><span class="re-lit">users</span><span class="re-esc">\|</span><span class="re-class">[^;]</span><span class="re-quant">*</span><span class="re-lit">;</span></pre>
+      <div class="dock terminal">
+        <pre>V2;~S|users|id:I:!|name:T:?;<mark>~R|users|I1|TAda;</mark><mark class="m2">~R|users|I2|TBob;</mark><mark class="m3">~R|users|I3|TCy;</mark></pre>
+      </div>
+    </div>
+  </body>
+</html>

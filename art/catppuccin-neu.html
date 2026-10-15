@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="4000" />
+    <meta name="still" content="0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* The docs' "First look" demo plus a segmented control. */
+      .live-dot { animation-duration: 2s; }
+
+      /* Each control takes its turn: the primary hovers pink and presses,
+         Export presses, the switch flips on, and later back off. */
+      @keyframes press-primary {
+        0%, 8% { transform: none; background: var(--mauve); border-color: var(--mauve); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        12% { transform: translate(-1px, -1px); background: var(--pink); border-color: var(--pink); }
+        16%, 20% { transform: translate(2px, 2px); background: var(--pink); border-color: var(--pink); box-shadow: 2px 2px 0 var(--plate), var(--hard-extra); }
+        25% { transform: none; background: var(--pink); border-color: var(--pink); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        30%, 100% { transform: none; background: var(--mauve); border-color: var(--mauve); }
+      }
+      @keyframes press-secondary {
+        0%, 36% { transform: none; border-color: var(--edge); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
+        40% { transform: translate(-1px, -1px); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
+        44%, 48% { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--crust); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
+        53% { transform: none; box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
+        58%, 100% { border-color: var(--edge); }
+      }
+      @keyframes flip {
+        0%, 62% {
+          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background: var(--base);
+          box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
+          animation-timing-function: var(--ease-spring);
+        }
+        68%, 88% {
+          translate: 23px 0; border-color: var(--mauve); background: var(--mauve);
+          box-shadow: 0 0 6px color-mix(in srgb, var(--mauve) 18%, transparent), inset 0 1px rgb(255 255 255 / .16);
+          transform: perspective(120px) rotateY(-16deg);
+          animation-timing-function: var(--ease-spring);
+        }
+        94%, 100% {
+          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background: var(--base);
+          box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
+        }
+      }
+      .btn-primary { animation: press-primary 4s infinite; }
+      .btn-secondary { animation: press-secondary 4s infinite; }
+      .switch::after { animation: flip 4s infinite; }
+    </style>
+  </head>
+  <body>
+    <div class="cn-stack cn-gap-16" style="justify-items: center">
+      <div class="segmented" style="width: 264px; grid-template-columns: repeat(3, 1fr)">
+        <button><b>Day</b></button>
+        <button class="active"><b>Week</b></button>
+        <button><b>Month</b></button>
+      </div>
+      <div class="cn-row cn-gap-16">
+        <button class="btn btn-primary">New invoice</button>
+        <button class="btn btn-secondary">Export</button>
+      </div>
+      <div class="cn-row cn-gap-12">
+        <span class="chip"><span class="live-dot"></span> 3 online</span>
+        <span class="tag cn-tone-green">Paid</span>
+        <input type="checkbox" class="switch" aria-label="Switch" />
+        <input type="checkbox" class="checkbox" checked aria-label="Checkbox" />
+      </div>
+    </div>
+  </body>
+</html>

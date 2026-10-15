@@ -1,0 +1,22 @@
+/* Shared frame for every scene: a 320x200 stage on the page ground, content
+   centered. scene.js zooms it to fit the frame that embeds it. Scenes loop
+   on keyframes alone, so a press or a toggle is drawn as keyframes that
+   restate the recipe's own :active or :checked rule.
+
+   Each scene names its loop length and the moment that best stands for it
+   (<meta name="loop"> and <meta name="still">); scripts/art_stills.py renders
+   that moment as the still the site shows under reduced motion. scene.js
+   plays every scene back at <meta name="rate">, 0.8 by default, so the
+   numbers in a scene are its own seconds, not wall-clock ones. */
+/* The package reserves a scrollbar gutter on :root; a stage never scrolls,
+   and the gutter would push it 15px off center. */
+:root { color-scheme: dark; background: var(--base); scrollbar-gutter: auto; overflow: hidden; }
+body {
+  margin: 0;
+  width: 320px;
+  height: 200px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--base);
+}
