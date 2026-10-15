@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="3600" />
+    <meta name="still" content="0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* Schmilblick's hero fan (src/client/app.css), centered and a size up,
+         without the title. */
+      .sb-hero { display: grid; justify-items: center; gap: var(--space-4); }
+      .sb-hero-fan { display: flex; height: 130px; align-items: flex-end; }
+      .sb-card { display: block; width: 62px; aspect-ratio: 60 / 84; filter: drop-shadow(2px 3px 4px rgb(17 17 27 / .5)); }
+      .sb-hero-fan .sb-card {
+        margin-left: -22px; transform-origin: 50% 120%; rotate: calc((var(--i) - 2) * 9deg);
+        animation: sb-bob 3.6s var(--ease-out) infinite, sb-lift 3.6s infinite;
+        animation-delay: calc(var(--i) * -.6s), calc(var(--i) * .14s);
+      }
+      .sb-hero-fan .sb-card:first-child { margin-left: 0; }
+      @keyframes sb-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+      /* The hover lift (translate 0 -12px on the spring) runs down the hand. */
+      @keyframes sb-lift {
+        0%, 4% { translate: 0 0; animation-timing-function: var(--ease-spring); }
+        10% { translate: 0 -12px; animation-timing-function: var(--ease-spring); }
+        18%, 100% { translate: 0 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sb-hero">
+      <div class="sb-hero-fan" aria-hidden="true"></div>
+    </section>
+    <script>
+      // CuteCard from src/client/art.tsx, for the hero's n = 3, 8, 1, 6, 11.
+      const eye = "var(--crust)";
+      const eyes = {
+        open: `<circle cx="22" cy="40" r="3.6" fill="${eye}"/><circle cx="38" cy="40" r="3.6" fill="${eye}"/><circle cx="23.2" cy="38.8" r="1.1" fill="var(--text)"/><circle cx="39.2" cy="38.8" r="1.1" fill="var(--text)"/>`,
+        wink: `<circle cx="22" cy="40" r="3.6" fill="${eye}"/><path d="M34 40q4 -4 8 0" fill="none" stroke="${eye}" stroke-width="2.6" stroke-linecap="round"/>`,
+      };
+      const mouths = {
+        smile: `<path d="M25 48q5 5 10 0" fill="none" stroke="${eye}" stroke-width="2.6" stroke-linecap="round"/>`,
+        grin: `<path d="M23 48q7 9 14 0z" fill="${eye}"/>`,
+        ooh: `<ellipse cx="30" cy="51" rx="3" ry="3.6" fill="${eye}"/>`,
+        blep: `<path d="M24 48q3 3 6 0q3 3 6 0" fill="none" stroke="${eye}" stroke-width="2.4" stroke-linecap="round"/><path d="M29 49.5q2.5 5.5 5 0" fill="var(--red)"/>`,
+      };
+      const hand = [
+        ["sky", "open", "grin"],
+        ["teal", "open", "blep"],
+        ["pink", "open", "smile"],
+        ["mauve", "wink", "smile"],
+        ["rosewater", "open", "ooh"],
+      ];
+      document.querySelector(".sb-hero-fan").innerHTML = hand
+        .map(
+          ([tint, e, m], i) => `<svg class="sb-card" viewBox="0 0 60 84" style="--accent:var(--${tint});--i:${i}">
+  <rect x="1.5" y="1.5" width="57" height="81" rx="9" fill="var(--accent)"/>
+  <rect x="1.5" y="1.5" width="57" height="81" rx="9" fill="none" stroke="var(--crust)" stroke-opacity=".25"/>
+  <rect x="6" y="6" width="48" height="72" rx="6" fill="none" stroke="var(--crust)" stroke-opacity=".22" stroke-width="1.6" stroke-dasharray="3 3.5"/>
+  <path d="M14 15l1.6 3.4 3.4 1.6-3.4 1.6L14 25l-1.6-3.4L9 20l3.4-1.6z" fill="var(--base)" opacity=".55"/>
+  <path d="M46 62.5c0-2 2.6-3 3.8-1.2 1.2-1.8 3.8-.8 3.8 1.2 0 2.4-3.8 4.8-3.8 4.8s-3.8-2.4-3.8-4.8z" fill="var(--base)" opacity=".5"/>
+  ${eyes[e]}
+  <ellipse cx="15" cy="48" rx="4.6" ry="2.8" fill="var(--red)" opacity=".45"/>
+  <ellipse cx="45" cy="48" rx="4.6" ry="2.8" fill="var(--red)" opacity=".45"/>
+  ${mouths[m]}
+</svg>`,
+        )
+        .join("");
+    </script>
+  </body>
+</html>

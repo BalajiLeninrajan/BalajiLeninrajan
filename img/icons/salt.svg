@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- House style, matching the catppuccin-neu showcase favicon: a mauve
+       rounded square (radius a quarter of the side) carrying the product's
+       mark in crust. One ink, not the wordmark's two — at 16px the arch and
+       the `i` are a single silhouette, and a second colour only muddies it.
+
+       The mark is the canonical ARCH from src/components/Logo.tsx, unaltered
+       and scaled: 91 x 100 at 0.16 gives 14.56 x 16, centred on the 32 grid.
+       Keep these numbers in step with that file rather than redrawing them. -->
+  <rect width="32" height="32" rx="8" fill="#cba6f7"/>
+  <g transform="translate(8.72 8) scale(0.16)" fill="#11111b">
+    <path d="M 13.5 100 L 13.5 45.5 A 32 32 0 0 1 77.5 45.5 L 77.5 100"
+          fill="none" stroke="#11111b" stroke-width="27"/>
+    <circle cx="45.5" cy="44" r="8.5"/>
+    <rect x="37" y="59" width="17" height="41" rx="8.5"/>
+  </g>
+</svg>

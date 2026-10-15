@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="4500" />
+    <meta name="still" content="0.1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* varchar's own rules (web/src/styles/app.css), at a larger size. */
+      :root { --vc-match: color-mix(in srgb, var(--mauve) 38%, transparent); }
+      .re-meta { color: var(--mauve); font-weight: 800; }
+      .re-esc { color: var(--overlay-1); }
+      .re-class { color: var(--peach); }
+      .re-quant { color: var(--pink); font-weight: 800; }
+      .re-lit { color: var(--text); }
+      .pattern { margin: 0; font-size: 19px; font-weight: 650; line-height: 1.4; color: var(--subtext-1); }
+      .dock mark { padding: 1px 0; color: var(--text); background: var(--vc-match); border-radius: 4px; }
+      .vc-track { display: flex; gap: 2px; height: 22px; }
+      .vc-rec { min-width: 2px; border-radius: 2px; background: var(--surface-0); }
+      .vc-rec.is-row { background: var(--surface-1); }
+
+      .vc { width: 292px; }
+      .dock pre { margin: 0; font-size: 13px; line-height: 1.7; }
+
+      /* The current match is one mauve block that slides from row to row,
+         and a second one slides along the tape. Each match's translucent
+         wash sits over the block, so the block shows through as solid
+         mauve. A match never wraps (| is a break-after character, so the
+         string would otherwise split mid-record); lines break at the <wbr>
+         after each record instead, so the block always covers one line. */
+      .dock, .vc-track { position: relative; isolation: isolate; }
+      .dock pre { position: relative; z-index: 1; }
+      .vc-track .slider { z-index: 1; }
+      .slider {
+        position: absolute; left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1);
+        border-radius: 4px; background: var(--mauve);
+        animation: slide 4.5s infinite;
+      }
+      .dock .slider { margin: -1px -2px; padding: 1px 2px; }
+      .dock mark { white-space: nowrap; }
+      @keyframes slide {
+        0%, 24% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+        33.333%, 57.333% { left: var(--x2); top: var(--y2); width: var(--w2); height: var(--h2); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+        66.667%, 90.667% { left: var(--x3); top: var(--y3); width: var(--w3); height: var(--h3); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+        100% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); }
+      }
+      /* A match's text is crust only while the block rests under it, and
+         fades back as the block leaves, so no text goes dark mid-slide. */
+      @keyframes cur1 { 0%, 24% { color: var(--crust); } 26%, 98% { color: var(--text); } 100% { color: var(--crust); } }
+      @keyframes cur2 { 0%, 31.333% { color: var(--text); } 33.333%, 57.333% { color: var(--crust); } 59.333%, 100% { color: var(--text); } }
+      @keyframes cur3 { 0%, 64.667% { color: var(--text); } 66.667%, 90.667% { color: var(--crust); } 92.667%, 100% { color: var(--text); } }
+      .m1 { animation: cur1 4.5s infinite; }
+      .m2 { animation: cur2 4.5s infinite; }
+      .m3 { animation: cur3 4.5s infinite; }
+      .vc-rec.is-lit { background: var(--vc-match); }
+    </style>
+  </head>
+  <body>
+    <div class="vc cn-stack cn-gap-12">
+      <div class="vc-track" aria-hidden="true">
+        <span class="vc-rec is-row" style="flex: 3"></span>
+        <span class="vc-rec is-row" style="flex: 25"></span>
+        <span class="vc-rec is-lit" style="flex: 16"></span>
+        <span class="vc-rec is-lit" style="flex: 16"></span>
+        <span class="vc-rec is-lit" style="flex: 15"></span>
+        <span class="slider"></span>
+      </div>
+      <pre class="pattern cn-code"><span class="re-lit">~R</span><span class="re-esc">\|</span><span class="re-lit">users</span><span class="re-esc">\|</span><span class="re-class">[^;]</span><span class="re-quant">*</span><span class="re-lit">;</span></pre>
+      <div class="dock terminal">
+        <span class="slider"></span>
+        <pre>V2;<wbr>~S|users|id:I:!|name:T:?;<wbr><mark class="m1">~R|users|I1|TAda;</mark><wbr><mark class="m2">~R|users|I2|TBob;</mark><wbr><mark class="m3">~R|users|I3|TCy;</mark></pre>
+      </div>
+    </div>
+    <script>
+      // Hand each slider the boxes it moves between: the three matches in
+      // the dock and their three records on the tape, in its own coordinates.
+      const place = (box, els) =>
+        els.forEach((el, i) => {
+          let x = 0, y = 0;
+          for (let n = el; n && n !== box; n = n.offsetParent) (x += n.offsetLeft), (y += n.offsetTop);
+          box.style.setProperty(`--x${i + 1}`, `${x}px`);
+          box.style.setProperty(`--y${i + 1}`, `${y}px`);
+          box.style.setProperty(`--w${i + 1}`, `${el.offsetWidth}px`);
+          box.style.setProperty(`--h${i + 1}`, `${el.offsetHeight}px`);
+        });
+      // Measure again whenever the text can move: a webfont landing late,
+      // or the frame resizing.
+      const measure = () => {
+        place(document.querySelector(".dock"), [...document.querySelectorAll(".dock mark")]);
+        place(document.querySelector(".vc-track"), [...document.querySelectorAll(".vc-rec.is-lit")]);
+      };
+      document.fonts.ready.then(measure);
+      document.fonts.addEventListener("loadingdone", measure);
+      new ResizeObserver(measure).observe(document.querySelector(".dock pre"));
+      new ResizeObserver(measure).observe(document.querySelector(".vc-track"));
+    </script>
+  </body>
+</html>
