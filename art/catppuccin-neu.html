@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.0/css/index.css"
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
       rel="stylesheet"
     />
     <meta name="robots" content="noindex" />
@@ -20,13 +20,16 @@
       .live-dot { animation-duration: 2s; }
 
       /* Each control takes its turn: the primary hovers pink and presses,
-         Export presses, the switch flips on, and later back off. */
+         Export presses, the switch flips on, and later back off. The primary
+         and the paddle restate the recipe's own fill: the primary moves
+         --cn-fill so its ramp and grain stay, and the paddle paints the
+         ramp when on. */
       @keyframes press-primary {
-        0%, 8% { transform: none; background: var(--mauve); border-color: var(--mauve); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
-        12% { transform: translate(-1px, -1px); background: var(--pink); border-color: var(--pink); }
-        16%, 20% { transform: translate(2px, 2px); background: var(--pink); border-color: var(--pink); box-shadow: 2px 2px 0 var(--plate), var(--hard-extra); }
-        25% { transform: none; background: var(--pink); border-color: var(--pink); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
-        30%, 100% { transform: none; background: var(--mauve); border-color: var(--mauve); }
+        0%, 8% { transform: none; --cn-fill: var(--mauve); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        12% { transform: translate(-1px, -1px); --cn-fill: var(--pink); }
+        16%, 20% { transform: translate(2px, 2px); --cn-fill: var(--pink); box-shadow: 2px 2px 0 var(--plate), var(--hard-extra); }
+        25% { transform: none; --cn-fill: var(--pink); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        30%, 100% { transform: none; --cn-fill: var(--mauve); }
       }
       @keyframes press-secondary {
         0%, 36% { transform: none; border-color: var(--edge); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
@@ -37,18 +40,18 @@
       }
       @keyframes flip {
         0%, 62% {
-          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background: var(--base);
+          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background-color: var(--base); background-image: none;
           box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
           animation-timing-function: var(--ease-spring);
         }
         68%, 88% {
-          translate: 23px 0; border-color: var(--mauve); background: var(--mauve);
+          translate: 23px 0; border-color: var(--mauve); --cn-fill: var(--mauve); background-color: var(--cn-fill); background-image: var(--cn-fill-ramp);
           box-shadow: 0 0 6px color-mix(in srgb, var(--mauve) 18%, transparent), inset 0 1px rgb(255 255 255 / .16);
           transform: perspective(120px) rotateY(-16deg);
           animation-timing-function: var(--ease-spring);
         }
         94%, 100% {
-          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background: var(--base);
+          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background-color: var(--base); background-image: none;
           box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
         }
       }
