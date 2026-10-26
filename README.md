@@ -8,7 +8,7 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ### Current
 
-- Autonomy Advisor @ <a href="https://www.uwarg.com">WARG</a>
+- Autonomy Advisor (prev. Lead) @ <a href="https://www.uwarg.com">WARG</a>
 
 ### Previous
 
