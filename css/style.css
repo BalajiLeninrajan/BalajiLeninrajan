@@ -10,6 +10,8 @@
 
 .app-shell { --page-gutter: clamp(16px, 3vw, var(--space-6)); }
 main { --page-pad: 32px 0 56px; }
+/* No rubber-band past the ends, so the avocado lands where the page stops. */
+html { overscroll-behavior: none; }
 
 /* ── Intro ────────────────────────────────────────────────────────────────
    Phone: the name and tagline, then Resume and the four icon buttons on
@@ -219,6 +221,7 @@ main { --page-pad: 32px 0 56px; }
    by side, the intro stays put while the content scrolls. Below 1000px the
    row wraps and the intro sits on top. */
 .split {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -232,4 +235,76 @@ main { --page-pad: 32px 0 56px; }
 @media (min-width: 1000px) {
   .split > .intro { flex: 1 1 300px; max-width: 360px; position: sticky; top: 72px; }
   .split > .split-content { flex: 999 1 560px; }
+}
+
+/* ── Avocado ──────────────────────────────────────────────────────────────
+   A sprite sheet of mauve pixel-art frames: two waving, two falling (the
+   same still), and two lying flat with the stars over its head in two
+   places. The waving arm and the stars alternate slowly; the fall is a
+   still pose. It sits in a rail down the sidebar column and sticks under
+   the icons; the scroll script drops it in two-cell jumps and sets the
+   pose. The rail ends on top of the computer on the footer rule, so sticky
+   stops it there and it rides up with the footer.
+
+   Sizes are in cells; the script picks the cell size (--avo-cell) that
+   fits the column and the space above the footer. Each frame is 62x53 with
+   the body centred, the waving head starts 6 rows down, and the lying
+   pose's lowest lit row is 9 above the bottom edge. The computer is 40x40
+   with an unlit top row, so the rail ends 30 cells above the footer. */
+.avo-perch { margin-top: 40px; }
+.avo-rail {
+  position: absolute;
+  top: 0;
+  left: calc(var(--avo-centre, 150px) - 31 * var(--avo-cell, 4px));
+  width: calc(62 * var(--avo-cell, 4px));
+  bottom: calc(30 * var(--avo-cell, 4px) - var(--avo-floor, 72px));
+  pointer-events: none;
+}
+.avo, .avo-computer {
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+.avo {
+  --frame: 0;
+  position: sticky;
+  top: calc(var(--avo-perch, 372px) - 6 * var(--avo-cell, 4px) + var(--avo-drop, 0px));
+  width: calc(62 * var(--avo-cell, 4px));
+  height: calc(53 * var(--avo-cell, 4px));
+  background-image: url("../img/avo.png");
+  background-size: calc(6 * 62 * var(--avo-cell, 4px)) 100%;
+  background-position-x: calc(-1 * var(--frame) * 62 * var(--avo-cell, 4px));
+  pointer-events: auto;
+  animation: avo-wave 1.6s steps(1, end) infinite;
+}
+:root[data-avo="fall"] .avo { animation: none; --frame: 2; }
+:root[data-avo="flat"] .avo { animation: avo-stars 1.2s steps(1, end) infinite; }
+/* Once it lands it sits on the computer, so an accordion opening or closing
+   above carries it along with the footer. */
+:root[data-avo="flat"] .avo { position: absolute; top: auto; bottom: 0; }
+@keyframes avo-wave {
+  0% { background-position-x: 0; }
+  50%, 100% { background-position-x: calc(-1 * 62 * var(--avo-cell, 4px)); }
+}
+@keyframes avo-stars {
+  0% { background-position-x: calc(-4 * 62 * var(--avo-cell, 4px)); }
+  50%, 100% { background-position-x: calc(-5 * 62 * var(--avo-cell, 4px)); }
+}
+
+/* The computer: a heart while it falls, "Help" once it lands. */
+.avo-computer {
+  position: absolute;
+  left: calc(var(--avo-centre, 150px) - 20 * var(--avo-cell, 4px));
+  bottom: calc(-1 * var(--avo-floor, 72px));
+  width: calc(40 * var(--avo-cell, 4px));
+  height: calc(40 * var(--avo-cell, 4px));
+  background-image: url("../img/avo-computer.png");
+  background-size: 200% 100%;
+}
+:root[data-avo="flat"] .avo-computer { background-position-x: 100%; }
+
+@media (max-width: 999px) { .avo-rail, .avo-computer { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .avo { animation: none; }
+  .avo-computer { display: none; }
 }

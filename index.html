@@ -19,7 +19,7 @@
       href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
       rel="stylesheet"
     />
-    <link href="css/style.css?v=28" rel="stylesheet" />
+    <link href="css/style.css?v=29" rel="stylesheet" />
     <script>
       !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
       posthog.init("phc_zSX6drBG3mEQYboqHpWNu9L7AW3ZzRPhFGoS68asCHQz", {
@@ -173,7 +173,10 @@
                 /></svg
             ></a>
           </div>
+          <div class="avo-perch"></div>
         </aside>
+        <div class="avo-rail" aria-hidden="true"><div class="avo"></div></div>
+        <div class="avo-computer" aria-hidden="true"></div>
         <div class="split-content">
           <section id="work">
             <h2 class="cn-microlabel cn-mb-0">Experience</h2>
@@ -1373,6 +1376,73 @@
           if (!row.contains(e.relatedTarget) && !row.matches(":hover")) close();
         });
       }
+    </script>
+    <script>
+      // Moves the avocado down the sidebar as the page scrolls and picks its pose.
+      // CSS does the rest; see the Avocado block in style.css.
+      (() => {
+        const root = document.documentElement;
+        const intro = document.querySelector(".intro");
+        const icons = document.querySelector(".hero-actions");
+        const split = document.querySelector(".split");
+        const perch = document.querySelector(".avo-perch");
+        const rail = document.querySelector(".avo-rail");
+        const avo = document.querySelector(".avo");
+        const footer = document.querySelector(".page-footer");
+        const still = matchMedia("(max-width: 999px), (prefers-reduced-motion: reduce)");
+        // Frame and computer sizes in cells; see the Avocado block in style.css.
+        const FRAME_W = 62, FRAME_H = 53, HEAD = 6, RAIL = 30;
+        let cell = 4, top0 = 0, travel = 0, distance = 1, lastY = scrollY, queued = false;
+
+        function measure() {
+          const col = intro.offsetWidth;
+          // Centre it under the row of icons, which reads as the column's middle
+          // better than the column itself since everything above is left-aligned.
+          const span = icons.lastElementChild.getBoundingClientRect().right - intro.getBoundingClientRect().left;
+          const perchTop = Math.round(perch.getBoundingClientRect().top);
+          // The biggest whole-pixel cell that fits the column (spilling a little
+          // into the gap beside it) and, at the end of the page, the avocado on
+          // the computer between the icons and the footer.
+          const room = innerHeight - footer.offsetHeight - perchTop;
+          cell = Math.max(2, Math.min(Math.floor((col + 48) / FRAME_W), Math.floor(room / (FRAME_H - HEAD + RAIL))));
+          root.style.setProperty("--avo-cell", `${cell}px`);
+          root.style.setProperty("--avo-centre", `${span / 2}px`);
+          root.style.setProperty("--avo-perch", `${perchTop}px`);
+          top0 = perchTop - HEAD * cell;
+          root.style.setProperty("--avo-floor", `${footer.getBoundingClientRect().top - split.getBoundingClientRect().bottom}px`);
+          // The fall runs over the page's scroll length as measured here, not the
+          // live one, so opening an accordion doesn't move the avocado. If the page
+          // grows, it waits at the bottom of its fall until the footer arrives.
+          distance = Math.max(1, root.scrollHeight - innerHeight);
+          // Where its top sits once it lies on the computer with the footer at the
+          // bottom of the screen, plus 80px so it lands a little before the end.
+          const railEnd = innerHeight - footer.offsetHeight - RAIL * cell;
+          travel = railEnd - FRAME_H * cell - top0 + 80;
+          update();
+        }
+
+        function update() {
+          queued = false;
+          if (still.matches) { root.dataset.avo = "wave"; root.style.setProperty("--avo-drop", "0px"); return; }
+          const p = Math.min(1, scrollY / distance);
+          const step = 2 * cell;
+          const drop = Math.round((p * travel) / step) * step;
+          root.style.setProperty("--avo-drop", `${drop}px`);
+          // It lands when its falling spot reaches the computer. Once landed it
+          // only takes off again on a scroll up, so a page that grows under it
+          // (an accordion opening) doesn't knock it off.
+          const reaches = top0 + drop + FRAME_H * cell >= rail.getBoundingClientRect().bottom - 1;
+          const up = scrollY < lastY;
+          lastY = scrollY;
+          const landed = root.dataset.avo === "flat" ? reaches || !up : reaches;
+          root.dataset.avo = landed ? "flat" : scrollY < 40 ? "wave" : "fall";
+        }
+
+        addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+        addEventListener("resize", measure);
+        still.addEventListener("change", measure);
+        measure();
+      })();
     </script>
     <!-- PostHog autocaptures clicks already; these three events name the
          links worth charting. A project is named by its card link or its
