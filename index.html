@@ -1421,21 +1421,31 @@
           update();
         }
 
+        // Writes go to the avocado, not the root, and only when they change:
+        // a property set on the root restyles the whole page, and the fall
+        // runs on every scroll frame.
+        let shownDrop = null;
+        const setDrop = (px) => {
+          if (px !== shownDrop) avo.style.setProperty("--avo-drop", `${(shownDrop = px)}px`);
+        };
+        const setPose = (pose) => { if (root.dataset.avo !== pose) root.dataset.avo = pose; };
+
         function update() {
           queued = false;
-          if (still.matches) { root.dataset.avo = "wave"; root.style.setProperty("--avo-drop", "0px"); return; }
+          if (still.matches) { setPose("wave"); setDrop(0); return; }
           const p = Math.min(1, scrollY / distance);
           const step = 2 * cell;
           const drop = Math.round((p * travel) / step) * step;
-          root.style.setProperty("--avo-drop", `${drop}px`);
           // It lands when its falling spot reaches the computer. Once landed it
           // only takes off again on a scroll up, so a page that grows under it
-          // (an accordion opening) doesn't knock it off.
+          // (an accordion opening) doesn't knock it off. The rail is read
+          // before anything is written, so the read doesn't force a layout.
           const reaches = top0 + drop + FRAME_H * cell >= rail.getBoundingClientRect().bottom - 1;
           const up = scrollY < lastY;
           lastY = scrollY;
           const landed = root.dataset.avo === "flat" ? reaches || !up : reaches;
-          root.dataset.avo = landed ? "flat" : scrollY < 40 ? "wave" : "fall";
+          setDrop(drop);
+          setPose(landed ? "flat" : scrollY < 40 ? "wave" : "fall");
         }
 
         addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
