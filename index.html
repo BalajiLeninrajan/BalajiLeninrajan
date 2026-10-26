@@ -1377,13 +1377,17 @@
     <!-- A reload can put each scene frame back on the page it last showed,
          matched by position (seen in Zen, a Firefox build), so after the
          cards are reordered the scenes land on the wrong cards. A frame
-         that is on any page but its src is sent back to it. -->
+         that is on any page but its src is sent back to it. Cloudflare
+         Pages redirects foo.html to foo, so paths are compared without
+         .html, or the frame would redirect forever. -->
     <script>
+      const page = (url) => url.replace(/[?#].*/, "").replace(/\.html$/, "");
       for (const frame of document.querySelectorAll(".project-art iframe")) {
         const src = new URL(frame.getAttribute("src"), location.href).href;
         const check = () => {
           const at = frame.contentWindow?.location.href;
-          if (at && at !== "about:blank" && at !== src) frame.contentWindow.location.replace(src);
+          if (at && at !== "about:blank" && page(at) !== page(src))
+            frame.contentWindow.location.replace(src);
         };
         frame.addEventListener("load", check);
         check();
