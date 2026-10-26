@@ -39,7 +39,7 @@ main { --page-pad: 32px 0 56px; }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .split-content { margin-top: 40px; }
-.split-content > section + section { margin-top: 32px; }
+.split-content > section + section { margin-top: 16px; }
 
 /* The stack sheds its side padding and pulls out by 8px, so row titles land
    near the column edge while the open row's wash keeps 8px from the screen
@@ -145,7 +145,7 @@ main { --page-pad: 32px 0 56px; }
   .intro .hero-actions { margin-top: 24px; gap: 16px; flex-wrap: wrap; }
 
   .split-content { margin-top: 0; }
-  .split-content > section + section { margin-top: 48px; }
+  .split-content > section + section { margin-top: 24px; }
   .accordion-stack { margin-inline: calc(-1 * min(12px, var(--page-gutter) - 4px)); }
   .accordion > label > p { flex: initial; min-width: auto; }
 
