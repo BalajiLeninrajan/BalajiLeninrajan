@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="loop" content="1" />
-    <meta name="still" content="0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
@@ -16,39 +14,197 @@
     <link href="scene.css" rel="stylesheet" />
     <script src="scene.js"></script>
     <style>
-      /* The tally salt publishes: the total, how salty that makes you, and
-         the words you reach for most, each with its share of the total. */
-      .st { width: 272px; padding: 14px 16px; }
-      .st-head { display: flex; align-items: center; justify-content: space-between; }
-      .st-total { display: flex; align-items: baseline; gap: 8px; margin: 2px 0 10px; }
-      .st-total .cn-value-lg { color: var(--text); }
-      .st-word { display: grid; grid-template-columns: 44px minmax(0, 1fr) 30px; align-items: center; gap: 10px; padding: 3px 0; }
-      .st-word > code { color: var(--subtext-1); font: 600 12px/1 var(--mono); }
-      .st-word > b { text-align: right; color: var(--overlay-2); font: 500 12px/1 var(--sans); font-variant-numeric: tabular-nums; }
+      /* salt's swear jar (packages/site/src/styles.css, the st- rules), a
+         size down: every swear is one coin, heaped in its harness's colour.
+         On hover one more coin goes in through the slot, lands on the heap,
+         and the count rolls over to 1,338. */
+      .st { display: flex; align-items: center; gap: 28px; }
+      .st-jar {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        width: 100px;
+        --rim: color-mix(in srgb, var(--mauve) 40%, var(--surface-1));
+      }
+      .st-lid {
+        position: relative;
+        z-index: 1;
+        width: 72%;
+        height: 11px;
+        margin-bottom: -2px;
+        background: var(--surface-0);
+        border: 1px solid var(--rim);
+        border-radius: var(--cn-radius-control);
+        box-shadow: 0 7px 9px -1px var(--crust), 0 2px 3px var(--crust), var(--neu-raised-soft);
+      }
+      .st-lid::after {
+        content: "";
+        position: absolute;
+        inset: 50% auto auto 50%;
+        translate: -50% -50%;
+        width: 34%;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--crust);
+        box-shadow: var(--neu-inset-soft);
+      }
+      .st-glass {
+        position: relative;
+        width: 100%;
+        height: 147px;
+        padding: 7px;
+        background: var(--base);
+        border: 1.5px solid var(--rim);
+        border-radius: 22% 22% 34% 34% / 9% 9% 16% 16%;
+        box-shadow: var(--neu-raised);
+      }
+      .st-inside {
+        position: relative;
+        height: 100%;
+        overflow: clip;
+        border-radius: 20% 20% 32% 32% / 7% 7% 14% 14%;
+        background: color-mix(in srgb, var(--crust) 30%, var(--base));
+      }
+      .st-inside::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(to right,
+          transparent 11%,
+          color-mix(in srgb, var(--text) 16%, transparent) 14% 20%,
+          transparent 23%);
+        box-shadow: var(--neu-inset);
+      }
+      .st-inside svg { display: block; width: 100%; height: 100%; }
+      .st-label {
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        translate: -50% 0;
+        rotate: -3deg;
+        filter: drop-shadow(0 2px 3px color-mix(in srgb, var(--crust) 70%, transparent));
+      }
+      .st-label > span {
+        display: block;
+        padding: 3px 8px;
+        white-space: nowrap;
+        color: var(--crust);
+        background: var(--rosewater);
+        clip-path: polygon(
+          3% 0, 30% 2%, 62% 0, 97% 3%,
+          100% 16%, 96% 31%, 99% 47%, 95% 63%, 100% 80%, 97% 100%,
+          68% 97%, 35% 100%, 2% 97%,
+          0 84%, 4% 68%, 0 52%, 3% 36%, 0 19%);
+      }
+      .st-coin-face { fill: color-mix(in srgb, var(--accent) 88%, var(--base)); }
+      .st-coin-rim { fill: none; stroke: color-mix(in srgb, var(--accent) 50%, var(--crust)); stroke-width: 1; }
+
+      /* The new coin: over the lid it sinks into the slot, clipped at the
+         slot's line; inside it falls onto the heap. */
+      .st-chute {
+        position: absolute;
+        z-index: 2;
+        bottom: calc(100% - 6px);
+        left: 50%;
+        translate: -50% 0;
+        width: 14px;
+        height: 30px;
+        overflow: clip;
+      }
+      .st-chute svg { display: block; width: 14px; height: 14px; animation: st-in 1.4s both; }
+      @keyframes st-in {
+        0% { transform: translateY(0); opacity: 0; animation-timing-function: var(--ease-in); }
+        12% { opacity: 1; animation-timing-function: var(--ease-in); }
+        40%, 100% { transform: translateY(32px); opacity: 1; }
+      }
+      .st-new { animation: st-land 1.4s both; }
+      @keyframes st-land {
+        0%, 40% { transform: translateY(var(--fall)); opacity: 0; animation-timing-function: var(--ease-in); }
+        41% { opacity: 1; animation-timing-function: var(--ease-in); }
+        68% { transform: none; animation-timing-function: var(--ease-out); }
+        76% { transform: translateY(-3px); animation-timing-function: var(--ease-in); }
+        84%, 100% { transform: none; opacity: 1; }
+      }
+
+      .st-count { display: grid; gap: 6px; }
+      .st-count .cn-value-lg { color: var(--text); }
+      /* The last digit rolls from 7 to 8 as the coin lands. */
+      .st-digit { display: inline-block; height: 1lh; overflow: clip; vertical-align: bottom; }
+      .st-digit > span { display: block; animation: st-roll 1.4s both; }
+      @keyframes st-roll {
+        0%, 68% { transform: none; animation-timing-function: var(--ease-out); }
+        84%, 100% { transform: translateY(-1lh); }
+      }
+      .st-count .legend { margin-top: 6px; flex-direction: column; align-items: flex-start; gap: 4px; }
     </style>
   </head>
   <body>
-    <div class="panel st" aria-hidden="true">
-      <div class="st-head">
-        <span class="cn-microlabel">Your salt</span>
-        <span class="chip-tone cn-tone-peach">Very salty</span>
-      </div>
-      <div class="st-total">
-        <b class="cn-value-lg">1,337</b>
-        <span class="cn-meta">swears at your agents</span>
-      </div>
-      <div class="st-word" style="--accent: var(--red)">
-        <code>f*ck</code><div class="progress-track"><span style="width: 100%"></span></div><b>612</b>
-      </div>
-      <div class="st-word" style="--accent: var(--peach)">
-        <code>sh*t</code><div class="progress-track"><span style="width: 47%"></span></div><b>288</b>
-      </div>
-      <div class="st-word" style="--accent: var(--yellow)">
-        <code>wtf</code><div class="progress-track"><span style="width: 33%"></span></div><b>201</b>
-      </div>
-      <div class="st-word" style="--accent: var(--mauve)">
-        <code>ffs</code><div class="progress-track"><span style="width: 15%"></span></div><b>94</b>
+    <div class="st" aria-hidden="true">
+      <figure class="st-jar cn-m-0">
+        <div class="st-chute">
+          <svg viewBox="0 0 14 14" style="--accent: var(--peach)">
+            <circle class="st-coin-face" cx="7" cy="7" r="6.5" />
+            <circle class="st-coin-rim" cx="7" cy="7" r="4.4" />
+          </svg>
+        </div>
+        <div class="st-lid"></div>
+        <div class="st-glass">
+          <div class="st-inside">
+            <svg viewBox="0 0 100 154" preserveAspectRatio="xMidYMax slice"></svg>
+          </div>
+          <span class="st-label"><span class="cn-microlabel">Swear jar</span></span>
+        </div>
+      </figure>
+      <div class="st-count">
+        <span class="cn-microlabel">You swore</span>
+        <b class="cn-value-lg">1,33<span class="st-digit"><span>7<br />8</span></span></b>
+        <span class="cn-meta">times at your agents</span>
+        <ul class="legend">
+          <li class="legend-item" style="--tone: var(--peach)">Claude Code</li>
+          <li class="legend-item" style="--tone: var(--green)">Codex</li>
+          <li class="legend-item" style="--tone: var(--blue)">Cursor</li>
+        </ul>
       </div>
     </div>
+    <script>
+      // The heap, packed the way salt's site packs it (packages/site/src/
+      // jar.ts, coinPile): 1,337 coins in a jar that holds 1,500, the
+      // largest share at the bottom, each coin in the colour of whoever
+      // owns that height of the heap.
+      const H = 154, R = 7.5;
+      const stack = [[820, "var(--peach)"], [352, "var(--green)"], [165, "var(--blue)"]];
+      const total = stack.reduce((s, [n]) => s + n, 0);
+      const fillLine = H * (1 - total / 1500);
+      const step = R * 2.2, rowStep = step * 0.866;
+      const reach = Math.ceil((50 + R) / step);
+      const coins = [];
+      for (let k = 0; ; k++) {
+        const y = H - R - k * rowStep;
+        const under = Math.min(1, (y + R - fillLine) / (2 * R));
+        if (k > 0 && (under <= 0 || y - R < 2)) break;
+        const shift = k % 2 ? step / 2 : 0;
+        const half = under >= 1 ? Infinity : Math.max(k === 0 ? 0 : -1, under * (50 + R));
+        for (let i = -reach; i <= reach; i++) {
+          const x = 50 + shift + i * step;
+          if (Math.abs(x - 50) <= half + 0.01) coins.push({ x, y });
+        }
+        if (under < 1) break;
+      }
+      const toneAt = (at) => {
+        let below = 0;
+        for (const [n, tone] of stack) if (at < (below += n / total)) return tone;
+        return stack[stack.length - 1][1];
+      };
+      const coin = (x, y, style, cls = "") =>
+        `<g class="${cls}" style="${style}"><circle class="st-coin-face" cx="${x}" cy="${y}" r="${R}" /><circle class="st-coin-rim" cx="${x}" cy="${y}" r="${R * 0.68}" /></g>`;
+
+      // The new coin settles in a gap one row over the heap's top coin.
+      const peak = coins.reduce((a, c) => (c.y < a.y || (c.y === a.y && Math.abs(c.x - 50) < Math.abs(a.x - 50)) ? c : a));
+      const nx = peak.x + step / 2, ny = peak.y - rowStep;
+      document.querySelector(".st-inside svg").innerHTML =
+        coins.map((c, i) => coin(c.x, c.y, `--accent: ${toneAt(i / coins.length)}`)).join("") +
+        coin(nx, ny, `--accent: var(--peach); --fall: ${-(ny + R)}px`, "st-new");
+    </script>
   </body>
 </html>

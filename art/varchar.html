@@ -2,8 +2,6 @@
 <html lang="en" data-density="compact">
   <head>
     <meta charset="utf-8" />
-    <meta name="loop" content="4500" />
-    <meta name="still" content="0.1" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
@@ -33,35 +31,35 @@
       .dock pre { margin: 0; font-size: 13px; line-height: 1.7; }
 
       /* The current match is one mauve block that slides from row to row,
-         and a second one slides along the tape. Each match's translucent
-         wash sits over the block, so the block shows through as solid
-         mauve. A match never wraps (| is a break-after character, so the
-         string would otherwise split mid-record); lines break at the <wbr>
-         after each record instead, so the block always covers one line. */
+         and a second one slides along the tape: on hover it steps from the
+         first match to the third. Each match's translucent wash sits over
+         the block, so the block shows through as solid mauve. A match never
+         wraps (| is a break-after character, so the string would otherwise
+         split mid-record); lines break at the <wbr> after each record
+         instead, so the block always covers one line. */
       .dock, .vc-track { position: relative; isolation: isolate; }
       .dock pre { position: relative; z-index: 1; }
       .vc-track .slider { z-index: 1; }
       .slider {
         position: absolute; left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1);
         border-radius: 4px; background: var(--mauve);
-        animation: slide 4.5s infinite;
+        animation: slide 1.6s both;
       }
       .dock .slider { margin: -1px -2px; padding: 1px 2px; }
       .dock mark { white-space: nowrap; }
       @keyframes slide {
-        0%, 24% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
-        33.333%, 57.333% { left: var(--x2); top: var(--y2); width: var(--w2); height: var(--h2); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
-        66.667%, 90.667% { left: var(--x3); top: var(--y3); width: var(--w3); height: var(--h3); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
-        100% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); }
+        0%, 6% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+        40%, 56% { left: var(--x2); top: var(--y2); width: var(--w2); height: var(--h2); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+        90%, 100% { left: var(--x3); top: var(--y3); width: var(--w3); height: var(--h3); }
       }
       /* A match's text is crust only while the block rests under it, and
          fades back as the block leaves, so no text goes dark mid-slide. */
-      @keyframes cur1 { 0%, 24% { color: var(--crust); } 26%, 98% { color: var(--text); } 100% { color: var(--crust); } }
-      @keyframes cur2 { 0%, 31.333% { color: var(--text); } 33.333%, 57.333% { color: var(--crust); } 59.333%, 100% { color: var(--text); } }
-      @keyframes cur3 { 0%, 64.667% { color: var(--text); } 66.667%, 90.667% { color: var(--crust); } 92.667%, 100% { color: var(--text); } }
-      .m1 { animation: cur1 4.5s infinite; }
-      .m2 { animation: cur2 4.5s infinite; }
-      .m3 { animation: cur3 4.5s infinite; }
+      @keyframes cur1 { 0%, 6% { color: var(--crust); } 10%, 100% { color: var(--text); } }
+      @keyframes cur2 { 0%, 36% { color: var(--text); } 40%, 56% { color: var(--crust); } 60%, 100% { color: var(--text); } }
+      @keyframes cur3 { 0%, 86% { color: var(--text); } 90%, 100% { color: var(--crust); } }
+      .m1 { animation: cur1 1.6s both; }
+      .m2 { animation: cur2 1.6s both; }
+      .m3 { animation: cur3 1.6s both; }
       .vc-rec.is-lit { background: var(--vc-match); }
     </style>
   </head>

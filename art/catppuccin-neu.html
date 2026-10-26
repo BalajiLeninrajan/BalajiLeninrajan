@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="loop" content="4000" />
-    <meta name="still" content="0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
@@ -19,45 +17,40 @@
       /* The docs' "First look" demo plus a segmented control. */
       .live-dot { animation-duration: 2s; }
 
-      /* Each control takes its turn: the primary hovers pink and presses,
-         Export presses, the switch flips on, and later back off. The primary
+      /* On hover each control takes its turn: the primary hovers pink and
+         presses, Export presses, and the switch flips on. The primary
          and the paddle restate the recipe's own fill: the primary moves
          --cn-fill so its ramp and grain stay, and the paddle paints the
          ramp when on. */
       @keyframes press-primary {
-        0%, 8% { transform: none; --cn-fill: var(--mauve); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
-        12% { transform: translate(-1px, -1px); --cn-fill: var(--pink); }
-        16%, 20% { transform: translate(2px, 2px); --cn-fill: var(--pink); box-shadow: 2px 2px 0 var(--plate), var(--hard-extra); }
-        25% { transform: none; --cn-fill: var(--pink); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
-        30%, 100% { transform: none; --cn-fill: var(--mauve); }
+        0%, 4% { transform: none; --cn-fill: var(--mauve); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        10% { transform: translate(-1px, -1px); --cn-fill: var(--pink); }
+        16%, 22% { transform: translate(2px, 2px); --cn-fill: var(--pink); box-shadow: 2px 2px 0 var(--plate), var(--hard-extra); }
+        30% { transform: none; --cn-fill: var(--pink); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        38%, 100% { transform: none; --cn-fill: var(--mauve); }
       }
       @keyframes press-secondary {
-        0%, 36% { transform: none; border-color: var(--edge); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
-        40% { transform: translate(-1px, -1px); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
-        44%, 48% { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--crust); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
-        53% { transform: none; box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
-        58%, 100% { border-color: var(--edge); }
+        0%, 30% { transform: none; border-color: var(--edge); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
+        36% { transform: translate(-1px, -1px); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
+        42%, 48% { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--crust); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
+        56% { transform: none; box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
+        62%, 100% { border-color: var(--edge); }
       }
       @keyframes flip {
-        0%, 62% {
+        0%, 64% {
           translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background-color: var(--base); background-image: none;
           box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
           animation-timing-function: var(--ease-spring);
         }
-        68%, 88% {
+        78%, 100% {
           translate: 23px 0; border-color: var(--mauve); --cn-fill: var(--mauve); background-color: var(--cn-fill); background-image: var(--cn-fill-ramp);
           box-shadow: 0 0 6px color-mix(in srgb, var(--mauve) 18%, transparent), inset 0 1px rgb(255 255 255 / .16);
           transform: perspective(120px) rotateY(-16deg);
-          animation-timing-function: var(--ease-spring);
-        }
-        94%, 100% {
-          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background-color: var(--base); background-image: none;
-          box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
         }
       }
-      .btn-primary { animation: press-primary 4s infinite; }
-      .btn-secondary { animation: press-secondary 4s infinite; }
-      .switch::after { animation: flip 4s infinite; }
+      .btn-primary { animation: press-primary 1.8s both; }
+      .btn-secondary { animation: press-secondary 1.8s both; }
+      .switch::after { animation: flip 1.8s both; }
     </style>
   </head>
   <body>
