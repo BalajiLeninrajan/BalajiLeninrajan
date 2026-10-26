@@ -4,8 +4,8 @@
 
    On a phone the page is one column: the intro with a single row of
    actions, then Experience and Projects as accordion lists. Every project
-   is a row with a thumbnail. From 761px the hosted projects turn into
-   image cards, and from 1000px the intro becomes a column that stays
+   is a row with a thumbnail. From 761px the projects with a scene turn
+   into image cards, and from 1000px the intro becomes a column that stays
    put beside the content. */
 
 .app-shell { --page-gutter: clamp(16px, 3vw, var(--space-6)); }
@@ -64,7 +64,7 @@ main { --page-pad: 32px 0 56px; }
    Phone: one list. Each row is the project's favicon beside the name and
    its stack, with the chevron on the right. The favicons are the apps' own
    mauve tiles, still and sized to the two lines of text, since a scene
-   shrunk to a thumbnail is unreadable. A project without a site has no
+   shrunk to a thumbnail is unreadable. A project without a card has no
    icon, so its name and stack start at the row's edge. The cards and the
    "More projects" label are for wider screens. */
 .project-grid,
@@ -131,7 +131,7 @@ main { --page-pad: 32px 0 56px; }
 /* ── 761px and up: cards ──────────────────────────────────────────────────
    The intro goes back to a block: Resume on its own line at its label's
    width, the icons under it. The stack pulls out by the label's own 12px,
-   capped 4px short of the screen edge. Hosted projects become image
+   capped 4px short of the screen edge. Projects with a scene become image
    cards, and the rest sit under "More projects" as plain accordion rows. */
 @media (min-width: 761px) {
   .scroll-cue { display: none; }
@@ -157,8 +157,8 @@ main { --page-pad: 32px 0 56px; }
   .project-row > label > :is(p, .cn-meta) { align-self: auto; }
 }
 
-/* Project art. Each hosted project's scene (art/<name>.html) runs live in a
-   frame. Under reduced motion a still of it shows instead: the package's
+/* Project art. Each card's scene (art/<name>.html) runs live in a frame.
+   Under reduced motion a still of it shows instead: the package's
    reduced-motion rule would stop each scene on its bare, unanimated styles.
    Neither takes the pointer, so clicks reach the card's link. */
 .project-art {
@@ -180,20 +180,21 @@ main { --page-pad: 32px 0 56px; }
   .project-art > img { display: block; }
 }
 
-/* Each hosted project is the package's .accent-card with its art on top, at
-   the control radius, with the aspect ratio pinned so the grid does not
-   reflow as the frame loads. */
+/* Each card is the package's .accent-card with its art on top, at the
+   control radius, with the aspect ratio pinned so the grid does not reflow
+   as the frame loads. */
 .project-art {
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: var(--cn-radius-control);
 }
 
-/* A click anywhere on a card opens its site. The card holds its own link
-   buttons, so it can't sit inside an <a>; the name's link stretches its
-   ::after over the card instead, and the buttons stack above it. The recipe
-   only lifts and presses a card inside a link (a > .accent-card), so the
-   lift, press and focus ring are restated here off the stretched link.
+/* A click anywhere on a card opens its site, or its repo when there is no
+   site. The card holds its own link buttons, so it can't sit inside an
+   <a>; the name's link stretches its ::after over the card instead, and
+   the buttons stack above it. The recipe only lifts and presses a card
+   inside a link (a > .accent-card), so the lift, press and focus ring are
+   restated here off the stretched link.
    Package gap: the recipe could key them off a stretched link too. */
 .project-card { position: relative; }
 .project-card .card-link { color: inherit; text-decoration: none; }

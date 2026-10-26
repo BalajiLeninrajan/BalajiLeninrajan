@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="6000" />
+    <meta name="still" content="0.75" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* cfa-lsp's hover on two calls of g, which is overloaded on its return
+         type only, as in cfa-lsp's tests/fixtures/translator/overload.cfa.
+         Each hover names the overload the resolver picked, in the markdown
+         describe() builds: the signature, then kind, location and the
+         overload count. */
+      /* The card hangs below the last line, so the block leaves room for it
+         under the code and the pair sits centered. */
+      .cl { width: 292px; margin-bottom: 52px; }
+      .cl .codeblock { overflow: visible; }
+      .cl .codeblock pre { white-space: pre; }
+      .cl-call { border-radius: 3px; }
+      .cl-hover {
+        position: absolute; top: calc(100% + 4px); left: calc(3ch + var(--space-3) - 11px);
+        width: auto; padding: 8px 10px;
+        white-space: nowrap;
+        opacity: 0;
+      }
+      .cl-hover > * { display: block; }
+      .cl-sig { font: var(--cn-type-code-weight) 13px/1.5 var(--mono); color: var(--subtext-1); }
+      .cl-meta { margin-top: 4px; font: 400 11px/1.4 var(--sans); color: var(--overlay-2); }
+      .cl-hover code { font: 400 10.5px/1 var(--mono); color: var(--subtext-0); }
+
+      /* Hover the first call, let go, hover the second. The call under the
+         pointer gets the hover range's wash while its card is up. */
+      .h1 .cl-hover { animation: cl-pop1 6s infinite; }
+      .h2 .cl-hover { animation: cl-pop2 6s infinite; }
+      .h1 .cl-call { animation: cl-wash1 6s infinite; }
+      .h2 .cl-call { animation: cl-wash2 6s infinite; }
+      @keyframes cl-pop1 {
+        0%, 8% { opacity: 0; transform: translateY(-4px); animation-timing-function: var(--ease-out); }
+        12%, 42% { opacity: 1; transform: none; animation-timing-function: var(--ease-in); }
+        46%, 100% { opacity: 0; transform: translateY(-4px); }
+      }
+      @keyframes cl-pop2 {
+        0%, 58% { opacity: 0; transform: translateY(-4px); animation-timing-function: var(--ease-out); }
+        62%, 92% { opacity: 1; transform: none; animation-timing-function: var(--ease-in); }
+        96%, 100% { opacity: 0; transform: translateY(-4px); }
+      }
+      @keyframes cl-wash1 { 0%, 8% { background: transparent; } 10%, 44% { background: var(--surface-1); } 46%, 100% { background: transparent; } }
+      @keyframes cl-wash2 { 0%, 58% { background: transparent; } 60%, 94% { background: var(--surface-1); } 96%, 100% { background: transparent; } }
+    </style>
+  </head>
+  <body>
+    <div class="cl" aria-hidden="true">
+      <div class="codeblock is-numbered">
+        <pre><span><span class="tok-keyword">int</span> <span class="tok-fn">g</span>() { <span class="tok-keyword">return</span> <span class="tok-number">1</span>; }</span><span><span class="tok-keyword">double</span> <span class="tok-fn">g</span>() { <span class="tok-keyword">return</span> <span class="tok-number">2.5</span>; }</span><span class="h1"><span class="tok-keyword">int</span> c = <span class="cl-call tok-fn">g</span>();<span class="popover cl-hover"><span class="cl-sig"><span class="tok-keyword">int</span> <span class="tok-fn">g</span>()</span><span class="cl-meta">function · <code>overload.cfa:1</code> · 1 other overload</span></span></span><span class="h2"><span class="tok-keyword">double</span> d = <span class="cl-call tok-fn">g</span>();<span class="popover cl-hover"><span class="cl-sig"><span class="tok-keyword">double</span> <span class="tok-fn">g</span>()</span><span class="cl-meta">function · <code>overload.cfa:2</code> · 1 other overload</span></span></span></pre>
+      </div>
+    </div>
+  </body>
+</html>
