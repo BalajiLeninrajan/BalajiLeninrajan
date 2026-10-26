@@ -26,51 +26,40 @@
       .hr-track { display: grid; gap: 5px; }
       .hr-lane > .cn-value { text-align: right; font-size: 15px; }
 
-      /* Only the numbers restyle each frame. A fill is the full track slid
-         left by its gap, which the compositor animates on its own. The slide
-         is on a plain wrapper so the fill, which the recipe makes costly to
-         restyle, sits out the frames the numbers force; animating a width or
-         an inherited property here restyled whole lanes every frame. */
-      @property --v { syntax: "<integer>"; inherits: false; initial-value: 0; }
-      .progress-track { overflow: hidden; }
-      .progress-track > i { display: block; height: 100%; border-radius: inherit; }
-      .cn-value { counter-reset: v var(--v); }
-      .cn-value::after { content: counter(v); }
-      .hr-lane .progress-track > i, .hr-lane .cn-value { animation: 4.8s ease-in-out infinite; }
-      .l1 .progress-track > i { animation-name: w1; } .l1 .cn-value { animation-name: v1; }
-      .l2 .progress-track > i { animation-name: w2; } .l2 .cn-value { animation-name: v2; }
-      .l3 .progress-track > i { animation-name: w3; } .l3 .cn-value { animation-name: v3; }
-      .l4 .progress-track > i { animation-name: w4; } .l4 .cn-value { animation-name: v4; }
-      @keyframes w1 { 0%, 100% { translate: -30%; } 25% { translate: -14%; } 50% { translate: -36%; } 75% { translate: -20%; } }
-      @keyframes v1 { 0%, 100% { --v: 98; } 25% { --v: 120; } 50% { --v: 90; } 75% { --v: 112; } }
-      @keyframes w2 { 0%, 100% { translate: -18%; } 25% { translate: -32%; } 50% { translate: -12%; } 75% { translate: -34%; } }
-      @keyframes v2 { 0%, 100% { --v: 115; } 25% { --v: 95; } 50% { --v: 123; } 75% { --v: 92; } }
-      @keyframes w3 { 0%, 100% { translate: -48%; } 33% { translate: -38%; } 66% { translate: -52%; } }
-      @keyframes v3 { 0%, 100% { --v: 73; } 33% { --v: 87; } 66% { --v: 67; } }
-      @keyframes w4 { 0%, 100% { translate: -60%; } 50% { translate: -46%; } }
-      @keyframes v4 { 0%, 100% { --v: 56; } 50% { --v: 76; } }
+      @property --v { syntax: "<integer>"; inherits: true; initial-value: 0; }
+      @property --w { syntax: "<percentage>"; inherits: true; initial-value: 0%; }
+      .progress-track span { width: var(--w); }
+      .cn-value::after { counter-reset: v var(--v); content: counter(v); }
+      .l1 { animation: r1 4.8s ease-in-out infinite; }
+      .l2 { animation: r2 4.8s ease-in-out infinite; }
+      .l3 { animation: r3 4.8s ease-in-out infinite; }
+      .l4 { animation: r4 4.8s ease-in-out infinite; }
+      @keyframes r1 { 0%, 100% { --w: 70%; --v: 98; } 25% { --w: 86%; --v: 120; } 50% { --w: 64%; --v: 90; } 75% { --w: 80%; --v: 112; } }
+      @keyframes r2 { 0%, 100% { --w: 82%; --v: 115; } 25% { --w: 68%; --v: 95; } 50% { --w: 88%; --v: 123; } 75% { --w: 66%; --v: 92; } }
+      @keyframes r3 { 0%, 100% { --w: 52%; --v: 73; } 33% { --w: 62%; --v: 87; } 66% { --w: 48%; --v: 67; } }
+      @keyframes r4 { 0%, 100% { --w: 40%; --v: 56; } 50% { --w: 54%; --v: 76; } }
     </style>
   </head>
   <body>
     <div class="hr" aria-hidden="true">
       <div class="hr-lane l1" style="--accent: var(--peach)">
         <span class="mark">C</span>
-        <div class="hr-track"><strong class="cn-name">Claude Code</strong><div class="progress-track"><i><span></span></i></div></div>
+        <div class="hr-track"><strong class="cn-name">Claude Code</strong><div class="progress-track"><span></span></div></div>
         <b class="cn-value"></b>
       </div>
       <div class="hr-lane l2" style="--accent: var(--teal)">
         <span class="mark">O</span>
-        <div class="hr-track"><strong class="cn-name">OpenCode</strong><div class="progress-track"><i><span></span></i></div></div>
+        <div class="hr-track"><strong class="cn-name">OpenCode</strong><div class="progress-track"><span></span></div></div>
         <b class="cn-value"></b>
       </div>
       <div class="hr-lane l3" style="--accent: var(--blue)">
         <span class="mark">X</span>
-        <div class="hr-track"><strong class="cn-name">Codex CLI</strong><div class="progress-track"><i><span></span></i></div></div>
+        <div class="hr-track"><strong class="cn-name">Codex CLI</strong><div class="progress-track"><span></span></div></div>
         <b class="cn-value"></b>
       </div>
       <div class="hr-lane l4" style="--accent: var(--yellow)">
         <span class="mark">G</span>
-        <div class="hr-track"><strong class="cn-name">Grok CLI</strong><div class="progress-track"><i><span></span></i></div></div>
+        <div class="hr-track"><strong class="cn-name">Grok CLI</strong><div class="progress-track"><span></span></div></div>
         <b class="cn-value"></b>
       </div>
     </div>

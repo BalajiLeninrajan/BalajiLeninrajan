@@ -2,11 +2,11 @@
 # requires-python = ">=3.11"
 # dependencies = ["pillow>=11", "playwright>=1.50"]
 # ///
-"""Renders the reduced-motion stills in img/sites/ from the scenes in art/.
+"""Renders the project card stills in img/sites/ from the scenes in art/.
 
-The site embeds each art/<name>.html as a live, looping scene. Under
-prefers-reduced-motion it shows img/sites/<name>.webp instead, which this
-script draws: the scene paused at its <meta name="still"> moment, at 960x600.
+Each card shows img/sites/<name>.webp, which this script draws from
+art/<name>.html: the scene paused at its <meta name="still"> moment, at
+960x600.
 
     uv run scripts/art_stills.py            # all scenes
     uv run scripts/art_stills.py salt       # just one

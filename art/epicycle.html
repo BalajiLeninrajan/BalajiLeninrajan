@@ -178,21 +178,14 @@
       const ctx = canvas.getContext("2d");
       const links = new Float64Array(2 * CIRCLES);
 
-      // Strokes trail samples a..b (wrapping), jumps or lines only. Each
-      // unbroken stretch is one polyline through every STEP-th sample:
-      // thousands of separate segments, each with its own round caps, cost
-      // Firefox most of a frame, and the samples sit far closer than a pixel.
-      const STEP = 4;
+      // Strokes trail samples a..b (wrapping), jumps or lines only.
       const run = (a, b, wantJump, tip) => {
         ctx.beginPath();
-        let pen = false;
         for (let c = a; c < b; c++) {
           const i = ((c % N) + N) % N, j = (i + 1) % N;
-          if (!!jump[i] !== wantJump) { pen = false; continue; }
-          if (!pen) ctx.moveTo(ox + tx[i] * scale, oy + ty[i] * scale), (pen = true);
-          const last = c + 1 === b;
-          if (last && tip) ctx.lineTo(tip[0], tip[1]);
-          else if (last || c % STEP === 0 || !!jump[j] !== wantJump) ctx.lineTo(ox + tx[j] * scale, oy + ty[j] * scale);
+          if (!!jump[i] !== wantJump) continue;
+          ctx.moveTo(ox + tx[i] * scale, oy + ty[i] * scale);
+          ctx.lineTo(c + 1 === b && tip ? tip[0] : ox + tx[j] * scale, c + 1 === b && tip ? tip[1] : oy + ty[j] * scale);
         }
         ctx.stroke();
       };
