@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="loop" content="10000" />
+    <meta name="rate" content="1" />
+    <meta name="still" content="0.8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
+      rel="stylesheet"
+    />
+    <meta name="robots" content="noindex" />
+    <link href="scene.css" rel="stylesheet" />
+    <script src="scene.js"></script>
+    <style>
+      /* epicycle drawing my profile picture, the avocado holding a screen
+         that says Help: the drawing shared at
+         epicycle.balajileninrajan.dev/s/HnHR4KlU2iww, decoded with the
+         app's src/share/codec.ts. The scene keeps that link's settings:
+         8192 samples, 1000 circles, a 10s loop played at its own speed,
+         and a trail that fades over 1.5 loops. Each frame draws the way
+         src/render/epicycles.ts does: circles biggest first, arrows tip
+         to tail, and the trail in 24 steps, with jumps at a quarter of
+         the line's opacity.
+
+         A canvas has no keyframes to pause, so a CSS animation drives --t
+         from 0 to 1 over the loop and each frame draws the chain at --t.
+         Pausing the animation (scene.js, scripts/art_stills.py) holds the
+         drawing. */
+      @property --t { syntax: "<number>"; inherits: false; initial-value: 0; }
+      :root { animation: ec-t 10s linear infinite; }
+      @keyframes ec-t { to { --t: 1; } }
+      canvas { display: block; width: 320px; height: 200px; }
+    </style>
+  </head>
+  <body>
+    <canvas aria-hidden="true"></canvas>
+    <script>
+      // The shared path: x, y pairs in the picture's 995px space; JUMP[i] flags the link from point i to i + 1.
+      const PATH = [
+        368.1,157.9, 356,158.9, 339,164, 308.1,183, 275.1,215, 257.1,238.1, 218.4,252, 189.5,300.1, 159.4,364, 142.4,414,
+        127.6,485, 127.6,553, 131.5,568.1, 132.4,581, 135.6,586.1, 142.4,612.1, 166.4,659, 197.1,691.5, 214.1,705.6, 219.9,707.6,
+        226,712.4, 242,721.4, 262.9,727.5, 270.4,734, 272.4,749.1, 269.5,777, 270.4,795, 275.5,815, 284.5,835.1, 292.1,841.4,
+        300.1,843.4, 306.4,838, 308.6,831, 307.6,825.9, 292.5,806, 290.6,790.9, 292.5,752, 300.1,743.5, 306.9,741.6, 314.9,743.5,
+        338,742.5, 395.1,734.5, 408.9,730.4, 422.1,722.6, 426.9,721.4, 446.1,708.5, 452.9,706.6, 460,708.5, 467.5,716.1, 469.4,720.9,
+        480.6,732.1, 489.1,745.5, 498.1,753.5, 503.9,754.5, 509.5,760, 511.5,767.1, 512.4,792.1, 522.9,800.6, 688.1,807.4, 762,808.4,
+        803,811.6, 822,810.6, 827.6,805, 831.5,797, 847.5,729.9, 848.5,450, 845.6,441, 833.9,435.4, 750.1,433.5, 709,430.6,
+        665,430.6, 646.1,429.6, 632,426.4, 615,405.5, 602.1,396.5, 587,390.5, 568.1,387.6, 560.6,381, 541.6,329, 503.5,258,
+        497.6,252, 488.4,235.9, 470.4,213.1, 448.1,189.5, 427.9,173.5, 396.1,156.5, 368.1,150.4, 350.6,150.9, 320,158.4, 286,178.6,
+        255.6,206, 218.4,252, 336,397, 357.9,391.9, 375.9,391.9, 399,398, 417,408, 434,424, 446.1,446.1, 451,460.9,
+        451,490.1, 443.9,513.9, 434,531.9, 423,546.9, 412.1,557.9, 387.1,572.9, 368.1,577.1, 363,580, 347,581, 326.1,578,
+        311,572.9, 293,563, 279.9,550.1, 266.1,526.1, 261.9,508.1, 261.9,490.1, 266.1,470.9, 273.1,452.9, 287,432, 302,417,
+        319,405, 336,397, 450,581.9, 453.9,569.1, 460.9,562, 467,559.1, 474.1,559.1, 481.1,562, 489.1,571, 489.1,581.9,
+        486.9,588, 482.1,594.1, 474.1,598, 459,597, 451.9,589, 450,581.9, 404.1,623, 399,634.9, 383.9,650, 366.9,657,
+        347,657, 334.1,651.9, 320,634.9, 317.1,626.9, 316.1,615, 321,607.9, 326.1,608.9, 330,613, 331.9,626.9, 336,633.9,
+        343.1,641, 352.1,643.9, 365.9,642.9, 373.9,640, 383.9,632, 395.1,616.9, 399,616.9, 404.1,623, 448.1,700, 438.1,685,
+        438.1,677.9, 443,672.1, 452.9,672.1, 468,685.9, 503,668.9, 510,660.9, 509,517.1, 521.9,460.9, 529.9,433, 538.9,424,
+        564,425, 557.9,388, 565.9,412.1, 567.1,423, 569.1,425, 572,424, 572.5,415.5, 581.9,417, 590,421.1, 600.9,434.9,
+        602.1,429.1, 607,448.1, 616.9,461.9, 620.1,461.9, 623,459, 626.9,451, 629.1,433, 553,529.9, 788,538.9, 790.9,542.1,
+        790.9,759.1, 789,761, 763.9,761, 553,753, 550.1,749.1, 550.1,533.1, 553,529.9, 630,640, 624,640, 622,638.1,
+        622,631, 619.1,628.1, 616.9,630, 616.9,655.1, 619.1,657, 622,656, 622,647.1, 624,645.1, 632,646.1, 633,655.1,
+        636.1,658, 638.1,657, 639,632, 636.1,629.1, 633,632, 632,641, 650,646.1, 659,646.1, 659.9,643.9, 651.9,642,
+        649,645.1, 650,646.1, 663.1,655.1, 651.9,655.1, 649,651.9, 650,650, 658,650.9, 666,649, 666,642.9, 662.1,639,
+        659,637.1, 650,637.1, 645.1,642, 643.9,652.9, 649,659, 660.9,659.9, 666,652.9, 676,659.9, 685,660.9, 686.9,659,
+        684,654.1, 684,633, 681.1,630, 676,631, 678.9,636.1, 678.9,655.1, 676.9,658, 702.9,655.1, 704.9,657, 712.9,656,
+        715.1,651.9, 714.1,647.1, 710,643.9, 704.9,643.9, 702.9,646.1, 702.9,655.1, 697.1,665, 699.1,667.9, 702,667, 703.9,662.1,
+        715.1,660.9, 719.9,655.1, 719.9,646.1, 712.9,639, 707.1,638.1, 700,640, 697.1,645.1, 697.1,665, 499.1,724.1, 509,730.9,
+        509,750.1, 322.9,736, 308.1,735, 297.9,728.9, 297.9,702, 311,693, 311,678.9, 303,674, 276,674, 259,625.9,
+        252,628.1, 241,626.9, 233,619.1, 231.1,612.1, 232,605, 235.9,598, 248.1,589, 260,590, 268,597, 269.9,603.1,
+        269.9,611.1, 267,619.1, 259,625.9, 273.1,724.1, 276,711, 276,704.9, 274.1,702.9, 241,701, 213.1,691, 178.1,659,
+        170.1,648, 157.9,624, 147,585.1, 145.1,570, 145.1,530.9, 150.9,487.9, 170.1,417, 191,363, 218.9,305.9, 256.1,248.1,
+        284,215, 310,192, 339.9,174.9, 365.9,169.1, 384.9,170.1, 398,173, 430.1,189, 451,206, 474.1,228.9, 485,244
+      ];
+      const JUMP =
+        "00000100000000000000000000000000000000000000000000000000000000000000000000000000" +
+        "00000000000100000000000000000000000000000100000000000001000000000000000000000100" +
+        "00010000001000000001000000100000000010000000000000000001000001000000000000001000" +
+        "00000010000000010000000000010010100000100000000000001000001000000000000000000001";
+
+      const TAU = 2 * Math.PI;
+      const N = 8192; // samples along the line
+      const CIRCLES = 1000;
+      const FADE = Math.round(N * 1.499); // trail length in samples
+      const BUCKETS = 24;
+      const JUMP_ALPHA = 0.25;
+
+      // Evenly spaced samples by arc length around the closed line, each
+      // carrying the jump flag of the link it falls on.
+      const count = PATH.length / 2;
+      const seg = [];
+      let total = 0;
+      for (let i = 0; i < count; i++) {
+        const j = (i + 1) % count;
+        total += Math.hypot(PATH[2 * j] - PATH[2 * i], PATH[2 * j + 1] - PATH[2 * i + 1]);
+        seg.push(total);
+      }
+      const sx = new Float64Array(N), sy = new Float64Array(N), jump = new Uint8Array(N);
+      for (let s = 0, i = 0; s < N; s++) {
+        const d = (s / N) * total;
+        while (seg[i] < d) i++;
+        const j = (i + 1) % count;
+        const len = seg[i] - (i ? seg[i - 1] : 0);
+        const u = len ? 1 - (seg[i] - d) / len : 0;
+        sx[s] = PATH[2 * i] + (PATH[2 * j] - PATH[2 * i]) * u;
+        sy[s] = PATH[2 * i + 1] + (PATH[2 * j + 1] - PATH[2 * i + 1]) * u;
+        jump[s] = JUMP.charCodeAt(i) === 49;
+      }
+
+      // In-place radix-2 FFT, c_k = sum z_j e^(-2 pi i k j / N).
+      const fft = (re, im) => {
+        for (let i = 1, j = 0; i < N; i++) {
+          let bit = N >> 1;
+          for (; j & bit; bit >>= 1) j ^= bit;
+          j ^= bit;
+          if (i < j) ([re[i], re[j]] = [re[j], re[i]]), ([im[i], im[j]] = [im[j], im[i]]);
+        }
+        for (let len = 2; len <= N; len <<= 1) {
+          const a = -TAU / len, wr = Math.cos(a), wi = Math.sin(a);
+          for (let i = 0; i < N; i += len) {
+            let cr = 1, ci = 0;
+            for (let k = 0; k < len / 2; k++) {
+              const p = i + k, q = p + len / 2;
+              const xr = re[q] * cr - im[q] * ci, xi = re[q] * ci + im[q] * cr;
+              (re[q] = re[p] - xr), (im[q] = im[p] - xi);
+              (re[p] += xr), (im[p] += xi);
+              [cr, ci] = [cr * wr - ci * wi, cr * wi + ci * wr];
+            }
+          }
+        }
+      };
+
+      // The biggest CIRCLES coefficients. The largest is the constant term,
+      // which places the chain.
+      const re = Float64Array.from(sx), im = Float64Array.from(sy);
+      fft(re, im);
+      const chain = Array.from({ length: N }, (_, k) => ({
+        k, f: k < N / 2 ? k : k - N, cr: re[k] / N, ci: im[k] / N, r: Math.hypot(re[k], im[k]) / N,
+      })).sort((a, b) => b.r - a.r).slice(0, CIRCLES);
+
+      // The trail is the curve those circles trace: the inverse FFT of just
+      // them, taken as the conjugate of the FFT of the conjugate.
+      const tx = new Float64Array(N), ty = new Float64Array(N);
+      for (const { k, cr, ci } of chain) (tx[k] = cr), (ty[k] = -ci);
+      fft(tx, ty);
+      for (let j = 0; j < N; j++) ty[j] = -ty[j];
+
+      const eval_ = (t, out) => {
+        let x = 0, y = 0;
+        for (let i = 0; i < chain.length; i++) {
+          const { f, cr, ci } = chain[i];
+          const c = Math.cos(TAU * f * t), s = Math.sin(TAU * f * t);
+          x += cr * c - ci * s;
+          y += cr * s + ci * c;
+          if (out) (out[2 * i] = x), (out[2 * i + 1] = y);
+        }
+        return [x, y];
+      };
+
+      let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+      for (let j = 0; j < N; j++) {
+        x0 = Math.min(x0, tx[j]), x1 = Math.max(x1, tx[j]);
+        y0 = Math.min(y0, ty[j]), y1 = Math.max(y1, ty[j]);
+      }
+
+      // Fit the drawing to the stage with 8px to spare.
+      const scale = Math.min((320 - 16) / (x1 - x0), (200 - 16) / (y1 - y0));
+      const ox = 160 - ((x0 + x1) / 2) * scale, oy = 100 - ((y0 + y1) / 2) * scale;
+
+      const css = getComputedStyle(document.documentElement);
+      const color = (name) => css.getPropertyValue(name).trim();
+      const BG = color("--base"), TRAIL = color("--mauve"), CIRCLE = color("--surface-2"), ARROW = color("--subtext-0");
+
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+      const links = new Float64Array(2 * CIRCLES);
+
+      // Strokes trail samples a..b (wrapping), jumps or lines only.
+      const run = (a, b, wantJump, tip) => {
+        ctx.beginPath();
+        for (let c = a; c < b; c++) {
+          const i = ((c % N) + N) % N, j = (i + 1) % N;
+          if (!!jump[i] !== wantJump) continue;
+          ctx.moveTo(ox + tx[i] * scale, oy + ty[i] * scale);
+          ctx.lineTo(c + 1 === b && tip ? tip[0] : ox + tx[j] * scale, c + 1 === b && tip ? tip[1] : oy + ty[j] * scale);
+        }
+        ctx.stroke();
+      };
+
+      const draw = () => {
+        const z = parseFloat(document.documentElement.style.zoom || 1) * devicePixelRatio;
+        if (canvas.width !== Math.round(320 * z)) (canvas.width = Math.round(320 * z)), (canvas.height = Math.round(200 * z));
+        const t = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--t")) || 0;
+        ctx.setTransform(z, 0, 0, z, 0, 0);
+        ctx.fillStyle = BG;
+        ctx.fillRect(0, 0, 320, 200);
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+
+        const [px, py] = eval_(t, links);
+        const tip = [ox + px * scale, oy + py * scale];
+        // The FADE samples ending at the tip, split into buckets by age. The
+        // tail is longer than a loop, so it wraps and newer passes go on top.
+        const m = Math.floor(t * N);
+        const start = m - FADE + 1;
+        const at = (b) => start + Math.floor((b * (FADE - 1)) / BUCKETS);
+        ctx.strokeStyle = TRAIL;
+        ctx.lineWidth = 1.5;
+        for (let b = 0; b < BUCKETS; b++) {
+          const alpha = ((b + 1) / BUCKETS) ** 1.6;
+          const last = b === BUCKETS - 1;
+          ctx.globalAlpha = alpha * JUMP_ALPHA;
+          run(at(b), last ? m + 1 : at(b + 1), true, last && tip);
+          ctx.globalAlpha = alpha;
+          run(at(b), last ? m + 1 : at(b + 1), false, last && tip);
+        }
+        ctx.globalAlpha = 1;
+
+        // Circles and arrows, skipping the sub-pixel ones as the app does.
+        ctx.beginPath();
+        let shown = 1;
+        for (let i = 1; i < chain.length && chain[i].r * scale >= 0.5; i++, shown++) {
+          const x = ox + links[2 * i - 2] * scale, y = oy + links[2 * i - 1] * scale, r = chain[i].r * scale;
+          ctx.moveTo(x + r, y);
+          ctx.arc(x, y, r, 0, TAU);
+        }
+        ctx.strokeStyle = CIRCLE;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(ox + links[0] * scale, oy + links[1] * scale);
+        for (let i = 1; i < shown; i++) ctx.lineTo(ox + links[2 * i] * scale, oy + links[2 * i + 1] * scale);
+        ctx.lineTo(...tip);
+        ctx.strokeStyle = ARROW;
+        ctx.lineWidth = 0.75;
+        ctx.stroke();
+        requestAnimationFrame(draw);
+      };
+      requestAnimationFrame(draw);
+    </script>
+  </body>
+</html>
