@@ -303,7 +303,7 @@ html { overscroll-behavior: none; }
 }
 :root[data-avo="flat"] .avo-computer { background-position-x: 100%; }
 
-@media (max-width: 999px) { .avo-rail, .avo-computer { display: none; } }
+@media (max-width: 999px) { .avo-perch, .avo-rail, .avo-computer { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .avo { animation: none; }
   .avo-computer { display: none; }
