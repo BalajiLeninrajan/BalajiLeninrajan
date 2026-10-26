@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="loop" content="3600" />
-    <meta name="still" content="0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
@@ -21,19 +19,16 @@
       .sb-hero { display: grid; justify-items: center; gap: var(--space-4); }
       .sb-hero-fan { display: flex; height: 130px; align-items: flex-end; }
       .sb-card { display: block; width: 62px; aspect-ratio: 60 / 84; filter: drop-shadow(2px 3px 4px rgb(17 17 27 / .5)); }
+      /* On hover the hand fans out and each card takes the hero's hover
+         lift (translate 0 -12px on the spring), one after another. */
       .sb-hero-fan .sb-card {
         margin-left: -22px; transform-origin: 50% 120%; rotate: calc((var(--i) - 2) * 9deg);
-        animation: sb-bob 3.6s var(--ease-out) infinite, sb-lift 3.6s infinite;
-        animation-delay: calc(var(--i) * -.6s), calc(var(--i) * .14s);
+        animation: sb-fan .8s var(--ease-spring) both, sb-lift .6s var(--ease-spring) both;
+        animation-delay: 0s, calc(var(--i) * .08s);
       }
       .sb-hero-fan .sb-card:first-child { margin-left: 0; }
-      @keyframes sb-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-      /* The hover lift (translate 0 -12px on the spring) runs down the hand. */
-      @keyframes sb-lift {
-        0%, 4% { translate: 0 0; animation-timing-function: var(--ease-spring); }
-        10% { translate: 0 -12px; animation-timing-function: var(--ease-spring); }
-        18%, 100% { translate: 0 0; }
-      }
+      @keyframes sb-fan { to { rotate: calc((var(--i) - 2) * 15deg); } }
+      @keyframes sb-lift { to { translate: 0 -12px; } }
     </style>
   </head>
   <body>

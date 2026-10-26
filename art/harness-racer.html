@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="loop" content="4800" />
-    <meta name="still" content="0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
@@ -17,9 +15,9 @@
     <script src="scene.js"></script>
     <style>
       /* harness racer mid-race: each lane's mark, name, and live tok/s
-         (the race page's stat.is-live) over a progress track. Speeds rise
-         and fall on smooth curves that end where they start, so the lead
-         changes hands and the loop has no seam. */
+         (the race page's stat.is-live) over a progress track. On hover the
+         race runs out: Claude Code overtakes and every lane finishes in
+         turn. */
       .hr { width: 288px; }
       .hr-lane { display: grid; grid-template-columns: 28px minmax(0, 1fr) 40px; align-items: center; gap: 10px; padding: 7px 0; }
       .hr-lane .mark { color: var(--crust); }
@@ -30,14 +28,14 @@
       @property --w { syntax: "<percentage>"; inherits: true; initial-value: 0%; }
       .progress-track span { width: var(--w); }
       .cn-value::after { counter-reset: v var(--v); content: counter(v); }
-      .l1 { animation: r1 4.8s ease-in-out infinite; }
-      .l2 { animation: r2 4.8s ease-in-out infinite; }
-      .l3 { animation: r3 4.8s ease-in-out infinite; }
-      .l4 { animation: r4 4.8s ease-in-out infinite; }
-      @keyframes r1 { 0%, 100% { --w: 70%; --v: 98; } 25% { --w: 86%; --v: 120; } 50% { --w: 64%; --v: 90; } 75% { --w: 80%; --v: 112; } }
-      @keyframes r2 { 0%, 100% { --w: 82%; --v: 115; } 25% { --w: 68%; --v: 95; } 50% { --w: 88%; --v: 123; } 75% { --w: 66%; --v: 92; } }
-      @keyframes r3 { 0%, 100% { --w: 52%; --v: 73; } 33% { --w: 62%; --v: 87; } 66% { --w: 48%; --v: 67; } }
-      @keyframes r4 { 0%, 100% { --w: 40%; --v: 56; } 50% { --w: 54%; --v: 76; } }
+      .l1 { animation: r1 1.8s ease-in-out both; }
+      .l2 { animation: r2 1.8s ease-in-out both; }
+      .l3 { animation: r3 1.8s ease-in-out both; }
+      .l4 { animation: r4 1.8s ease-in-out both; }
+      @keyframes r1 { 0% { --w: 70%; --v: 98; } 62%, 100% { --w: 100%; --v: 134; } }
+      @keyframes r2 { 0% { --w: 82%; --v: 115; } 74%, 100% { --w: 100%; --v: 104; } }
+      @keyframes r3 { 0% { --w: 52%; --v: 73; } 88%, 100% { --w: 100%; --v: 88; } }
+      @keyframes r4 { 0% { --w: 40%; --v: 56; } 100% { --w: 100%; --v: 81; } }
     </style>
   </head>
   <body>

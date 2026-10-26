@@ -2,9 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="loop" content="10000" />
-    <meta name="rate" content="1" />
-    <meta name="still" content="0.8" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
@@ -21,19 +18,18 @@
          that says Help: the drawing shared at
          epicycle.balajileninrajan.dev/s/HnHR4KlU2iww, decoded with the
          app's src/share/codec.ts. The scene keeps that link's settings:
-         8192 samples, 1000 circles, a 10s loop played at its own speed,
-         and a trail that fades over 1.5 loops. Each frame draws the way
+         8192 samples, 1000 circles, and a trail that fades over 1.5 loops
+         of the line. On hover the chain draws on for a fifth of a loop. Each frame draws the way
          src/render/epicycles.ts does: circles biggest first, arrows tip
          to tail, and the trail in 24 steps, with jumps at a quarter of
          the line's opacity.
 
          A canvas has no keyframes to pause, so a CSS animation drives --t
-         from 0 to 1 over the loop and each frame draws the chain at --t.
-         Pausing the animation (scene.js, scripts/art_stills.py) holds the
-         drawing. */
+         through the loop and each frame draws the chain at --t. Pausing or
+         rewinding the animation (scene.js) holds or rewinds the drawing. */
       @property --t { syntax: "<number>"; inherits: false; initial-value: 0; }
-      :root { animation: ec-t 10s linear infinite; }
-      @keyframes ec-t { to { --t: 1; } }
+      :root { animation: ec-t 1.6s ease-in-out both; }
+      @keyframes ec-t { from { --t: .8; } to { --t: 1; } }
       canvas { display: block; width: 320px; height: 200px; }
     </style>
   </head>
@@ -178,14 +174,21 @@
       const ctx = canvas.getContext("2d");
       const links = new Float64Array(2 * CIRCLES);
 
-      // Strokes trail samples a..b (wrapping), jumps or lines only.
+      // Strokes trail samples a..b (wrapping), jumps or lines only. Each
+      // unbroken stretch is one polyline through every STEP-th sample:
+      // thousands of separate segments, each with its own round caps, cost
+      // Firefox most of a frame, and the samples sit far closer than a pixel.
+      const STEP = 4;
       const run = (a, b, wantJump, tip) => {
         ctx.beginPath();
+        let pen = false;
         for (let c = a; c < b; c++) {
           const i = ((c % N) + N) % N, j = (i + 1) % N;
-          if (!!jump[i] !== wantJump) continue;
-          ctx.moveTo(ox + tx[i] * scale, oy + ty[i] * scale);
-          ctx.lineTo(c + 1 === b && tip ? tip[0] : ox + tx[j] * scale, c + 1 === b && tip ? tip[1] : oy + ty[j] * scale);
+          if (!!jump[i] !== wantJump) { pen = false; continue; }
+          if (!pen) ctx.moveTo(ox + tx[i] * scale, oy + ty[i] * scale), (pen = true);
+          const last = c + 1 === b;
+          if (last && tip) ctx.lineTo(tip[0], tip[1]);
+          else if (last || c % STEP === 0 || !!jump[j] !== wantJump) ctx.lineTo(ox + tx[j] * scale, oy + ty[j] * scale);
         }
         ctx.stroke();
       };
@@ -237,9 +240,22 @@
         ctx.strokeStyle = ARROW;
         ctx.lineWidth = 0.75;
         ctx.stroke();
-        requestAnimationFrame(draw);
       };
-      requestAnimationFrame(draw);
+
+      // Draw every frame while the animation moves, then stop: a held
+      // scene draws nothing.
+      let looping = false;
+      const loop = () => {
+        draw();
+        looping = document.getAnimations().some((a) => a.playState === "running");
+        if (looping) requestAnimationFrame(loop);
+      };
+      const wake = () => {
+        if (!looping) (looping = true), requestAnimationFrame(loop);
+      };
+      wake();
+      addEventListener("scene:move", wake);
+      addEventListener("resize", wake);
     </script>
   </body>
 </html>

@@ -159,11 +159,14 @@ html { overscroll-behavior: none; }
   .project-row > label > :is(p, .cn-meta) { align-self: auto; }
 }
 
-/* Project art. Each card's scene (art/<name>.html) runs live in a frame.
-   Under reduced motion a still of it shows instead: the package's
-   reduced-motion rule would stop each scene on its bare, unanimated styles.
-   Neither takes the pointer, so clicks reach the card's link. */
+/* Project art. Each card shows a still of its scene (art/<name>.html),
+   rendered by scripts/art_stills.py. Hovering a card loads the scene in a
+   frame over the still and plays it (the script after the accordions); the
+   frame shows once it holds the still's own first frame, so the swap
+   doesn't flash. Neither takes the pointer, so clicks reach the card's
+   link. */
 .project-art {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--surface-0);
   background: var(--base);
@@ -176,11 +179,8 @@ html { overscroll-behavior: none; }
   object-fit: cover;
   pointer-events: none;
 }
-.project-art > img { display: none; }
-@media (prefers-reduced-motion: reduce) {
-  .project-art > iframe { display: none; }
-  .project-art > img { display: block; }
-}
+.project-art > iframe { position: absolute; inset: 0; opacity: 0; transition: opacity .15s; }
+.project-art > iframe.is-ready { opacity: 1; }
 
 /* Each card is the package's .accent-card with its art on top, at the
    control radius, with the aspect ratio pinned so the grid does not reflow
