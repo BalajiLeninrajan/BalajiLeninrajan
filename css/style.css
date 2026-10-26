@@ -217,7 +217,8 @@ html { overscroll-behavior: none; }
 .project-card:has(.card-link:focus-visible) { outline: 2px solid var(--mauve); outline-offset: 3px; }
 
 /* ── 1000px and up: side intro ────────────────────────────────────────────
-   The intro takes 300 to 360px and the content keeps at least 560px; side
+   The intro takes 300 to 360px and the content keeps at least 520px, so
+   the row fits at 1000px even with a classic scrollbar taking 17px. Side
    by side, the intro stays put while the content scrolls. Below 1000px the
    row wraps and the intro sits on top. */
 .split {
@@ -234,7 +235,7 @@ html { overscroll-behavior: none; }
 }
 @media (min-width: 1000px) {
   .split > .intro { flex: 1 1 300px; max-width: 360px; position: sticky; top: 72px; }
-  .split > .split-content { flex: 999 1 560px; }
+  .split > .split-content { flex: 999 1 520px; }
 }
 
 /* ── Avocado ──────────────────────────────────────────────────────────────
