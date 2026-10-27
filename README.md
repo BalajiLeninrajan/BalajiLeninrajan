@@ -20,10 +20,9 @@ live for coffee ☕ love to code 💻 linux enthusiast 🐧
 
 ## Skills
 
-- **Languages ⌨️**: `C/C++` `TypeScript/Javascript` `Rust` `Ruby` `Go` `Python` `Dart` `Assembly` `Scala` `Java` `SQL`
+- **Languages ⌨️**: `C/C++` `TypeScript/Javascript` `Rust` `Ruby` `Python` `Assembly` `Scala` `Java` `SQL`
 - **Web/Mobile 📱**: `Rails` `React` `Next` `React Native` `HTML/CSS` `Django` `Flask` `RPC` `GraphQL` `Flutter`
-- **AI/ML & Data 🤖**: `Pandas` `Numpy` `Scikit-learn` `TensorFlow` `Keras` `PyTorch` `YOLO` `OpenCV`
-- **Tools 🛠️**: `AWS` `Cloudflare` `Bash` `Linux` `Git` `Nginx` `Prometheus` `Docker` `Kubernetes` `GitHub Actions`
+- **DevOps/Infra 🛠️**: `AWS` `GCP` `Cloudflare` `Linux` `Terraform` `Nginx` `Prometheus` `Docker` `Kubernetes`
 
 ## Contact
 
