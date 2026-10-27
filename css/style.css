@@ -299,7 +299,7 @@ html { overscroll-behavior: none; }
   bottom: calc(-1 * var(--avo-floor, 72px));
   width: calc(40 * var(--avo-cell, 4px));
   height: calc(40 * var(--avo-cell, 4px));
-  background-image: url("../img/avo-computer.png");
+  background-image: url("../img/avo-computer.png?v=3");
   background-size: 200% 100%;
 }
 :root[data-avo="flat"] .avo-computer { background-position-x: 100%; }
