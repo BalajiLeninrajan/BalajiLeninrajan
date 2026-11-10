@@ -1,5 +1,6 @@
-/* Shared frame for every scene: a 320x200 stage on the page ground, content
-   centered. scene.js zooms it to fit the frame that embeds it.
+/* Shared frame for every scene: a 320x200 stage on base, the fill of the
+   card that frames it, content centered. scene.js zooms it to fit the frame
+   that embeds it.
 
    A scene is one short animation, not a loop. Its first frame is the
    card's still (scripts/art_stills.py renders it), and hovering the card

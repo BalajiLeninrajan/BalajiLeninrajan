@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.5.0/css/index.css"
       rel="stylesheet"
     />
     <meta name="robots" content="noindex" />
@@ -21,30 +21,32 @@
          presses, Export presses, and the switch flips on. The primary
          and the paddle restate the recipe's own fill: the primary moves
          --cn-fill so its ramp and grain stay, and the paddle paints the
-         ramp when on. */
+         ramp and the on bar when on. */
       @keyframes press-primary {
-        0%, 4% { transform: none; --cn-fill: var(--mauve); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        0%, 4% { transform: none; --cn-fill: var(--mauve); box-shadow: var(--cn-plate), var(--hard-extra); }
         10% { transform: translate(-1px, -1px); --cn-fill: var(--pink); }
-        16%, 22% { transform: translate(2px, 2px); --cn-fill: var(--pink); box-shadow: 2px 2px 0 var(--plate), var(--hard-extra); }
-        30% { transform: none; --cn-fill: var(--pink); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--plate), var(--hard-extra); }
+        16%, 22% { transform: translate(2px, 2px); --cn-fill: var(--pink); box-shadow: var(--cn-plate-half), var(--hard-extra); }
+        30% { transform: none; --cn-fill: var(--pink); box-shadow: var(--cn-plate), var(--hard-extra); }
         38%, 100% { transform: none; --cn-fill: var(--mauve); }
       }
       @keyframes press-secondary {
-        0%, 30% { transform: none; border-color: var(--edge); box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
+        0%, 30% { transform: none; border-color: var(--edge); box-shadow: var(--cn-plate), var(--hard-extra); }
         36% { transform: translate(-1px, -1px); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
-        42%, 48% { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--crust); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
-        56% { transform: none; box-shadow: var(--hard-offset) var(--hard-offset) 0 var(--crust); }
+        42%, 48% { transform: translate(2px, 2px); box-shadow: var(--cn-plate-half), var(--hard-extra); border-color: color-mix(in srgb, var(--mauve) 45%, var(--edge)); }
+        56% { transform: none; box-shadow: var(--cn-plate), var(--hard-extra); }
         62%, 100% { border-color: var(--edge); }
       }
       @keyframes flip {
         0%, 64% {
-          translate: 0 0; border-color: color-mix(in srgb, var(--surface-2) 42%, transparent); background-color: var(--base); background-image: none;
+          translate: 0 0; border-color: var(--control-edge); background-color: var(--cn-surface-raised); background-image: none;
           box-shadow: var(--neu-raised-soft); transform: perspective(120px) rotateY(16deg);
           animation-timing-function: var(--ease-spring);
         }
         78%, 100% {
-          translate: 23px 0; border-color: var(--mauve); --cn-fill: var(--mauve); background-color: var(--cn-fill); background-image: var(--cn-fill-ramp);
-          box-shadow: 0 0 6px color-mix(in srgb, var(--mauve) 18%, transparent), inset 0 1px rgb(255 255 255 / .16);
+          translate: 23px 0; border-color: var(--mauve); --cn-fill: var(--mauve); background-color: var(--cn-fill);
+          background-image: linear-gradient(var(--cn-fg-on-accent), var(--cn-fg-on-accent)), var(--cn-fill-ramp);
+          background-size: 2px 8px, auto; background-position: center; background-repeat: no-repeat;
+          box-shadow: var(--cn-switch-glow), var(--cn-gloss-inset);
           transform: perspective(120px) rotateY(-16deg);
         }
       }
