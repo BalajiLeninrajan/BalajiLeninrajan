@@ -33,9 +33,10 @@ html { overscroll-behavior: none; }
 .intro .hero-actions { margin-top: 0; gap: 10px; flex-wrap: nowrap; }
 
 /* Hero actions and project links compose the package's .btn.is-icon with
-   .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The hover hairline
+   .cn-tone-mauve, .cn-raised-soft and .cn-pressable. On hover the glyph
+   keeps its resting ink, so only the wash carries the tone, and the hairline
    stays off: the raised shadow already gives them an edge. */
-:is(.hero-actions, .project-links) .btn.is-icon:hover { border-color: transparent; }
+:is(.hero-actions, .project-links) .btn.is-icon:hover { color: var(--cn-fg-muted); border-color: transparent; }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .split-content { margin-top: 40px; }
