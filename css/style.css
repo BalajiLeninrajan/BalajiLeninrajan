@@ -33,11 +33,10 @@ html { overscroll-behavior: none; }
 .intro .hero-actions { margin-top: 0; gap: 10px; flex-wrap: nowrap; }
 
 /* Hero actions and project links compose the package's .btn.is-icon with
-   .cn-tone-mauve, .cn-raised-soft and .cn-pressable. The buttons read a step
-   brighter than the recipe's overlay-1, and the hover hairline stays off: the
-   raised shadow already gives them an edge. */
-:is(.hero-actions, .project-links) .btn.is-icon { color: var(--subtext-0); }
-:is(.hero-actions, .project-links) .btn.is-icon:hover { border-color: transparent; }
+   .cn-tone-mauve, .cn-raised-soft and .cn-pressable. On hover the glyph
+   keeps its resting ink, so only the wash carries the tone, and the hairline
+   stays off: the raised shadow already gives them an edge. */
+:is(.hero-actions, .project-links) .btn.is-icon:hover { color: var(--cn-fg-muted); border-color: transparent; }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .split-content { margin-top: 40px; }
@@ -51,10 +50,9 @@ html { overscroll-behavior: none; }
   margin-inline: -8px;
 }
 
-/* Each accordion holds one sentence, so the rows and the copy get more type
-   than the package's 13px label and 14px body voice, with the row title a
-   clear step above the copy. */
-.accordion > label { font-size: 16px; }
+/* Each accordion holds one sentence. The row title keeps the package's 16px
+   and the copy sets a step under it, so the title leads by size: it is a
+   <p>, which the recipe sets at the copy's weight. */
 .accordion .fold p { font-size: 14px; line-height: 1.6; }
 
 /* Under 760px the recipe wraps the label so its meta drops under the title.
@@ -206,11 +204,11 @@ html { overscroll-behavior: none; }
 .project-card:has(.card-link:hover) strong { color: var(--mauve); }
 .project-card:has(.card-link:hover) {
   transform: translate(-1px, -1px);
-  box-shadow: calc(var(--hard-offset) + 1px) calc(var(--hard-offset) + 1px) 0 var(--plate), var(--hard-extra);
+  box-shadow: var(--cn-plate-hover), var(--hard-extra);
 }
 .project-card:has(.card-link:active) {
   transform: translate(calc(var(--hard-offset) / 2), calc(var(--hard-offset) / 2));
-  box-shadow: calc(var(--hard-offset) / 2) calc(var(--hard-offset) / 2) 0 var(--plate), var(--hard-extra);
+  box-shadow: var(--cn-plate-half), var(--hard-extra);
   transition-timing-function: var(--ease-out);
   transition-duration: var(--t-press);
 }

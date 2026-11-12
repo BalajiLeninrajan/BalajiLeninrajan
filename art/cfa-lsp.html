@@ -7,7 +7,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v2.0.1/css/index.css"
       rel="stylesheet"
     />
     <meta name="robots" content="noindex" />
@@ -25,9 +25,14 @@
       .cl .codeblock { overflow: visible; }
       .cl .codeblock pre { white-space: pre; }
       .cl-call { border-radius: 3px; }
+      /* The hover card draws what the package's .popover drew before 2.0.0
+         removed it: the strong edge, the card radius, the overlay fill and
+         the pop shadow. */
       .cl-hover {
-        position: absolute; top: calc(100% + 4px); left: calc(3ch + var(--space-3) - 11px);
-        width: auto; padding: 8px 10px;
+        position: absolute; z-index: 80; top: calc(100% + 4px); left: calc(3ch + var(--space-3) - 11px);
+        padding: 8px 10px;
+        border: 1px solid var(--edge-strong); border-radius: var(--cn-radius-card);
+        background: var(--cn-surface-overlay); box-shadow: var(--shadow-pop);
         white-space: nowrap;
         opacity: 0;
       }
@@ -58,7 +63,7 @@
   <body>
     <div class="cl" aria-hidden="true">
       <div class="codeblock is-numbered">
-        <pre><span><span class="tok-keyword">int</span> <span class="tok-fn">g</span>() { <span class="tok-keyword">return</span> <span class="tok-number">1</span>; }</span><span><span class="tok-keyword">double</span> <span class="tok-fn">g</span>() { <span class="tok-keyword">return</span> <span class="tok-number">2.5</span>; }</span><span class="h1"><span class="tok-keyword">int</span> c = <span class="cl-call tok-fn">g</span>();<span class="popover cl-hover"><span class="cl-sig"><span class="tok-keyword">int</span> <span class="tok-fn">g</span>()</span><span class="cl-meta">function · <code>overload.cfa:1</code> · 1 other overload</span></span></span><span class="h2"><span class="tok-keyword">double</span> d = <span class="cl-call tok-fn">g</span>();<span class="popover cl-hover"><span class="cl-sig"><span class="tok-keyword">double</span> <span class="tok-fn">g</span>()</span><span class="cl-meta">function · <code>overload.cfa:2</code> · 1 other overload</span></span></span></pre>
+        <pre><span><span class="tok-keyword">int</span> <span class="tok-fn">g</span>() { <span class="tok-keyword">return</span> <span class="tok-number">1</span>; }</span><span><span class="tok-keyword">double</span> <span class="tok-fn">g</span>() { <span class="tok-keyword">return</span> <span class="tok-number">2.5</span>; }</span><span class="h1"><span class="tok-keyword">int</span> c = <span class="cl-call tok-fn">g</span>();<span class="cl-hover"><span class="cl-sig"><span class="tok-keyword">int</span> <span class="tok-fn">g</span>()</span><span class="cl-meta">function · <code>overload.cfa:1</code> · 1 other overload</span></span></span><span class="h2"><span class="tok-keyword">double</span> d = <span class="cl-call tok-fn">g</span>();<span class="cl-hover"><span class="cl-sig"><span class="tok-keyword">double</span> <span class="tok-fn">g</span>()</span><span class="cl-meta">function · <code>overload.cfa:2</code> · 1 other overload</span></span></span></pre>
       </div>
     </div>
   </body>

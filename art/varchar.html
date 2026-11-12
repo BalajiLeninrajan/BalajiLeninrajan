@@ -7,7 +7,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v0.4.1/css/index.css"
+      href="https://cdn.jsdelivr.net/gh/BalajiLeninrajan/catppuccin-neu@v2.0.1/css/index.css"
       rel="stylesheet"
     />
     <meta name="robots" content="noindex" />
@@ -39,13 +39,13 @@
          instead, so the block always covers one line. */
       .dock, .vc-track { position: relative; isolation: isolate; }
       .dock pre { position: relative; z-index: 1; }
-      .vc-track .slider { z-index: 1; }
-      .slider {
+      .vc-track .vc-slider { z-index: 1; }
+      .vc-slider {
         position: absolute; left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1);
         border-radius: 4px; background: var(--mauve);
         animation: slide 1.6s both;
       }
-      .dock .slider { margin: -1px -2px; padding: 1px 2px; }
+      .dock .vc-slider { margin: -1px -2px; padding: 1px 2px; }
       .dock mark { white-space: nowrap; }
       @keyframes slide {
         0%, 6% { left: var(--x1); top: var(--y1); width: var(--w1); height: var(--h1); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
@@ -71,11 +71,11 @@
         <span class="vc-rec is-lit" style="flex: 16"></span>
         <span class="vc-rec is-lit" style="flex: 16"></span>
         <span class="vc-rec is-lit" style="flex: 15"></span>
-        <span class="slider"></span>
+        <span class="vc-slider"></span>
       </div>
       <pre class="pattern cn-code"><span class="re-lit">~R</span><span class="re-esc">\|</span><span class="re-lit">users</span><span class="re-esc">\|</span><span class="re-class">[^;]</span><span class="re-quant">*</span><span class="re-lit">;</span></pre>
       <div class="dock terminal">
-        <span class="slider"></span>
+        <span class="vc-slider"></span>
         <pre>V2;<wbr>~S|users|id:I:!|name:T:?;<wbr><mark class="m1">~R|users|I1|TAda;</mark><wbr><mark class="m2">~R|users|I2|TBob;</mark><wbr><mark class="m3">~R|users|I3|TCy;</mark></pre>
       </div>
     </div>
